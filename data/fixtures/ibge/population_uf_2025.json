@@ -1,0 +1,223 @@
+{
+  "dataset_id": "ibge.estimativas_populacao.uf.2025",
+  "title": "Estimativas da população residente — Unidades da Federação 2025",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "habitantes",
+  "reference_date": "2025-07-01",
+  "release_date": null,
+  "retrieved_at": "2026-08-14T14:47:59.411377+00:00",
+  "frequency": "annual",
+  "source": {
+    "organization": "IBGE",
+    "dataset_page": "https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-de-populacao.html",
+    "api_url": "https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2025/variaveis/9324?localidades=N3[all]",
+    "aggregate_id": 6579,
+    "variable_id": 9324,
+    "license_or_terms": "Dados públicos oficiais do IBGE; verificar termos de uso no portal.",
+    "method_notes": "Ingestão automática via API de Agregados do IBGE (N3=UF). Não usar scraping quando este canal estruturado estiver disponível."
+  },
+  "brazil_total": 213421037,
+  "checksum_sha256": "c9102aa09830b9cdc7275a822a3e916ee14fa9b1ccfa2e2f21606906b65bf62d",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "population": 1751950,
+      "exploratory_need_index": 0.52
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "population": 884372,
+      "exploratory_need_index": 0.61
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "population": 4321616,
+      "exploratory_need_index": 0.58
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "population": 738772,
+      "exploratory_need_index": 0.55
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "population": 8711196,
+      "exploratory_need_index": 0.63
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "population": 806517,
+      "exploratory_need_index": 0.6
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "population": 1586859,
+      "exploratory_need_index": 0.54
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "population": 7018211,
+      "exploratory_need_index": 0.72
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "population": 3384547,
+      "exploratory_need_index": 0.7
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "population": 9268836,
+      "exploratory_need_index": 0.66
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "population": 3455236,
+      "exploratory_need_index": 0.64
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "population": 4164468,
+      "exploratory_need_index": 0.65
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "population": 9562007,
+      "exploratory_need_index": 0.67
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "population": 3220848,
+      "exploratory_need_index": 0.71
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "population": 2299425,
+      "exploratory_need_index": 0.68
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "population": 14870907,
+      "exploratory_need_index": 0.69
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "population": 21393441,
+      "exploratory_need_index": 0.45
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "population": 4126854,
+      "exploratory_need_index": 0.4
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "population": 17223547,
+      "exploratory_need_index": 0.42
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "population": 46081801,
+      "exploratory_need_index": 0.35
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "population": 11890517,
+      "exploratory_need_index": 0.38
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "population": 8187029,
+      "exploratory_need_index": 0.36
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "population": 11233263,
+      "exploratory_need_index": 0.39
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "population": 2924631,
+      "exploratory_need_index": 0.44
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "population": 3893659,
+      "exploratory_need_index": 0.46
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "population": 7423629,
+      "exploratory_need_index": 0.43
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "population": 2996899,
+      "exploratory_need_index": 0.34
+    }
+  ],
+  "limitations": [
+    "Estimativa oficial anual (referência típica 1º de julho), não censo e não tempo real.",
+    "Há defasagem entre referência, publicação no DOU e disponibilidade na API.",
+    "exploratory_need_index NÃO é oficial; índice sintético exploratório (grau D) mantido só para o cenário hipotético."
+  ],
+  "ingestion": {
+    "connector": "ibge.agregados.populacao_uf",
+    "connector_version": "0.2.0",
+    "mode": "api"
+  }
+}

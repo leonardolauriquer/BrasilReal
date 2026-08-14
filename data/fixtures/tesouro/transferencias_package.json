@@ -1,0 +1,27 @@
+{
+  "retrieved_at": "2026-08-14T14:32:44.349277+00:00",
+  "source_url": "https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=api-de-transferencias-constitucionais",
+  "title": "API de Transferências Constitucionais",
+  "notes": "Acesse o Histórico de Transferências Constitucionais Realizadas do Tesouro Nacional por meio de APIs públicas, dados estruturados e atualizados sobre os repasses constitucionais realizados pela União a estados e municípios.\r\n\r\nAs APIs permitem consultar valores transferidos, detalhar repasses por ente federativo e facilitar a integração dessas informações a sistemas externos e aplicações, promovendo transparência, reutilização de dados públicos e análises automatizadas.\r\n\r\nAtualmente, estão disponíveis as seguintes APIs:\r\n\r\n\t•\tListagem de transferências\r\n\t•\tTransferências para estados\r\n\t•\tDetalhe das transferências para estados\r\n\t•\tPesquisa por estado e município\r\n\t•\tListagem de estados\r\n\t•\tPesquisa por código do município\r\n\r\nOs dados disponíveis por meio dessa API são os mesmos disponibilizados na consulta \"Histórico de Transferências Constitucionais\", disponível em https://www.tesourotransparente.gov.br/consultas/transferencias-constitucionais-realizadas.\r\n\r\nPara mais informações sobre Transferências Constitucionais, acesse https://www.gov.br/tesouronacional/pt-br/estados-e-municipios/transferencias-a-estados-e-municipios/transferencias-constitucionais-e-legais.",
+  "status_label": "OBSERVADO",
+  "resources": [
+    {
+      "id": "0232e935-882a-4113-9633-481e9455a535",
+      "name": "API de Transferências Constitucionais",
+      "format": "API",
+      "url": "https://sisweb.tesouro.gov.br/apex/f?p=10250:7:111022482372737::NO:7:P7_ID_PROJETO:1586",
+      "last_modified": "2026-02-12T13:43:53.557688"
+    },
+    {
+      "id": "96567b6b-9148-423a-b8e2-6c1cfdc1bc26",
+      "name": "Metadados da API de Transferências Constitucionais",
+      "format": "PDF",
+      "url": "https://www.tesourotransparente.gov.br/ckan/dataset/894a4dad-f306-4717-a417-ea54349376ba/resource/96567b6b-9148-423a-b8e2-6c1cfdc1bc26/download/metadados-apitransferenciasconstitucionais.pdf",
+      "last_modified": "2026-02-12T13:49:25.819277"
+    }
+  ],
+  "limitations": [
+    "Transferências constitucionais são séries oficiais com defasagem contábil.",
+    "Não interpretar automaticamente como 'quanto o estado paga à União'."
+  ]
+}

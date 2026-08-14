@@ -1,0 +1,199 @@
+{
+  "indicator_id": "unemployment_rate",
+  "dataset_id": "ibge.unemployment_rate.202602",
+  "title": "Taxa de desocupação (14 anos ou mais) — UFs 202602",
+  "short_name": "Desocupação",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": true,
+  "kind": "observed_estimate",
+  "frequency": "quarterly",
+  "reference_period": "202602",
+  "reference_date": "2026-Q2",
+  "release_date": null,
+  "retrieved_at": "2026-08-14T14:55:46.895212+00:00",
+  "source": {
+    "organization": "IBGE",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/4099",
+    "api_url": "https://servicodados.ibge.gov.br/api/v3/agregados/4099/periodos/202602/variaveis/4099?localidades=N3[all]",
+    "aggregate_id": 4099,
+    "variable_id": 4099,
+    "variable_name": "Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade",
+    "method_notes": "PNAD Contínua / Agregados 4099, variável 4099, N3. Período trimestral no formato AAAATT (ex.: 202602 = 2026 T2)."
+  },
+  "checksum_sha256": "cbd0181229028be31d6832b6e2fdd7367e08b5456fefaa5c10e8b401e9ed7e52",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 2.6
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 6.6
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 7.5
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 5.0
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 6.2
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 9.8
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 4.1
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 6.0
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 8.3
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 6.6
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 5.6
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 5.4
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 8.3
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 7.9
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 7.9
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 9.1
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 3.8
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 2.3
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 7.1
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 5.4
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 3.1
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 2.1
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 4.2
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 2.7
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 2.2
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 4.0
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 6.5
+    }
+  ],
+  "limitations": [
+    "Taxa trimestral sujeita a sazonalidade e coeficiente de variação.",
+    "Desocupação ≠ informalidade nem desalento (há outras taxas na mesma tabela)."
+  ],
+  "ingestion": {
+    "connector": "ibge.agregados.unemployment_rate",
+    "connector_version": "0.1.0",
+    "mode": "api"
+  }
+}

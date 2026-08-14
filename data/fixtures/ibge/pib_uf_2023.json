@@ -1,0 +1,226 @@
+{
+  "dataset_id": "ibge.contas_regionais.pib_uf.2023",
+  "title": "PIB a preços correntes — Unidades da Federação 2023",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "BRL",
+  "unit_source": "Mil Reais (convertido para BRL × 1.000)",
+  "reference_date": "2023-01-01",
+  "reference_period": "2023",
+  "release_date": null,
+  "retrieved_at": "2026-08-14T14:47:59.849796+00:00",
+  "frequency": "annual",
+  "source": {
+    "organization": "IBGE",
+    "dataset_page": "https://www.ibge.gov.br/estatisticas/economicas/contas-nacionais/9088-produto-interno-bruto-dos-municipios.html",
+    "api_url": "https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/2023/variaveis/37?localidades=N3[all]",
+    "aggregate_id": 5938,
+    "variable_id": 37,
+    "variable_name": "Produto Interno Bruto a preços correntes",
+    "method_notes": "API Agregados IBGE 5938/variável 37 (N3=UF). Valores oficiais em Mil Reais; runtime expõe BRL."
+  },
+  "brazil_total_mil_reais": 10943345437,
+  "brazil_total_brl": 10943345437000,
+  "checksum_sha256": "8ee734e6deed5d1491bcfb7d66b0f4812446ae212cda859bd401bdb2a623e455",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "pib_mil_reais": 76456179,
+      "pib_brl": 76456179000
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "pib_mil_reais": 26291321,
+      "pib_brl": 26291321000
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "pib_mil_reais": 161794976,
+      "pib_brl": 161794976000
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "pib_mil_reais": 25124805,
+      "pib_brl": 25124805000
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "pib_mil_reais": 254546511,
+      "pib_brl": 254546511000
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "pib_mil_reais": 28020120,
+      "pib_brl": 28020120000
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "pib_mil_reais": 64317699,
+      "pib_brl": 64317699000
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "pib_mil_reais": 149227195,
+      "pib_brl": 149227195000
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "pib_mil_reais": 80916856,
+      "pib_brl": 80916856000
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "pib_mil_reais": 232239257,
+      "pib_brl": 232239257000
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "pib_mil_reais": 101740275,
+      "pib_brl": 101740275000
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "pib_mil_reais": 96963174,
+      "pib_brl": 96963174000
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "pib_mil_reais": 270474919,
+      "pib_brl": 270474919000
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "pib_mil_reais": 89688932,
+      "pib_brl": 89688932000
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "pib_mil_reais": 60816662,
+      "pib_brl": 60816662000
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "pib_mil_reais": 430987853,
+      "pib_brl": 430987853000
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "pib_mil_reais": 971977551,
+      "pib_brl": 971977551000
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "pib_mil_reais": 209829732,
+      "pib_brl": 209829732000
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "pib_mil_reais": 1172871443,
+      "pib_brl": 1172871443000
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "pib_mil_reais": 3444814033,
+      "pib_brl": 3444814033000
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "pib_mil_reais": 670919162,
+      "pib_brl": 670919162000
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "pib_mil_reais": 513392973,
+      "pib_brl": 513392973000
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "pib_mil_reais": 650107022,
+      "pib_brl": 650107022000
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "pib_mil_reais": 184402118,
+      "pib_brl": 184402118000
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "pib_mil_reais": 273008586,
+      "pib_brl": 273008586000
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "pib_mil_reais": 336746975,
+      "pib_brl": 336746975000
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "pib_mil_reais": 365669108,
+      "pib_brl": 365669108000
+    }
+  ],
+  "limitations": [
+    "Contas Regionais têm defasagem relevante.",
+    "PIB estadual ≠ arrecadação federal territorializada nem renda disponível.",
+    "Preços correntes: não comparar anos sem deflacionar."
+  ],
+  "ingestion": {
+    "connector": "ibge.agregados.pib_uf",
+    "connector_version": "0.1.0",
+    "mode": "api"
+  }
+}

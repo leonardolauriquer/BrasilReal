@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-brasilreal}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-brasilreal_dev_only}
+      POSTGRES_DB: ${POSTGRES_DB:-brasilreal}
+    ports:
+      - "5432:5432"
+    volumes:
+      - br_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-brasilreal} -d ${POSTGRES_DB:-brasilreal}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://brasilreal:brasilreal_dev_only@db:5432/brasilreal}
+      BR_DATA_MODE: fixtures
+      API_CORS_ORIGINS: '["http://localhost:3000","http://127.0.0.1:3000"]'
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data:ro
+      - ./apps/api:/app/apps/api
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.web
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  br_pgdata:

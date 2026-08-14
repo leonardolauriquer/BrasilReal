@@ -1,0 +1,124 @@
+{
+  "retrieved_at": "2026-08-14T14:32:43.296764+00:00",
+  "source_url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/entes",
+  "docs": "https://apidatalake.tesouro.gov.br/docs/siconfi/",
+  "status_label": "OBSERVADO",
+  "count_returned": 50,
+  "has_more": true,
+  "sample": [
+    {
+      "cod_ibge": 2305209,
+      "ente": "Hidrolândia",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 18186,
+      "cnpj": "07707680000127"
+    },
+    {
+      "cod_ibge": 2305233,
+      "ente": "Horizonte",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 81161,
+      "cnpj": "23555196000186"
+    },
+    {
+      "cod_ibge": 2305266,
+      "ente": "Ibaretama",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 12149,
+      "cnpj": "23444680000138"
+    },
+    {
+      "cod_ibge": 2305308,
+      "ente": "Ibiapina",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 24689,
+      "cnpj": "07523186000102"
+    },
+    {
+      "cod_ibge": 2305332,
+      "ente": "Ibicuitinga",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 12008,
+      "cnpj": "12461646000155"
+    },
+    {
+      "cod_ibge": 2305357,
+      "ente": "Icapuí",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 22562,
+      "cnpj": "10393593000157"
+    },
+    {
+      "cod_ibge": 2305407,
+      "ente": "Icó",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 64745,
+      "cnpj": "07669682000179"
+    },
+    {
+      "cod_ibge": 2305506,
+      "ente": "Iguatu",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 102588,
+      "cnpj": "07810468000190"
+    },
+    {
+      "cod_ibge": 2305605,
+      "ente": "Independência",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 24463,
+      "cnpj": "07982028000110"
+    },
+    {
+      "cod_ibge": 2305654,
+      "ente": "Ipaporanga",
+      "capital": "0  ",
+      "regiao": "NE",
+      "uf": "CE",
+      "esfera": "M",
+      "exercicio": 2026,
+      "populacao": 11963,
+      "cnpj": "10462364000147"
+    }
+  ],
+  "limitations": [
+    "API pública paginada; não é tempo real tick-a-tick.",
+    "Contabilidade pública tem defasagem e revisões; separar empenhado/liquidado/pago."
+  ]
+}

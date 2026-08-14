@@ -1,0 +1,21 @@
+{
+  "id": "lei-13709-2018",
+  "urn_lexml": "urn:lex:br:federal:lei:2018-08-14;13709",
+  "type": "lei",
+  "number": "13709",
+  "year": 2018,
+  "authority": "União",
+  "title": "Lei Geral de Proteção de Dados Pessoais (LGPD)",
+  "ementa": "Dispõe sobre a proteção de dados pessoais e altera a Lei nº 12.965, de 23 de abril de 2014 (Marco Civil da Internet).",
+  "canonical_url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/L13709compilado.htm",
+  "source_organization": "Presidência da República / Portal da Legislação",
+  "retrieved_note": "Catálogo inicial do MVP: metadados e ementa. O texto integral NÃO foi convertido em regras executáveis.",
+  "computable_rules": false,
+  "human_review_status": "catalogued_only",
+  "limitations": [
+    "Presença no catálogo não implica cobertura jurídica completa.",
+    "Não use este registro como consolidação oficial vigente sem conferir a fonte.",
+    "Extrações futuras por IA permanecerão como rascunho até revisão humana."
+  ],
+  "checksum_sha256_of_catalog_record": "89a4da6f75ba37d6ed337d480d6f9b09777b1dde3b164c1646b02ceab6e02207"
+}

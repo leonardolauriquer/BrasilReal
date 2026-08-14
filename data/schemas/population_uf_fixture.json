@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brasilreal.local/schemas/population_uf_fixture.json",
+  "title": "Population UF fixture",
+  "type": "object",
+  "required": [
+    "dataset_id",
+    "reference_date",
+    "release_date",
+    "brazil_total",
+    "checksum_sha256",
+    "records"
+  ],
+  "properties": {
+    "dataset_id": { "type": "string" },
+    "reference_date": { "type": "string" },
+    "release_date": { "type": "string" },
+    "brazil_total": { "type": "integer" },
+    "checksum_sha256": { "type": "string" },
+    "records": {
+      "type": "array",
+      "minItems": 27,
+      "maxItems": 27
+    }
+  }
+}

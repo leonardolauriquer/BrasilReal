@@ -1,0 +1,25 @@
+name: ingest-ibge
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 1" # weekly Monday 12:00 UTC
+
+jobs:
+  ibge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pull IBGE
+        working-directory: workers/ingestion
+        run: python run.py --source ibge --ibge-pop last
+      - name: Upload fixtures artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ibge-fixtures
+          path: |
+            data/fixtures/ibge/
+            data/raw/ibge/
