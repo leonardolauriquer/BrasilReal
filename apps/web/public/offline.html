@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#5a766f" />
+    <title>Brasil Real — sem rede</title>
+    <style>
+      :root {
+        --ink: #0e1713;
+        --mist: #e7efeb;
+        --accent: #3dcf9a;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; }
+      body {
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        font-family: "Figtree", "Helvetica Neue", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse 70% 55% at 18% 12%, rgba(231, 239, 235, 0.42), transparent 60%),
+          linear-gradient(165deg, #6f8c84 0%, #5a766f 42%, #3f5852 100%);
+      }
+      main {
+        width: min(28rem, 100%);
+        padding: 1.4rem 1.35rem 1.25rem;
+        border-radius: 1.25rem;
+        border: 1px solid rgba(14, 23, 19, 0.12);
+        background: rgba(231, 239, 235, 0.88);
+        box-shadow: 0 24px 60px rgba(14, 23, 19, 0.18);
+      }
+      .kicker {
+        margin: 0 0 0.35rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #3f5852;
+      }
+      h1 { margin: 0 0 0.55rem; font-size: 1.55rem; letter-spacing: -0.03em; }
+      p { margin: 0; line-height: 1.45; font-size: 0.95rem; }
+      p + p { margin-top: 0.7rem; }
+      button {
+        margin-top: 1.1rem;
+        border: 0;
+        border-radius: 0.75rem;
+        padding: 0.7rem 1rem;
+        background: #14201c;
+        color: var(--mist);
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="kicker">Brasil Real</p>
+      <h1>Precisa da internet</h1>
+      <p>
+        O app abre offline, mas os números do mapa vêm da API oficial na hora.
+        Não guardamos indicadores no aparelho — fonte, período e definição não podem ficar velhos.
+      </p>
+      <p>Quando a rede voltar, o atlas pinta de novo as 27 UFs.</p>
+      <button type="button" onclick="location.reload()">Tentar de novo</button>
+    </main>
+  </body>
+</html>

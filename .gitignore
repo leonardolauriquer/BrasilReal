@@ -38,3 +38,5 @@ apps/web/playwright-report/
 apps/web/test-results/
 .firebase/
 *.tsbuildinfo
+apps/web/public/sw.js
+apps/web/public/version.json

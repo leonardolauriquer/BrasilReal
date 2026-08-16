@@ -47,13 +47,21 @@ export const metadata: Metadata = {
     title: "Brasil Real",
     statusBarStyle: "black-translucent",
   },
+  formatDetection: { telephone: false },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#5a766f",
+  themeColor: [
+    { media: "(display-mode: standalone)", color: "#14201c" },
+    { media: "(prefers-color-scheme: dark)", color: "#14201c" },
+    { color: "#5a766f" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

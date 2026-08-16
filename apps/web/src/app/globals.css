@@ -18,6 +18,7 @@
   --chrome-z: 3;
   --card-z: 5;
   --dossier-z: 22;
+  --pwa-z: 28;
   --tip-z: 40;
   --safe-t: env(safe-area-inset-top, 0px);
   --safe-r: env(safe-area-inset-right, 0px);
@@ -56,7 +57,9 @@ button,
 .gselect-trigger,
 .rank-row,
 .fit-brazil,
-.close-card {
+.close-card,
+.pwa-dock-primary,
+.pwa-dock-ghost {
   touch-action: manipulation;
 }
 
@@ -889,6 +892,24 @@ button,
 .dossier-open:hover {
   border-color: rgba(61, 207, 154, 0.55);
   color: #dff7ea;
+}
+
+.pwa-open {
+  flex: 0 0 auto;
+  border: 1px solid rgba(61, 207, 154, 0.4);
+  background: rgba(61, 207, 154, 0.12);
+  color: #dff7ea;
+  border-radius: 0.55rem;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pwa-open:hover {
+  background: rgba(61, 207, 154, 0.22);
 }
 
 .region-method,
@@ -2094,5 +2115,129 @@ button,
   .boot--out {
     transition: opacity 200ms linear;
     transform: none;
+  }
+}
+
+/* —— PWA install / refresh dock —— */
+.pwa-dock {
+  position: fixed;
+  z-index: var(--pwa-z);
+  left: 50%;
+  bottom: calc(1rem + var(--safe-b));
+  transform: translateX(-50%);
+  width: min(28.5rem, calc(100vw - 1.4rem));
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "mark copy"
+    "actions actions";
+  gap: 0.55rem 0.85rem;
+  padding: 0.95rem 1rem 0.9rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(231, 239, 235, 0.2);
+  background: rgba(14, 23, 19, 0.92);
+  color: var(--glass-text);
+  box-shadow: 0 22px 70px rgba(8, 14, 12, 0.42);
+  backdrop-filter: blur(22px) saturate(1.35);
+  animation: pwa-rise 520ms var(--ease) both;
+}
+
+.pwa-dock--update {
+  border-color: rgba(61, 207, 154, 0.45);
+}
+
+.pwa-dock-mark {
+  grid-area: mark;
+  width: 2.6rem;
+  height: auto;
+  align-self: start;
+}
+
+.pwa-dock-copy {
+  grid-area: copy;
+  min-width: 0;
+}
+
+.pwa-dock-kicker {
+  margin: 0 0 0.18rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.pwa-dock-title {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.pwa-dock-line {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--glass-muted);
+}
+
+.pwa-dock-line strong {
+  color: var(--glass-text);
+  font-weight: 600;
+}
+
+.pwa-dock-actions {
+  grid-area: actions;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.pwa-dock-primary,
+.pwa-dock-ghost {
+  border-radius: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.pwa-dock-primary {
+  border: 0;
+  background: var(--accent);
+  color: #082018;
+}
+
+.pwa-dock-primary:hover {
+  filter: brightness(1.06);
+}
+
+.pwa-dock-ghost {
+  border: 1px solid rgba(231, 239, 235, 0.2);
+  background: transparent;
+  color: var(--glass-text);
+}
+
+.pwa-dock-ghost:hover {
+  border-color: rgba(231, 239, 235, 0.4);
+}
+
+@keyframes pwa-rise {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pwa-dock {
+    animation: none !important;
   }
 }

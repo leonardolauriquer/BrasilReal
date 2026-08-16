@@ -7,6 +7,7 @@ import { BootScreen } from "@/components/BootScreen";
 import { BrandMark } from "@/components/BrandMark";
 import { DataDossier } from "@/components/DataDossier";
 import { MapControlsBar } from "@/components/MapControlsBar";
+import { PwaDock } from "@/components/PwaDock";
 import { RankPanel } from "@/components/RankPanel";
 import { useAtlasState } from "@/lib/atlas/useAtlasState";
 import { getApiUrl } from "@/lib/api";
@@ -22,6 +23,7 @@ const BrazilMap = dynamic(
 export default function HomePage() {
   const a = useAtlasState();
   const [dossierOpen, setDossierOpen] = useState(false);
+  const [pwaOffer, setPwaOffer] = useState(false);
 
   return (
     <div className="app-shell">
@@ -118,6 +120,8 @@ export default function HomePage() {
             onChangeYear={a.setYear}
             onFitBrazil={a.fitBrazil}
             onOpenDossier={() => setDossierOpen(true)}
+            showInstallApp={pwaOffer}
+            onInstallApp={() => window.dispatchEvent(new Event("br:pwa-install"))}
             recorte={a.recorte}
             onChangeRecorte={a.setRecorte}
             rankMode={a.rankMode}
@@ -163,6 +167,8 @@ export default function HomePage() {
           regionMode={a.regionMode}
         />
       </div>
+
+      <PwaDock ready={a.atlasLive} onOfferInstall={setPwaOffer} />
     </div>
   );
 }

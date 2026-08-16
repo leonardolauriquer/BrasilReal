@@ -310,6 +310,7 @@ pytest -q
 - Zoom médio → UF, intermediária, capitais. Municípios só em População, com UF selecionada.  
 - **Dossiê** — ZIP da vista ou da série oficial, com carta de proveniência.  
 - Todo número com **InfoTip** (definição + fonte + limitações).
+- **App (PWA):** instalar na tela inicial; cada publicação troca o pacote. Indicadores oficiais não ficam cacheados no aparelho.
 
 ---
 

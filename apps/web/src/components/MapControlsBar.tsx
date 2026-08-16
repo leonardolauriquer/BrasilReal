@@ -26,6 +26,8 @@ type Props = {
   onChangeYear: (year: string) => void;
   onFitBrazil: () => void;
   onOpenDossier: () => void;
+  showInstallApp?: boolean;
+  onInstallApp?: () => void;
   recorte: RecorteId;
   onChangeRecorte: (id: RecorteId) => void;
   rankMode: "nivel" | "delta";
@@ -47,6 +49,8 @@ export function MapControlsBar({
   onChangeYear,
   onFitBrazil,
   onOpenDossier,
+  showInstallApp = false,
+  onInstallApp,
   recorte,
   onChangeRecorte,
   rankMode,
@@ -147,6 +151,11 @@ export function MapControlsBar({
         <button type="button" className="dossier-open" onClick={onOpenDossier}>
           Dossiê
         </button>
+        {showInstallApp && onInstallApp ? (
+          <button type="button" className="pwa-open" onClick={onInstallApp}>
+            Instalar app
+          </button>
+        ) : null}
         <span>
           {controlHint}
           {loading ? " · atualizando camada…" : ""}
