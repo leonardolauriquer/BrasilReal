@@ -26,6 +26,15 @@ export function isIosSafari(): boolean {
   return iOS && webkit && notOther;
 }
 
+export function canInstallApp(opts: {
+  standalone: boolean;
+  canPrompt: boolean;
+  iosSafari: boolean;
+}): boolean {
+  if (opts.standalone) return false;
+  return opts.canPrompt || opts.iosSafari;
+}
+
 export function shouldOfferInstall(opts: {
   standalone: boolean;
   canPrompt: boolean;
@@ -33,8 +42,7 @@ export function shouldOfferInstall(opts: {
   dismissedAt: number | null;
   now: number;
 }): boolean {
-  if (opts.standalone) return false;
-  if (!opts.canPrompt && !opts.iosSafari) return false;
+  if (!canInstallApp(opts)) return false;
   if (opts.dismissedAt != null && opts.now - opts.dismissedAt < PWA_SNOOZE_MS) return false;
   return true;
 }

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BrandMark } from "@/components/BrandMark";
 import {
+  canInstallApp,
   isIosSafari,
   isStandaloneDisplay,
   readDismissedAt,
@@ -36,7 +37,13 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
 
   const publishOffer = useCallback(() => {
     const offer = computeOffer();
-    onOfferInstall?.(offer);
+    onOfferInstall?.(
+      canInstallApp({
+        standalone: isStandaloneDisplay(),
+        canPrompt: Boolean(deferred.current),
+        iosSafari: isIosSafari(),
+      }),
+    );
     return offer;
   }, [computeOffer, onOfferInstall]);
 
@@ -54,7 +61,15 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
       onOfferInstall?.(false);
     };
     const onAsk = () => {
-      if (!computeOffer()) return;
+      if (
+        !canInstallApp({
+          standalone: isStandaloneDisplay(),
+          canPrompt: Boolean(deferred.current),
+          iosSafari: isIosSafari(),
+        })
+      ) {
+        return;
+      }
       setMode(isIosSafari() && !deferred.current ? "ios" : "install");
     };
     window.addEventListener("beforeinstallprompt", onBip);
@@ -123,7 +138,13 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
   const dismissInstall = () => {
     writeDismissedAt(window.localStorage, Date.now());
     setMode("hidden");
-    onOfferInstall?.(false);
+    onOfferInstall?.(
+      canInstallApp({
+        standalone: isStandaloneDisplay(),
+        canPrompt: Boolean(deferred.current),
+        iosSafari: isIosSafari(),
+      }),
+    );
   };
 
   const installNow = async () => {
