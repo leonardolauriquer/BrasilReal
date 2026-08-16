@@ -48,7 +48,9 @@ CANARY_LAYERS = (
     ("trib_share_rcl", None),
     ("dcl_rcl", None),
     ("export_fob", None),
-    ("export_fob_pc", None),
+    ("union_transfers", None),
+    ("union_transfers_const", None),
+    ("union_transfers_pc", None),
 )
 
 

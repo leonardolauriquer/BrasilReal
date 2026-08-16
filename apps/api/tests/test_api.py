@@ -348,6 +348,41 @@ def test_siconfi_fiscal_layers(client):
     assert indicators["dcl_rreo"]["higher_is_worse"] is True
 
 
+def test_cgu_union_transfer_layers(client):
+    indicators = {i["id"]: i for i in client.get("/v1/indicators").json()["items"]}
+    for key in ("union_transfers", "union_transfers_const", "union_transfers_pc"):
+        assert key in indicators, key
+        assert indicators[key]["group"] == "uniao"
+        assert "CGU" in (indicators[key].get("source") or {}).get("organization", "") or key == "union_transfers_pc"
+        obs = client.get(f"/v1/observations?indicator={key}").json()
+        assert obs["count"] == 27, key
+        assert all(item.get("definition") for item in obs["items"])
+        assert all(item["value"] > 0 for item in obs["items"]), key
+        periods = client.get(f"/v1/indicators/{key}/periods").json()
+        assert periods["count"] >= 2, key
+    observed = indicators["union_transfers"]
+    assert observed["unit"] == "BRL"
+    assert observed["status_label"] == "OBSERVADO"
+    assert indicators["union_transfers_pc"]["unit"] == "BRL/hab"
+    assert indicators["union_transfers_pc"]["status_label"] == "DERIVADO"
+    by_uf = {item["uf"]: item["value"] for item in client.get("/v1/observations?indicator=union_transfers").json()["items"]}
+    assert by_uf["SP"] > by_uf["RR"]
+    rreo = {
+        item["uf"]: item["value"]
+        for item in client.get("/v1/observations?indicator=transf_uniao_rreo").json()["items"]
+    }
+    assert by_uf["SP"] != rreo["SP"]
+    sample = client.get("/v1/observations?indicator=union_transfers").json()["items"][0]
+    blob = " ".join(
+        [
+            sample.get("definition") or "",
+            " ".join(sample.get("limitations") or []),
+        ]
+    ).casefold()
+    assert "favorecido" in blob
+    assert "siconfi" in blob or "rreo" in blob
+
+
 def test_governor_layers_full_uf_coverage(client):
     indicators = {i["id"]: i for i in client.get("/v1/indicators").json()["items"]}
     for key in ("gov_winner_share", "gov_margin_pp"):

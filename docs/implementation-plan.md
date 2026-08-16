@@ -15,4 +15,4 @@
 
 ## Estado
 
-Checkpoint Fase 1 implementado. Fase 2 onda 1: cinco camadas SICONFI/RREO (27 UFs, fail-closed).
+Checkpoint Fase 1 implementado. Fase 2 onda 1: cinco camadas SICONFI/RREO + CGU Transferências (27 UFs, fail-closed).

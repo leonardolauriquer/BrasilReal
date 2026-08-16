@@ -52,6 +52,7 @@ FIXTURE_INDICATOR_RELDIRS = (
     "comex/indicators",
     "tse/indicators",
     "siconfi/indicators",
+    "cgu/indicators",
     "dieese/indicators",
     "lentes/indicators",
 )

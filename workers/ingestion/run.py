@@ -5,6 +5,7 @@ Examples:
   python run.py --source ibge --ibge-pop 2025
   python run.py --source siconfi
   python run.py --source tesouro
+  python run.py --source transparencia
 """
 
 from __future__ import annotations
@@ -24,6 +25,7 @@ import siconfi
 import social_layers
 import territory
 import tesouro
+import transparencia
 import tse
 from common import utc_now
 
@@ -33,7 +35,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--all", action="store_true", help="Run IBGE + SICONFI + Tesouro")
     parser.add_argument(
         "--source",
-        choices=["ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex", "tse"],
+        choices=["ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex", "tse", "transparencia"],
         action="append",
         default=[],
         help="Source to run (repeatable)",
@@ -47,7 +49,7 @@ def main(argv: list[str] | None = None) -> int:
 
     sources = set(args.source)
     if args.all:
-        sources = {"ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex", "tse"}
+        sources = {"ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex", "tse", "transparencia"}
     elif not sources:
         sources = {"ibge", "siconfi", "tesouro"}
 
@@ -110,6 +112,14 @@ def main(argv: list[str] | None = None) -> int:
                     "result": tesouro.discover_transferencias(),
                 }
             )
+
+        if "transparencia" in sources:
+            report["steps"].append(
+                {"step": "transparencia.bundle", "result": transparencia.fetch_bundle()}
+            )
+            from derived_layers import materialize_cgu_derived
+
+            report["steps"].append({"step": "derived.after_cgu", "result": materialize_cgu_derived()})
     except Exception as exc:  # noqa: BLE001
         report["status"] = "failed"
         report["error"] = str(exc)

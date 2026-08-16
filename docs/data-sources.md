@@ -34,8 +34,8 @@ Regra do Brasil Real: preferir API/arquivo oficial → snapshot bruto imutável 
 | Bioma predominante | [IBGE FTP biomas 2024](https://geoftp.ibge.gov.br/informacoes_ambientais/estudos_ambientais/biomas/documentos/) | referência 2024 | **não** | Ficha territorial |
 | Costeiro/marinho | Lista IBGE CosteiroMarinho | referência lista | **não** | Ficha territorial |
 | Detecção ano novo | [FTP Estimativas](https://ftp.ibge.gov.br/Estimativas_de_Populacao/) | anual | não | Automatizado |
-| Contas/RREO/MSC | [SICONFI API](https://apidatalake.tesouro.gov.br/docs/siconfi/) | mensal/bimestral | **não** | 5 camadas UF (RCL, receita tributária, transf. União, despesa empenhada, DCL) |
-| Transferências | [Tesouro CKAN](https://www.tesourotransparente.gov.br/ckan/dataset/api-de-transferencias-constitucionais) · SICONFI RREO | mensal / anual | **não** | Linha UF no RREO; API CKAN ainda discovery |
+| Contas/RREO/MSC | [SICONFI API](https://apidatalake.tesouro.gov.br/docs/siconfi/) | mensal/bimestral | **não** | 5 camadas UF (RCL, receita tributária, transf. União RREO, despesa empenhada, DCL) |
+| Transferências (favorecido) | [CGU Portal da Transparência / Transferencias](https://portaldatransparencia.gov.br/download-de-dados/transferencias) | mensal (ZIP CSV) | **não** | Soma anual por UF do favorecido; constitucionais; R$/hab. Sem microdado pessoal |
 | Votos presidente UF (partido/turno) | [TSE Dados Abertos](https://dadosabertos.tse.jus.br/) `votacao_candidato_munzona` | eleitoral | **não** | Automatizado |
 | Arrecadação | ReceitaData / dados abertos RFB | mensal | **não** | Fase 2 |
 | Séries macro | [BCB Dados Abertos](https://dadosabertos.bcb.gov.br/) | diária/mensal | quase (séries) | Fase 2 |
@@ -56,7 +56,14 @@ python run.py --source ipeadata
 python run.py --source comex
 python run.py --source comex --comex-from 2020
 python run.py --source tse
+python run.py --source transparencia
 ```
+
+### Transferências da União (CGU)
+
+Ingestão: `python run.py --source transparencia` → `data/fixtures/cgu/indicators/`.
+
+ZIP mensal oficial (`download-de-dados/transferencias/{YYYYMM}`), CSV latin-1. Soma `VALOR TRANSFERIDO` pela coluna `UF` do favorecido. Exercício = 12 meses publicados. Sem chave de API e sem microdado de pessoa. **Não é** a linha de transferências do RREO estadual (SICONFI) e **não é** gasto executado no território.
 
 ### Eleições (TSE)
 
@@ -79,7 +86,7 @@ API oficial MDIC (`api-comexstat.mdic.gov.br`). Respeitar rate-limit (429 → re
 | Consumo de carne / POF | IBGE POF | Poucos anos; validar UF vs região |
 | Farelo/óleo soja, milho, minério | Comex Stat | Só falta priorizar NCM/SH |
 | Renda / desigualdade | PNAD Contínua IBGE | OK — próximo social |
-| Arrecadação / gasto UF | SICONFI / ReceitaData | **SICONFI RREO UF shipado** (5 camadas). ReceitaData e gasto federal territorializado: ainda Fase 2 |
+| Arrecadação / gasto UF | SICONFI / CGU / ReceitaData | **SICONFI RREO + CGU (UF do favorecido) shipados**. ReceitaData e gasto federal territorializado: ainda Fase 2 |
 | Milionários / bilionários | — | Sem agregado oficial por UF |
 | Patrimônio (público) | SICONFI / Balanço | Definir métrica (ativo? dívida?) |
 | COVID | — | Sem API estável |

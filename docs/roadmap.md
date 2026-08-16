@@ -6,7 +6,7 @@
 
 ## Fase 2 — Brasil fiscal observado
 
-Onda 1 no mapa: RREO SICONFI (RCL, receita tributária, transferências correntes da União, despesa empenhada, DCL).  
+Onda 1 no mapa: RREO SICONFI (RCL, receita tributária, transferências correntes da União, despesa empenhada, DCL) e CGU Transferências (UF do favorecido, constitucionais, R$/hab).  
 Ainda não: ReceitaData, gasto federal territorializado, reconciliação União↔UF.
 
 ## Fase 3 — Regras federais selecionadas

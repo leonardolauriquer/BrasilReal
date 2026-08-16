@@ -26,7 +26,7 @@ O **Brasil Real** trata o mapa como produto: você escolhe uma camada, pinta as 
 
 | Isso | Não isso |
 |---|---|
-| IBGE, TSE, SICONFI, Comex, IPEA/DATASUS, DIEESE | Número inventado ou “estimativa de IA” |
+| IBGE, TSE, SICONFI, CGU, Comex, IPEA/DATASUS, DIEESE | Número inventado ou “estimativa de IA” |
 | Rótulos `OBSERVADO` / `ESTIMADO` / `DERIVADO` / `SEM DADO` | Lente ou variação vendida como fato IBGE |
 | Lentes editoriais com pesos **declarados** | “Melhor estado” oficial / IDHM |
 | Cenário fiscal **hipotético** (API + manifesto) | Parecer jurídico ou motor de decisão pública |
@@ -139,7 +139,8 @@ Cada camada exige tooltip com definição + fonte. **27 UFs ou vazio.** Lentes e
 |---|---|---|
 | **Lentes** | Morar, empreender, criança, pressão etária | Receita editorial (pesos iguais) sobre camadas oficiais |
 | **Economia** | PIB, PIB/hab, renda, salário formal, Gini, pobreza, desocupação, informalidade, abertura/sobrevivência de empresas | IBGE (SCN, PNAD, Cempre, Demografia) |
-| **Fiscal** | RCL, tributária, transferências da União, despesa empenhada, DCL, RCL/hab, DCL/RCL, tributária/RCL | SICONFI RREO |
+| **Fiscal** | RCL, tributária, transferências correntes da União (RREO estado), despesa empenhada, DCL, RCL/hab, DCL/RCL, tributária/RCL | SICONFI RREO |
+| **União (CGU)** | Transferências ao favorecido na UF, constitucionais/royalties, R$/hab | Portal da Transparência — UF do favorecido ≠ gasto no território |
 | **Custo na capital** | Cesta básica e cesta / SM | DIEESE (preço da **capital**, não do interior) |
 | **Moradia** | Alugado / próprio pagando / próprio quitado | Censo 2022 |
 | **Território** | População, densidade, área, idade, natalidade/mortalidade, urbano, dependência | IBGE |
@@ -182,6 +183,7 @@ flowchart LR
     IPEA[Ipeadata / DATASUS]
     MDIC[Comex Stat MDIC]
     STN[SICONFI / Tesouro]
+    CGU[CGU Transparência]
     TSE[TSE dados abertos]
     DIEESE[DIEESE / cesta]
   end
@@ -201,6 +203,7 @@ flowchart LR
   IPEA --> W
   MDIC --> W
   STN --> W
+  CGU --> W
   TSE --> W
   DIEESE --> W
   W --> RAW
@@ -243,6 +246,7 @@ Pipeline: **API/arquivo oficial → snapshot bruto + checksum → fixture valida
 | Homicídios / trânsito | [Ipeadata](http://www.ipeadata.gov.br/) (SIM/DATASUS) | Automatizado |
 | Exportações FOB | [Comex Stat](https://comexstat.mdic.gov.br/) / [API MDIC](https://api-comexstat.mdic.gov.br/docs) | Automatizado |
 | Fiscal (SICONFI) | [SICONFI](https://apidatalake.tesouro.gov.br/docs/siconfi/) | RREO 27 UFs no mapa |
+| Transferências União (CGU) | [Portal da Transparência](https://portaldatransparencia.gov.br/download-de-dados/transferencias) | UF do favorecido, não gasto territorializado |
 | Eleições | [TSE Dados Abertos](https://dadosabertos.tse.jus.br/) | Presidência e governo UF |
 | Cesta básica | DIEESE | Capital da UF, não interior |
 | Povos / ficha territorial | Censo 9718, 9727, 1301, biomas FTP | Mapa + ficha |
@@ -261,12 +265,14 @@ python run.py --source comex --comex-from 2022
 python run.py --source siconfi
 python run.py --source tse
 python run.py --source tesouro
+python run.py --source transparencia   # CGU Transferencias, ~24 zips/ano; cache em data/raw/
 ```
 
 - **Ipeadata:** OData não filtra por UF; o conector baixa a série e seleciona `NIVNOME=Estados`.  
 - **Comex:** só anos-civis completos; UF sem operação = `0` declarado; “Não Declarada” fora do mapa.  
 - **TSE:** votos presidente/governador por UF; ZZ/VT fora.  
-- **Lentes:** min-max 0–100 com pesos iguais; status `DERIVADO`.
+- **Lentes:** min-max 0–100 com pesos iguais; status `DERIVADO`.  
+- **SICONFI vs CGU:** RREO = o que o *estado* registrou como recebido da União. CGU = o que a União registrou como transferido a favorecidos com UF preenchida (estado + municípios + outros). Não são a mesma série e não se reconcilia automaticamente.
 
 </details>
 
@@ -312,7 +318,7 @@ pytest -q
 | Fase | Foco |
 |---|---|
 | **1** ✓ | Fundação: 27 UFs, mapa, proveniência, cenário hipotético |
-| **2** | **Onda 1 no mapa:** SICONFI/RREO 27 UFs. Ainda não: ReceitaData, gasto federal territorializado |
+| **2** | **Onda 1 no mapa:** SICONFI/RREO 27 UFs + CGU transferência ao favorecido. Ainda não: ReceitaData, gasto federal territorializado, reconciliação União↔UF |
 | **3** | Regras federais selecionadas (rules-as-code + vigência) |
 | **4** | Municípios + população sintética |
 | **5** | Educação, saúde, trabalho, infraestrutura (PNS/saneamento já no mapa; IDEB só com 27 UFs oficiais) |

@@ -278,4 +278,56 @@ def materialize_derived() -> dict[str, Any]:
     else:
         wrote["export_fob_pc"] = {"skipped": "missing export_fob_latest.json"}
 
+    wrote["union_transfers_pc"] = materialize_cgu_derived(estados=estados, pop=pop)
     return wrote
+
+
+def materialize_cgu_derived(
+    *,
+    estados: dict[str, dict[str, str]] | None = None,
+    pop: dict[str, float] | None = None,
+) -> dict[str, Any]:
+    estados = estados or _estados()
+    pop = pop or _load_pop()
+    cgu_path = fixtures_dir() / "cgu" / "indicators" / "union_transfers_latest.json"
+    if not cgu_path.exists():
+        return {"skipped": "missing union_transfers_latest.json"}
+    cgu = json.loads(cgu_path.read_text(encoding="utf-8"))
+    cgu_map = _year_maps(cgu)
+    cgu_latest = str(cgu.get("reference_period") or "")
+    if cgu_latest not in cgu_map:
+        raise RuntimeError("derived: union_transfers latest missing 27 UFs")
+    pc_series: dict[str, list[dict[str, Any]]] = {}
+    for year, mapped in cgu_map.items():
+        pc_mapped = {code: mapped[code] / pop[code] for code in UF_CODES}
+        if any(v <= 0 for v in pc_mapped.values()):
+            raise RuntimeError(f"derived: non-positive union_transfers_pc in {year}")
+        pc_series[year] = _records(pc_mapped, estados)
+    return _write(
+        rel="cgu/indicators",
+        indicator_id="union_transfers_pc",
+        name="Transferências da União por habitante (CGU)",
+        short_name="Transf. União / hab",
+        unit="BRL/hab",
+        definition=(
+            f"Soma anual VALOR TRANSFERIDO da CGU ({cgu_latest}) dividida pela "
+            "população residente estimada IBGE 2025. A CGU não publica R$/hab. "
+            "UF = favorecido no arquivo, não o território onde o recurso foi gasto."
+        ),
+        limitations=[
+            "Denominador é a estimativa de população 2025 em todos os exercícios da série.",
+            "UF do favorecido ≠ execução de despesa no território.",
+            "Não confundir com transferências correntes do RREO estadual (SICONFI).",
+            "Nominal; não deflacionado.",
+        ],
+        source={
+            "organization": "Brasil Real",
+            "dataset": "CGU Transferencias ÷ população IBGE 2025",
+            "url": "https://portaldatransparencia.gov.br/download-de-dados/transferencias",
+        },
+        records=pc_series[cgu_latest],
+        period=cgu_latest,
+        group="uniao",
+        group_label="União (CGU)",
+        series=pc_series,
+    )

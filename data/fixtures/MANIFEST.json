@@ -260,6 +260,15 @@
     "siconfi/indicators/trib_share_rcl_latest.json": {
       "sha256": "a5b1c72da1d4a73516490372775c75e3c5351ece723b3c4a02de16220c392dc2"
     },
+    "cgu/indicators/union_transfers_const_latest.json": {
+      "sha256": "24cf09785eca1e12c2b96a43d97aca26cc321262ce94e5c33ed8d6f2015c5a28"
+    },
+    "cgu/indicators/union_transfers_latest.json": {
+      "sha256": "ff64ad91c3aa084840200b4fac6226814c3fc9ce380df3d0886c11b4b3d50662"
+    },
+    "cgu/indicators/union_transfers_pc_latest.json": {
+      "sha256": "8863fddebcc9a1d64de8a9d00f529669604e148acbb4475ba16d3820970ac520"
+    },
     "dieese/indicators/basket_capital_latest.json": {
       "sha256": "427cc02006b27153804c47a2fadfbcce08f1dd90f8b1e975894944b38290d242"
     },
@@ -2513,6 +2522,45 @@
         "2025": {
           "n": 27,
           "values_sha256": "14731ea6a8e86cc6eae6e9d84defc2960f553a843ce1207637f7a143fd3a3dcf"
+        }
+      }
+    },
+    "union_transfers_const": {
+      "indicator": "union_transfers_const",
+      "periods": {
+        "2024": {
+          "n": 27,
+          "values_sha256": "8d4d876677e88521e6a4e8b5e51fd18ef8efe8d05b46adac6ef40ccd706e5fcd"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "c4888e1f64fb7e4d0bec284662aa616d0bb39cb99658983e17bff10030359ce2"
+        }
+      }
+    },
+    "union_transfers": {
+      "indicator": "union_transfers",
+      "periods": {
+        "2024": {
+          "n": 27,
+          "values_sha256": "8c23c6fea31de9f264a62279ee9a183b5b613b41283828eb1a2187208bbc1ad2"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "0abfcd1d860cee17fb96144ec4535c477fcfb678984a213e0765cae201189876"
+        }
+      }
+    },
+    "union_transfers_pc": {
+      "indicator": "union_transfers_pc",
+      "periods": {
+        "2024": {
+          "n": 27,
+          "values_sha256": "ec4b12ba5e7d776b19a21c038360a9018c1df97f670f8bfa7cc1c0f0a3f4c1b2"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "0ed361b20b1a0d476837b5c9311d8145c3cf25f29d9f4a94d49eac4baed527e8"
         }
       }
     },

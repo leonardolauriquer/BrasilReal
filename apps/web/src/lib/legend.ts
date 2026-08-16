@@ -46,10 +46,19 @@ const RANKING_PRESET_GROUPS: RankingPresetGroup[] = [
       { value: "rcl_pc", label: "RCL por habitante" },
       { value: "receita_tributaria_rreo", label: "Receita tributária" },
       { value: "trib_share_rcl", label: "Tributária / RCL" },
-      { value: "transf_uniao_rreo", label: "Transferências da União" },
+      { value: "transf_uniao_rreo", label: "Transf. União (RREO estado)" },
       { value: "despesa_empenhada_rreo", label: "Despesa empenhada" },
       { value: "dcl_rreo", label: "Dívida líquida (DCL)" },
       { value: "dcl_rcl", label: "DCL / RCL" },
+    ],
+  },
+  {
+    key: "uniao",
+    label: "União (CGU)",
+    items: [
+      { value: "union_transfers", label: "Transf. União (favorecido)" },
+      { value: "union_transfers_const", label: "Constitucionais e royalties" },
+      { value: "union_transfers_pc", label: "Transf. União / hab" },
     ],
   },
   {
@@ -373,6 +382,13 @@ export function legendScaleFor(
       note: "pontos percentuais entre 1º e 2º na UF",
     };
   }
+  if (id === "union_transfers" || id === "union_transfers_const") {
+    return {
+      low: "menos recebido (favorecido)",
+      high: "mais recebido (favorecido)",
+      note: "CGU · UF do favorecido ≠ gasto executado no território",
+    };
+  }
   if (unit === "BRL") {
     return {
       low: "menor R$",
@@ -409,11 +425,20 @@ export function legendScaleFor(
     };
   }
   if (unit === "BRL/hab") {
-    return {
-      low: id === "rcl_pc" ? "menor RCL/hab" : "menor PIB/hab",
-      high: id === "rcl_pc" ? "maior RCL/hab" : "maior PIB/hab",
-      note: "razão derivada · não somar entre UFs",
+    const labels: Record<string, [string, string, string]> = {
+      rcl_pc: ["menor RCL/hab", "maior RCL/hab", "RCL RREO ÷ pop. IBGE · não somar"],
+      union_transfers_pc: [
+        "menor R$/hab (favorecido)",
+        "maior R$/hab (favorecido)",
+        "CGU ÷ pop. IBGE · UF do favorecido, não impacto no território",
+      ],
     };
+    const [low, high, note] = labels[id ?? ""] ?? [
+      "menor PIB/hab",
+      "maior PIB/hab",
+      "razão derivada · não somar entre UFs",
+    ];
+    return { low, high, note };
   }
   if (unit === "km²") {
     return {
@@ -446,6 +471,7 @@ export function groupIndicators(indicators: Indicator[]) {
     "custo",
     "moradia",
     "fiscal",
+    "uniao",
     "territorio",
     "demografia",
     "social",
