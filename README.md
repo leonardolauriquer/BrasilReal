@@ -22,14 +22,14 @@
 
 ## O que é
 
-O **Brasil Real** trata o mapa como produto: você escolhe uma camada oficial, pinta as 27 UFs, clica e abre uma ficha com **definição, órgão, dataset, período e limitações**. Se faltar proveniência, o valor **não aparece** (`fail closed`).
+O **Brasil Real** trata o mapa como produto: você escolhe uma camada, pinta as 27 UFs, ordena o ranking, baixa um **dossiê** com fonte e clica para abrir a ficha (**definição, órgão, dataset, período e limitações**). Sem proveniência o valor **não aparece** (`fail closed`). Cobertura ≠ 27 UFs → camada vazia.
 
 | Isso | Não isso |
 |---|---|
-| Dados de IBGE, IPEA/DATASUS, MDIC, etc. | Números inventados ou “estimativa de IA” |
-| Rótulos `OBSERVADO` / `ESTIMADO` / `SIMULADO` / `SEM DADO` | Misturar simulação com fato |
-| Cenário fiscal **hipotético** com manifesto JSON | Parecer jurídico ou motor de decisão pública |
-| LLM fora do cálculo de impacto | Chat que “chuta” PIB ou homicídios |
+| IBGE, TSE, SICONFI, Comex, IPEA/DATASUS, DIEESE | Número inventado ou “estimativa de IA” |
+| Rótulos `OBSERVADO` / `ESTIMADO` / `DERIVADO` / `SEM DADO` | Lente ou variação vendida como fato IBGE |
+| Lentes editoriais com pesos **declarados** | “Melhor estado” oficial / IDHM |
+| Cenário fiscal **hipotético** (API + manifesto) | Parecer jurídico ou motor de decisão pública |
 
 <details>
 <summary><strong>Princípios duros</strong> (clique)</summary>
@@ -115,10 +115,12 @@ O MVP lê **fixtures** em `data/fixtures`. O Postgres prepara o schema para fase
 
 ```bash
 cd workers/ingestion
-python run.py --source ibge
+python run.py --source ibge          # pop, PIB, social, lentes derivadas
 python run.py --source territory
 python run.py --source ipeadata
 python run.py --source comex --comex-from 2022
+python run.py --source siconfi
+python run.py --source tse
 # ou
 python run.py --all
 ```
@@ -131,29 +133,41 @@ Snapshots brutos vão para `data/raw/` (gitignored). Fixtures validadas em `data
 
 ## Camadas no mapa
 
-O seletor agrupa por domínio. Cada camada exige tooltip com definição + fonte.
+Cada camada exige tooltip com definição + fonte. **27 UFs ou vazio.** Lentes e razões (RCL/hab, FOB/hab, DCL/RCL) são `DERIVADO`.
 
-| Grupo | Camadas | Origem |
+| Grupo | O que pinta | Origem |
 |---|---|---|
-| **Economia / demografia** | População, PIB | IBGE Agregados |
-| **Social** | Pobreza, alfabetização, desocupação | IBGE (ODS / Censo / PNAD) |
-| **Agro / comércio** | Export. carnes (SH 02), bovina (0201+0202), soja (1201) | MDIC Comex Stat |
-| **Segurança** | Homicídios /100 mil, nº de homicídios | Ipeadata ← SIM/DATASUS |
-| **Saúde** | Óbitos de trânsito /100 mil | Ipeadata ← SIM/DATASUS |
-| **Ficha (não são camadas)** | Indígenas, quilombolas, área, biomas, costeiro | IBGE |
+| **Lentes** | Morar, empreender, criança, pressão etária | Receita editorial (pesos iguais) sobre camadas oficiais |
+| **Economia** | PIB, PIB/hab, renda, salário formal, Gini, pobreza, desocupação, informalidade, abertura/sobrevivência de empresas | IBGE (SCN, PNAD, Cempre, Demografia) |
+| **Fiscal** | RCL, tributária, transferências da União, despesa empenhada, DCL, RCL/hab, DCL/RCL, tributária/RCL | SICONFI RREO |
+| **Custo na capital** | Cesta básica e cesta / SM | DIEESE (preço da **capital**, não do interior) |
+| **Moradia** | Alugado / próprio pagando / próprio quitado | Censo 2022 |
+| **Território** | População, densidade, área, idade, natalidade/mortalidade, urbano, dependência | IBGE |
+| **Gerações** | Fatias etárias Alpha → 80+ | Censo 2022 |
+| **Social / saneamento** | Esgoto, água, lixo, internet, alfabetização, superior completo | Censo / PNAD |
+| **Saúde** | Hipertensão, diabetes, tabaco, álcool, plano | PNS 2019 |
+| **Segurança** | Homicídios /100 mil, trânsito /100 mil, violência 12 meses | Ipeadata ← SIM · PNS |
+| **Exportações (FOB)** | Total, /hab, soja, farelo, óleo, milho, carnes, bovina, minérios, combustíveis | Comex Stat / MDIC |
+| **Eleições** | % do vencedor e margem (presidente e governador) | TSE dados abertos |
+| **Povos** | Indígenas, quilombolas, parda/branca/preta | Censo 2022 |
+
+Na **ficha da UF** (não são camadas do mapa): bioma predominante, costeiro/marinho, demais atributos territoriais.
+
+O botão **Dossiê** gera um ZIP (`LEIA-ME.md` + CSV + `proveniencia.json`) da vista ou da série oficial — sempre com órgão, período e limites.
 
 <details>
 <summary><strong>O que ainda NÃO entra no mapa (honestidade)</strong></summary>
 
 | Ideia | Motivo |
 |---|---|
+| IDEB por UF | Download oficial INEP instável; sem 27 UFs validados → não pintar |
 | COVID casos/óbitos | APIs do painel MS / OpenDataSUS sem canal estável aberto |
 | Processos judiciais | CNJ DataJud exige credencial |
 | Milionários / bilionários por UF | Sem agregado oficial; listas privadas ≠ fonte do produto |
 | APP (preservação permanente) completa | Sem série oficial limpa por UF pronta para choropleth |
 | Consumo de carne | POF — validar granularidade UF vs região |
 
-Regra de produto: **3–5 âncoras por domínio**; resto só com canal oficial + definição.
+Sem canal oficial reproduzível → `SEM DADO` ou backlog. Nunca inventar.
 
 </details>
 
@@ -168,6 +182,8 @@ flowchart LR
     IPEA[Ipeadata / DATASUS]
     MDIC[Comex Stat MDIC]
     STN[SICONFI / Tesouro]
+    TSE[TSE dados abertos]
+    DIEESE[DIEESE / cesta]
   end
 
   subgraph Ingestão
@@ -185,6 +201,8 @@ flowchart LR
   IPEA --> W
   MDIC --> W
   STN --> W
+  TSE --> W
+  DIEESE --> W
   W --> RAW
   W --> FIX
   FIX --> API
@@ -194,7 +212,7 @@ flowchart LR
 ```text
 BrasilReal/
 ├── apps/
-│   ├── web/          # Next.js 15 · MapLibre · ficha flutuante
+│   ├── web/          # Next.js 15 · MapLibre · ranking · dossiê
 │   └── api/          # FastAPI · fixtures · motor de cenário
 ├── workers/ingestion # Conectores oficiais idempotentes
 ├── data/fixtures/    # Artefatos validados (commitados)
@@ -220,12 +238,14 @@ Pipeline: **API/arquivo oficial → snapshot bruto + checksum → fixture valida
 
 | Domínio | Canal | Status |
 |---|---|---|
-| População / PIB / social | [IBGE Agregados](https://servicodados.ibge.gov.br/api/docs/agregados) | Automatizado |
-| Malha UF / município | [IBGE Malhas](https://servicodados.ibge.gov.br/api/docs/malhas) | Automatizado |
+| População / PIB / social / Censo | [IBGE Agregados](https://servicodados.ibge.gov.br/api/docs/agregados) | Automatizado |
+| Malha UF / município / macrorregião | [IBGE Malhas](https://servicodados.ibge.gov.br/api/docs/malhas) | Automatizado |
 | Homicídios / trânsito | [Ipeadata](http://www.ipeadata.gov.br/) (SIM/DATASUS) | Automatizado |
-| Exportações agro | [Comex Stat](https://comexstat.mdic.gov.br/) / [API MDIC](https://api-comexstat.mdic.gov.br/docs) | Automatizado |
-| Território / povos | IBGE 9718, 9727, 1301, biomas FTP | Ficha |
-| Fiscal (SICONFI) | [SICONFI](https://apidatalake.tesouro.gov.br/docs/siconfi/) | 5 camadas RREO (27 UFs) |
+| Exportações FOB | [Comex Stat](https://comexstat.mdic.gov.br/) / [API MDIC](https://api-comexstat.mdic.gov.br/docs) | Automatizado |
+| Fiscal (SICONFI) | [SICONFI](https://apidatalake.tesouro.gov.br/docs/siconfi/) | RREO 27 UFs no mapa |
+| Eleições | [TSE Dados Abertos](https://dadosabertos.tse.jus.br/) | Presidência e governo UF |
+| Cesta básica | DIEESE | Capital da UF, não interior |
+| Povos / ficha territorial | Censo 9718, 9727, 1301, biomas FTP | Mapa + ficha |
 
 Matriz completa, limitações e backlog: **[`docs/data-sources.md`](docs/data-sources.md)**.
 
@@ -234,16 +254,19 @@ Matriz completa, limitações e backlog: **[`docs/data-sources.md`](docs/data-so
 
 ```bash
 cd workers/ingestion
-python run.py --source ibge --ibge-pop 2025
+python run.py --source ibge --ibge-pop 2025   # inclui social + lentes DERIVADO
 python run.py --source territory
 python run.py --source ipeadata          # ~2 min (séries grandes)
 python run.py --source comex --comex-from 2022
 python run.py --source siconfi
+python run.py --source tse
 python run.py --source tesouro
 ```
 
 - **Ipeadata:** OData não filtra por UF; o conector baixa a série e seleciona `NIVNOME=Estados`.  
-- **Comex:** só anos-civis completos; UF sem operação = `0` declarado; “Não Declarada” fora do mapa.
+- **Comex:** só anos-civis completos; UF sem operação = `0` declarado; “Não Declarada” fora do mapa.  
+- **TSE:** votos presidente/governador por UF; ZZ/VT fora.  
+- **Lentes:** min-max 0–100 com pesos iguais; status `DERIVADO`.
 
 </details>
 
@@ -275,11 +298,12 @@ pytest -q
 
 ## UX do mapa (resumo)
 
-- Mapa **full-bleed**; ficha flutuante no clique (não corta o Brasil).  
-- Seletor de **camada** + **ano/período** sincronizados.  
-- Zoom → municípios da UF selecionada.  
-- Todo número da ficha com **InfoTip** (definição + fonte + limitações).  
-- Escala “quanto maior, pior” nas taxas de segurança/saúde.
+- Mapa **full-bleed**; ranking à esquerda; controles e ficha à direita.  
+- **Leitura** (lente ou métrica) + recorte (Brasil, macrorregião, litoral, fronteira) + nível/variação.  
+- Zoom afastado → **5 macrorregiões IBGE** (soma se aditivo; média ponderada pela pop. se taxa/%).  
+- Zoom médio → UF, intermediária, capitais. Municípios só em População, com UF selecionada.  
+- **Dossiê** — ZIP da vista ou da série oficial, com carta de proveniência.  
+- Todo número com **InfoTip** (definição + fonte + limitações).
 
 ---
 
@@ -288,10 +312,10 @@ pytest -q
 | Fase | Foco |
 |---|---|
 | **1** ✓ | Fundação: 27 UFs, mapa, proveniência, cenário hipotético |
-| **2** | Fiscal observado — onda 1 SICONFI/RREO no mapa; ReceitaData / gasto federal ainda abertos |
+| **2** | **Onda 1 no mapa:** SICONFI/RREO 27 UFs. Ainda não: ReceitaData, gasto federal territorializado |
 | **3** | Regras federais selecionadas (rules-as-code + vigência) |
 | **4** | Municípios + população sintética |
-| **5** | Educação, saúde, trabalho, infraestrutura |
+| **5** | Educação, saúde, trabalho, infraestrutura (PNS/saneamento já no mapa; IDEB só com 27 UFs oficiais) |
 | **6** | Agentes / choques (só após calibração) |
 | **7** | Cobertura jurídica federativa |
 
@@ -319,6 +343,8 @@ Detalhes: [`docs/roadmap.md`](docs/roadmap.md) · [`docs/implementation-plan.md`
 - [Ipeadata](http://www.ipeadata.gov.br/) · séries Atlas da Violência / SIM  
 - [Comex Stat (MDIC)](https://comexstat.mdic.gov.br/) · [API ComexStat](https://api-comexstat.mdic.gov.br/docs)  
 - [SICONFI — API Tesouro](https://apidatalake.tesouro.gov.br/docs/siconfi/)  
+- [TSE Dados Abertos](https://dadosabertos.tse.jus.br/)  
+- [DIEESE — cesta básica](https://www.dieese.org.br/)  
 - [Tesouro Transparente — transferências](https://www.tesourotransparente.gov.br/ckan/dataset/api-de-transferencias-constitucionais)  
 - [FUNAI — geoprocessamento / terras indígenas](https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/geoprocessamento-e-mapas) *(próximas camadas de área TI)*
 
