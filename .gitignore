@@ -36,3 +36,5 @@ probe_*.txt
 apps/api/.coverage
 apps/web/playwright-report/
 apps/web/test-results/
+.firebase/
+*.tsbuildinfo

@@ -20,7 +20,9 @@
     "aggregate_id": 9543,
     "variable_id": 2513,
     "variable_name": "Taxa de alfabetização das pessoas de 15 anos ou mais de idade",
-    "method_notes": "Censo Demográfico via Agregados 9543/variável 2513, totais. Alfabetização ≠ qualidade da educação nem IDEB."
+    "method_notes": "Censo Demográfico via Agregados 9543/variável 2513, totais. Alfabetização ≠ qualidade da educação nem IDEB.",
+    "dataset": "Agregados 9543 / variável 2513",
+    "url": "https://sidra.ibge.gov.br/tabela/9543"
   },
   "checksum_sha256": "5f65a4941bc64948bd05db29dd186ab4b19e8794aea1d7ea1b99c43624d48b89",
   "records": [
@@ -188,12 +190,12 @@
     }
   ],
   "limitations": [
-    "Atualização censitária (décadas); não use como proxy de escolaridade média.",
-    "Taxa alta pode coexistir com baixa proficiência leitora."
+    "Alfabetização ≠ qualidade da educação nem IDEB."
   ],
   "ingestion": {
     "connector": "ibge.agregados.literacy_rate",
     "connector_version": "0.1.0",
     "mode": "api"
-  }
+  },
+  "definition": "Taxa de alfabetização da população de 15 anos ou mais (Censo Demográfico)."
 }

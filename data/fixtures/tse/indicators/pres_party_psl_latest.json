@@ -1,0 +1,534 @@
+{
+  "indicator_id": "pres_party_psl",
+  "dataset_id": "tse.pres_party_psl.2018T2",
+  "title": "Presidente — % votos PSL — 2018T2",
+  "short_name": "Pres. %PSL",
+  "status_label": "OBSERVADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "eleicoes",
+  "group_label": "Eleições",
+  "frequency": "election",
+  "reference_period": "2018T2",
+  "retrieved_at": "2026-08-15T02:03:56.953557+00:00",
+  "available_periods": [
+    "2018T1",
+    "2018T2"
+  ],
+  "definition": "Percentual dos votos nominais válidos do(s) candidato(s) a presidente filiado(s) ao partido PSL na UF e turno (TSE).",
+  "source": {
+    "organization": "TSE — Tribunal Superior Eleitoral",
+    "dataset": "votacao_candidato_munzona (Presidente) / pres_party_psl",
+    "dataset_page": "https://dadosabertos.tse.jus.br/dataset/resultados-2022",
+    "url": "https://dadosabertos.tse.jus.br/dataset/resultados-2022",
+    "method_notes": "ZIP oficial TSE; CSV *_BR.csv; agregação SG_UF × SG_PARTIDO × NR_TURNO; percentual sobre soma QT_VOTOS_NOMINAIS_VALIDOS.",
+    "files": [
+      "votacao_candidato_munzona_2018.zip",
+      "votacao_candidato_munzona_2022.zip"
+    ]
+  },
+  "limitations": [
+    "Agregado a partir de votação por município e zona (cargo Presidente).",
+    "Não inclui votos em branco/nulo; denominador = soma dos votos nominais válidos.",
+    "ZZ (exterior) e VT (em trânsito) excluídos do mapa de UFs.",
+    "Partido do candidato no pleito — coligações/federações podem variar entre anos.",
+    "Se o partido não lançou candidato naquele turno, o período pode não existir."
+  ],
+  "checksum_sha256": "659c1ee6e83f623bac25d642e7d94e593921e14f54d23f60300c4476193e98fd",
+  "records": [
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 77.2238
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 40.0816
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 50.2713
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 50.2007
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 27.3069
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 28.8931
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 69.9861
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 63.0619
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 65.5218
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 26.7402
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 58.1901
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 65.2207
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 66.4184
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 45.1934
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 35.0197
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 33.4972
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 22.9498
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 68.4315
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 67.9544
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 36.587
+    },
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 72.1776
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 71.5499
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 63.2418
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 75.9219
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 32.4631
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 67.9719
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 48.9764
+    }
+  ],
+  "series": {
+    "2018T1": [
+      {
+        "ibge_code": "12",
+        "uf": "AC",
+        "name": "Acre",
+        "value": 62.2384
+      },
+      {
+        "ibge_code": "27",
+        "uf": "AL",
+        "name": "Alagoas",
+        "value": 34.4038
+      },
+      {
+        "ibge_code": "13",
+        "uf": "AM",
+        "name": "Amazonas",
+        "value": 43.4779
+      },
+      {
+        "ibge_code": "16",
+        "uf": "AP",
+        "name": "Amapá",
+        "value": 40.74
+      },
+      {
+        "ibge_code": "29",
+        "uf": "BA",
+        "name": "Bahia",
+        "value": 23.4122
+      },
+      {
+        "ibge_code": "23",
+        "uf": "CE",
+        "name": "Ceará",
+        "value": 21.7426
+      },
+      {
+        "ibge_code": "53",
+        "uf": "DF",
+        "name": "Distrito Federal",
+        "value": 58.3661
+      },
+      {
+        "ibge_code": "32",
+        "uf": "ES",
+        "name": "Espírito Santo",
+        "value": 54.7609
+      },
+      {
+        "ibge_code": "52",
+        "uf": "GO",
+        "name": "Goiás",
+        "value": 57.2376
+      },
+      {
+        "ibge_code": "21",
+        "uf": "MA",
+        "name": "Maranhão",
+        "value": 24.2811
+      },
+      {
+        "ibge_code": "31",
+        "uf": "MG",
+        "name": "Minas Gerais",
+        "value": 48.3089
+      },
+      {
+        "ibge_code": "50",
+        "uf": "MS",
+        "name": "Mato Grosso do Sul",
+        "value": 55.057
+      },
+      {
+        "ibge_code": "51",
+        "uf": "MT",
+        "name": "Mato Grosso",
+        "value": 60.039
+      },
+      {
+        "ibge_code": "15",
+        "uf": "PA",
+        "name": "Pará",
+        "value": 36.1909
+      },
+      {
+        "ibge_code": "25",
+        "uf": "PB",
+        "name": "Paraíba",
+        "value": 31.2955
+      },
+      {
+        "ibge_code": "26",
+        "uf": "PE",
+        "name": "Pernambuco",
+        "value": 30.5739
+      },
+      {
+        "ibge_code": "22",
+        "uf": "PI",
+        "name": "Piauí",
+        "value": 18.7645
+      },
+      {
+        "ibge_code": "41",
+        "uf": "PR",
+        "name": "Paraná",
+        "value": 56.8927
+      },
+      {
+        "ibge_code": "33",
+        "uf": "RJ",
+        "name": "Rio de Janeiro",
+        "value": 59.7858
+      },
+      {
+        "ibge_code": "24",
+        "uf": "RN",
+        "name": "Rio Grande do Norte",
+        "value": 30.2105
+      },
+      {
+        "ibge_code": "11",
+        "uf": "RO",
+        "name": "Rondônia",
+        "value": 62.2396
+      },
+      {
+        "ibge_code": "14",
+        "uf": "RR",
+        "name": "Roraima",
+        "value": 62.9746
+      },
+      {
+        "ibge_code": "43",
+        "uf": "RS",
+        "name": "Rio Grande do Sul",
+        "value": 52.627
+      },
+      {
+        "ibge_code": "42",
+        "uf": "SC",
+        "name": "Santa Catarina",
+        "value": 65.8192
+      },
+      {
+        "ibge_code": "28",
+        "uf": "SE",
+        "name": "Sergipe",
+        "value": 27.2111
+      },
+      {
+        "ibge_code": "35",
+        "uf": "SP",
+        "name": "São Paulo",
+        "value": 53.0044
+      },
+      {
+        "ibge_code": "17",
+        "uf": "TO",
+        "name": "Tocantins",
+        "value": 44.6353
+      }
+    ],
+    "2018T2": [
+      {
+        "ibge_code": "12",
+        "uf": "AC",
+        "name": "Acre",
+        "value": 77.2238
+      },
+      {
+        "ibge_code": "27",
+        "uf": "AL",
+        "name": "Alagoas",
+        "value": 40.0816
+      },
+      {
+        "ibge_code": "13",
+        "uf": "AM",
+        "name": "Amazonas",
+        "value": 50.2713
+      },
+      {
+        "ibge_code": "16",
+        "uf": "AP",
+        "name": "Amapá",
+        "value": 50.2007
+      },
+      {
+        "ibge_code": "29",
+        "uf": "BA",
+        "name": "Bahia",
+        "value": 27.3069
+      },
+      {
+        "ibge_code": "23",
+        "uf": "CE",
+        "name": "Ceará",
+        "value": 28.8931
+      },
+      {
+        "ibge_code": "53",
+        "uf": "DF",
+        "name": "Distrito Federal",
+        "value": 69.9861
+      },
+      {
+        "ibge_code": "32",
+        "uf": "ES",
+        "name": "Espírito Santo",
+        "value": 63.0619
+      },
+      {
+        "ibge_code": "52",
+        "uf": "GO",
+        "name": "Goiás",
+        "value": 65.5218
+      },
+      {
+        "ibge_code": "21",
+        "uf": "MA",
+        "name": "Maranhão",
+        "value": 26.7402
+      },
+      {
+        "ibge_code": "31",
+        "uf": "MG",
+        "name": "Minas Gerais",
+        "value": 58.1901
+      },
+      {
+        "ibge_code": "50",
+        "uf": "MS",
+        "name": "Mato Grosso do Sul",
+        "value": 65.2207
+      },
+      {
+        "ibge_code": "51",
+        "uf": "MT",
+        "name": "Mato Grosso",
+        "value": 66.4184
+      },
+      {
+        "ibge_code": "15",
+        "uf": "PA",
+        "name": "Pará",
+        "value": 45.1934
+      },
+      {
+        "ibge_code": "25",
+        "uf": "PB",
+        "name": "Paraíba",
+        "value": 35.0197
+      },
+      {
+        "ibge_code": "26",
+        "uf": "PE",
+        "name": "Pernambuco",
+        "value": 33.4972
+      },
+      {
+        "ibge_code": "22",
+        "uf": "PI",
+        "name": "Piauí",
+        "value": 22.9498
+      },
+      {
+        "ibge_code": "41",
+        "uf": "PR",
+        "name": "Paraná",
+        "value": 68.4315
+      },
+      {
+        "ibge_code": "33",
+        "uf": "RJ",
+        "name": "Rio de Janeiro",
+        "value": 67.9544
+      },
+      {
+        "ibge_code": "24",
+        "uf": "RN",
+        "name": "Rio Grande do Norte",
+        "value": 36.587
+      },
+      {
+        "ibge_code": "11",
+        "uf": "RO",
+        "name": "Rondônia",
+        "value": 72.1776
+      },
+      {
+        "ibge_code": "14",
+        "uf": "RR",
+        "name": "Roraima",
+        "value": 71.5499
+      },
+      {
+        "ibge_code": "43",
+        "uf": "RS",
+        "name": "Rio Grande do Sul",
+        "value": 63.2418
+      },
+      {
+        "ibge_code": "42",
+        "uf": "SC",
+        "name": "Santa Catarina",
+        "value": 75.9219
+      },
+      {
+        "ibge_code": "28",
+        "uf": "SE",
+        "name": "Sergipe",
+        "value": 32.4631
+      },
+      {
+        "ibge_code": "35",
+        "uf": "SP",
+        "name": "São Paulo",
+        "value": 67.9719
+      },
+      {
+        "ibge_code": "17",
+        "uf": "TO",
+        "name": "Tocantins",
+        "value": 48.9764
+      }
+    ]
+  }
+}

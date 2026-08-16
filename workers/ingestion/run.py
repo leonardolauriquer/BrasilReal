@@ -21,8 +21,10 @@ import comex
 import ibge
 import ipeadata
 import siconfi
+import social_layers
 import territory
 import tesouro
+import tse
 from common import utc_now
 
 
@@ -31,7 +33,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--all", action="store_true", help="Run IBGE + SICONFI + Tesouro")
     parser.add_argument(
         "--source",
-        choices=["ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex"],
+        choices=["ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex", "tse"],
         action="append",
         default=[],
         help="Source to run (repeatable)",
@@ -45,7 +47,7 @@ def main(argv: list[str] | None = None) -> int:
 
     sources = set(args.source)
     if args.all:
-        sources = {"ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex"}
+        sources = {"ibge", "siconfi", "tesouro", "territory", "ipeadata", "comex", "tse"}
     elif not sources:
         sources = {"ibge", "siconfi", "tesouro"}
 
@@ -65,11 +67,23 @@ def main(argv: list[str] | None = None) -> int:
             report["steps"].append(
                 {"step": "ibge.social_bundle", "result": ibge.fetch_social_bundle()}
             )
+            report["steps"].append(
+                {
+                    "step": "ibge.territory_map_layers",
+                    "result": social_layers.export_territory_layers(),
+                }
+            )
+            report["steps"].append(
+                {"step": "ibge.extra_layers", "result": social_layers.fetch_live()}
+            )
             if not args.skip_malha:
                 report["steps"].append({"step": "ibge.malha_uf", "result": ibge.refresh_malha_uf()})
 
         if "territory" in sources:
             report["steps"].append({"step": "territory.refresh", "result": territory.refresh_all()})
+            report["steps"].append(
+                {"step": "territory.map_layers", "result": social_layers.export_territory_layers()}
+            )
 
         if "ipeadata" in sources:
             report["steps"].append({"step": "ipeadata.bundle", "result": ipeadata.fetch_bundle()})
@@ -82,13 +96,19 @@ def main(argv: list[str] | None = None) -> int:
                 }
             )
 
+        if "tse" in sources:
+            report["steps"].append({"step": "tse.bundle", "result": tse.fetch_bundle()})
+            report["steps"].append({"step": "tse.governor", "result": tse.fetch_governor_bundle()})
+
         if "siconfi" in sources:
-            report["steps"].append({"step": "siconfi.entes", "result": siconfi.snapshot_entes()})
-            report["steps"].append({"step": "siconfi.rreo_probe", "result": siconfi.probe_rreo()})
+            report["steps"].append({"step": "siconfi.fase2", "result": siconfi.fetch_fase2()})
 
         if "tesouro" in sources:
             report["steps"].append(
-                {"step": "tesouro.transferencias", "result": tesouro.discover_transferencias()}
+                {
+                    "step": "tesouro.transferencias",
+                    "result": tesouro.discover_transferencias(),
+                }
             )
     except Exception as exc:  # noqa: BLE001
         report["status"] = "failed"
@@ -96,6 +116,22 @@ def main(argv: list[str] | None = None) -> int:
         report["finished_at"] = utc_now()
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return 1
+
+    api_root = Path(__file__).resolve().parents[2] / "apps" / "api"
+    if str(api_root) not in sys.path:
+        sys.path.insert(0, str(api_root))
+    from app.core.data_integrity import validate_fixture_payloads, write_manifest
+
+    fixtures = Path(__file__).resolve().parents[2] / "data" / "fixtures"
+    integrity_errors = validate_fixture_payloads(fixtures)
+    if integrity_errors:
+        report["status"] = "failed"
+        report["integrity_errors"] = integrity_errors[:40]
+        report["finished_at"] = utc_now()
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        return 1
+    write_manifest(fixtures)
+    report["manifest_updated"] = True
 
     report["status"] = "ok"
     report["finished_at"] = utc_now()

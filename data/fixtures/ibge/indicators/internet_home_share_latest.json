@@ -1,0 +1,196 @@
+{
+  "indicator_id": "internet_home_share",
+  "dataset_id": "ibge.internet_home_share.2022",
+  "title": "Domicílios com conexão à internet (Censo 2022, amostra) — UFs 2022",
+  "short_name": "Internet no domicílio",
+  "name": "Domicílios com conexão à internet (Censo 2022, amostra)",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "social",
+  "group_label": "Social / saneamento",
+  "frequency": "census",
+  "reference_period": "2022",
+  "reference_date": "2022",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T16:14:16.557966+00:00",
+  "definition": "Percentual de domicílios particulares permanentes ocupados com conexão domiciliar à internet (Censo 2022, resultados preliminares da amostra, SIDRA 9936 / variável 1000381, categoria Sim, totais de ocupação e tipo).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "Censo 2022 amostra SIDRA 9936 / var 1000381 / Sim",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/9936",
+    "url": "https://sidra.ibge.gov.br/tabela/9936",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/9936/n3/all/v/1000381/p/2022/c2072/77585/c63/95826/c125/2932?formato=json"
+  },
+  "limitations": [
+    "Amostra (ESTIMADO), não universo do Censo; retrato 2022.",
+    "Existência de conexão no domicílio — não mede qualidade, velocidade nem uso individual."
+  ],
+  "checksum_sha256": "bb94d6f0e7bb9bfea75e0a03a4ff1d54ec3d808c1c18ef85ffc2bc84ada054fe",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 88.91
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 74.79
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 77.99
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 81.26
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 77.63
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 85.27
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 83.64
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 77.09
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 78.25
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 82.68
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 84.44
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 82.43
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 82.67
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 81.51
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 81.32
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 80.94
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 85.59
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 86.91
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 87.76
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 90.71
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 89.28
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 92.54
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 87.81
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 88.35
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 88.4
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 88.78
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 94.73
+    }
+  ]
+}

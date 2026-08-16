@@ -1,0 +1,197 @@
+{
+  "indicator_id": "aging_index",
+  "dataset_id": "ibge.aging_index.2022",
+  "title": "Índice de envelhecimento (Censo 2022) — UFs 2022",
+  "short_name": "Envelhecimento",
+  "name": "Índice de envelhecimento (Censo 2022)",
+  "status_label": "OBSERVADO",
+  "evidence_grade": "A",
+  "unit": "por 100 jovens",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "territorio",
+  "group_label": "Território",
+  "frequency": "census",
+  "reference_period": "2022",
+  "reference_date": "2022",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T15:42:27.392708+00:00",
+  "definition": "Índice de envelhecimento da população residente (Censo 2022, SIDRA 9515 / variável 10612): razão IBGE entre o grupo etário de 65 anos ou mais e o de 0 a 14 anos, expressa por 100 pessoas de 0 a 14 anos.",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "Censo 2022 SIDRA 9515 / var 10612",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/9515",
+    "url": "https://sidra.ibge.gov.br/tabela/9515",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/9515/n3/all/v/10612/p/2022?formato=json"
+  },
+  "limitations": [
+    "Variável oficial do Censo 2022 — não é esperança de vida nem taxa de mortalidade.",
+    "O recorte IBGE usa 65+ no numerador; o Estatuto do Idoso usa 60 anos.",
+    "Não usar como ranking de «estado mais velho para morar»."
+  ],
+  "checksum_sha256": "3a51ef9d4347471e19a4453fa881745a3a463f905e35199c1e82ae6cf649e329",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 36.84
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 23.77
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 21.72
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 17.39
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 29.59
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 20.26
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 37.17
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 34.79
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 51.14
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 50.63
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 53.05
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 53.04
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 48.74
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 39.33
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 43.02
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 52.6
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 68.59
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 58.12
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 73.64
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 66.27
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 59.17
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 55.82
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 80.35
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 43.58
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 33.99
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 45.33
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 46.53
+    }
+  ]
+}

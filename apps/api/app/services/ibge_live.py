@@ -8,7 +8,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-from app.core.store import repo_root
+from app.core.paths import repo_root
 
 USER_AGENT = "BrasilReal/0.1 (+educational-simulator)"
 CACHE = repo_root() / "data" / "cache" / "ibge"

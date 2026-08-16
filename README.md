@@ -46,7 +46,8 @@ O **Brasil Real** trata o mapa como produto: você escolhe uma camada oficial, p
 
 ## Comece em 5 minutos
 
-> Python **3.11–3.13** (recomendado **3.12**). Node 20+.
+> Python **3.11–3.13** (recomendado **3.12**). Node 20+.  
+> A API **sempre tenta o período mais recente** da fonte (IBGE com cache em `data/cache/`, TTL 12h). Sem rede → fixture. Nunca inventa.
 
 <table>
 <tr>
@@ -84,6 +85,13 @@ API docs: **http://localhost:8000/docs**
 </table>
 
 No desenvolvimento local, **não** defina `NEXT_PUBLIC_API_URL` — o Next faz proxy same-origin de `/v1/*` (evita CORS).
+
+### Produção (Firebase)
+
+- **Site:** https://brasilreal-atlas.web.app  
+- **API:** https://brasil-real-api-928790342045.southamerica-east1.run.app  
+- Conta: `leolr.trab@gmail.com` · projeto `brasilreal-atlas`  
+- Redeploy: [`docs/deploy-firebase.md`](docs/deploy-firebase.md) ou `scripts/deploy-firebase.ps1`
 
 <details>
 <summary><strong>Docker Compose</strong> (web + api + Postgres/PostGIS)</summary>
@@ -218,7 +226,7 @@ Pipeline: **API/arquivo oficial → snapshot bruto + checksum → fixture valida
 | Homicídios / trânsito | [Ipeadata](http://www.ipeadata.gov.br/) (SIM/DATASUS) | Automatizado |
 | Exportações agro | [Comex Stat](https://comexstat.mdic.gov.br/) / [API MDIC](https://api-comexstat.mdic.gov.br/docs) | Automatizado |
 | Território / povos | IBGE 9718, 9727, 1301, biomas FTP | Ficha |
-| Fiscal (próximo) | [SICONFI](https://apidatalake.tesouro.gov.br/docs/siconfi/) · Tesouro CKAN | Probe / Fase 2 |
+| Fiscal (SICONFI) | [SICONFI](https://apidatalake.tesouro.gov.br/docs/siconfi/) | 5 camadas RREO (27 UFs) |
 
 Matriz completa, limitações e backlog: **[`docs/data-sources.md`](docs/data-sources.md)**.
 
@@ -281,7 +289,7 @@ pytest -q
 | Fase | Foco |
 |---|---|
 | **1** ✓ | Fundação: 27 UFs, mapa, proveniência, cenário hipotético |
-| **2** | Brasil fiscal observado (SICONFI, transferências União ↔ UF) |
+| **2** | Fiscal observado — onda 1 SICONFI/RREO no mapa; ReceitaData / gasto federal ainda abertos |
 | **3** | Regras federais selecionadas (rules-as-code + vigência) |
 | **4** | Municípios + população sintética |
 | **5** | Educação, saúde, trabalho, infraestrutura |

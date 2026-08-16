@@ -13,6 +13,7 @@ Construir um gêmeo digital exploratório do Brasil, auditável e honesto. Nunca
 ## Regras duras
 
 - Fonte, data e rótulo em todo número.
+- Integridade fail-closed: `validate_fixtures` + `MANIFEST.json` + contratos TS/Python no CI; gate de proveniência/cobertura 27 nas observations; soma população/PIB = totais oficiais; ingestão recusa fixture inválida; canary pós-deploy.
 - LLM não calcula impacto.
 - Sem dados pessoais.
 - Não commitar segredos nem lixo de agent (`scratch/`, `*_log.txt`).

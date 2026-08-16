@@ -1,0 +1,201 @@
+{
+  "indicator_id": "lens_live",
+  "dataset_id": "brasilreal.lens_live.2026-08",
+  "title": "Melhor para morar (lente Brasil Real) — UFs 2026-08",
+  "short_name": "Melhor para morar",
+  "name": "Melhor para morar (lente Brasil Real)",
+  "status_label": "DERIVADO",
+  "evidence_grade": "B",
+  "unit": "nota 0-100",
+  "higher_is_worse": false,
+  "kind": "derived",
+  "group": "lentes",
+  "group_label": "Lentes (pesos declarados)",
+  "frequency": "irregular",
+  "reference_period": "2026-08",
+  "reference_date": "2026-08",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T22:36:27.056686+00:00",
+  "definition": "Nota 0–100 entre as 27 UFs para a pergunta «morar». Quatro blocos com peso igual: (1) renda Renda domiciliar/hab (IBGE 2025); (2) trabalho — Desocupação (IBGE 202602) e Informalidade (IBGE 2025), invertidos; (3) segurança — Homicídios /100 mil (IPEA / DATASUS 2024) e Trânsito /100 mil (IPEA / DATASUS 2024), invertidos; (4) serviços — Esgoto adequado (IBGE 2022), Água da rede (IBGE 2022), Lixo coletado (IBGE 2022), Alfabetização (IBGE 2022) e Internet no domicílio (IBGE 2022). Dentro do bloco, média dos min–máx. Não é qualidade de vida medida; é essa receita.",
+  "source": {
+    "organization": "Brasil Real",
+    "dataset": "Lente morar = 4 blocos iguais sobre camadas oficiais já no mapa",
+    "url": "https://brasilreal-atlas.web.app"
+  },
+  "limitations": [
+    "Não é ranking oficial, IDHM nem «melhor estado» do IBGE — é receita editorial do Brasil Real.",
+    "Pesos iguais entre blocos. Dentro do bloco, média simples das camadas oficiais já no mapa.",
+    "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
+    "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
+    "A cesta DIEESE não entra: é preço da capital, não da UF.",
+    "Trocar um peso muda o 1º lugar — abra as camadas oficiais uma a uma."
+  ],
+  "available_periods": [
+    "2026-08"
+  ],
+  "checksum_sha256": "da01562b97a0fd49effd99055515690438e9fe85d98a37a7111ec65f2eb48df7",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 39.1
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 34.4
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 32.6
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 45.7
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 25.8
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 29.7
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 43.1
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 20.8
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 22.0
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 31.3
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 48.0
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 36.9
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 31.1
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 26.2
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 36.9
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 25.7
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 65.2
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 59.1
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 66.0
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 78.7
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 67.6
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 77.6
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 70.5
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 62.4
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 52.6
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 59.8
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 89.5
+    }
+  ]
+}

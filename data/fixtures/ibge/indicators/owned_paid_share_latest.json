@@ -1,0 +1,195 @@
+{
+  "indicator_id": "owned_paid_share",
+  "dataset_id": "ibge.owned_paid_share.2022",
+  "title": "Domicílios próprios já pagos (Censo 2022) — UFs 2022",
+  "short_name": "Próprio já pago",
+  "name": "Domicílios próprios já pagos (Censo 2022)",
+  "status_label": "OBSERVADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "moradia",
+  "group_label": "Moradia",
+  "frequency": "census",
+  "reference_period": "2022",
+  "reference_date": "2022",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T18:21:10.246020+00:00",
+  "definition": "Percentual de domicílios particulares permanentes ocupados «próprio de algum morador — já pago, herdado ou ganho» (Censo 2022, SIDRA 9930 / variável percentual 1000381).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "Censo 2022 SIDRA 9930 / var 1000381 / já pago",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/9930",
+    "url": "https://sidra.ibge.gov.br/tabela/9930",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/9930/n3/all/v/1000381/p/2022/c65/95810/c63/73126/c125/2932?formato=json"
+  },
+  "limitations": [
+    "Inclui herdado ou ganho; não mede qualidade nem valor venal."
+  ],
+  "checksum_sha256": "ffa4eaa38567c080c3b2ebef116f4cf0344a0d3db243e567192e7e4121b79b39",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 63.15
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 74.3
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 69.45
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 60.08
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 72.01
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 70.62
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 61.82
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 76.63
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 76.14
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 66.26
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 63.15
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 64.99
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 68.11
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 65.3
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 65.13
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 73.3
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 62.2
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 63.77
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 65.73
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 55.98
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 57.49
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 58.82
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 65.5
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 52.06
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 54.23
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 50.04
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 49.21
+    }
+  ]
+}

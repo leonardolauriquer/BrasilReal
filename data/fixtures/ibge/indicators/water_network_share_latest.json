@@ -1,0 +1,196 @@
+{
+  "indicator_id": "water_network_share",
+  "dataset_id": "ibge.water_network_share.2022",
+  "title": "Domicílios cuja forma principal de água é a rede geral — UFs 2022",
+  "short_name": "Água da rede",
+  "name": "Domicílios cuja forma principal de água é a rede geral",
+  "status_label": "OBSERVADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "saude",
+  "group_label": "Saúde",
+  "frequency": "census",
+  "reference_period": "2022",
+  "reference_date": "2022",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T06:53:15.689479+00:00",
+  "definition": "Percentual de domicílios particulares permanentes ocupados que possuem ligação à rede geral de distribuição de água e a utilizam como forma principal (SIDRA 6803 / variável percentual 1000381, categoria 72144, Censo 2022).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "SIDRA 6803 / var 1000381 / c1821 72144",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/6803",
+    "url": "https://sidra.ibge.gov.br/tabela/6803",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/6803/n3/all/v/1000381/p/2022/c1821/72144?formato=json"
+  },
+  "limitations": [
+    "Forma principal de abastecimento — não mede qualidade, continuidade nem água encanada no interior do imóvel.",
+    "Não inclui quem tem ligação à rede mas usa principalmente poço, carro-pipa ou outro manancial."
+  ],
+  "checksum_sha256": "9feac784613059bee293e165ab6eb4236fa548954f05f09e6ac2efaf3a8e75bb",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 46.15
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 52.56
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 66.08
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 81.32
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 48.9
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 43.38
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 81.74
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 66.15
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 77.07
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 79.21
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 84.94
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 74.49
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 71.3
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 68.14
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 85.4
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 83.12
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 87.89
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 84.31
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 84.72
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 95.74
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 88.83
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 84.36
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 86.64
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 87.2
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 80.74
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 84.54
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 93.37
+    }
+  ]
+}

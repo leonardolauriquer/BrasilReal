@@ -1,0 +1,195 @@
+{
+  "indicator_id": "population_density",
+  "dataset_id": "ibge.population_density.2025",
+  "title": "Densidade demográfica (derivada) — UFs 2025",
+  "short_name": "Densidade",
+  "name": "Densidade demográfica (derivada)",
+  "status_label": "DERIVADO",
+  "evidence_grade": "A",
+  "unit": "hab/km²",
+  "higher_is_worse": false,
+  "kind": "derived",
+  "group": "territorio",
+  "group_label": "Território",
+  "frequency": "annual",
+  "reference_period": "2025",
+  "reference_date": "2025",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T06:14:38.986801+00:00",
+  "definition": "População residente estimada IBGE 6579 (2025) dividida pela área territorial do agregado 1301 (2010).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "6579 (população 2025) ÷ 1301/615 (área 2010)",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/1301",
+    "url": "https://sidra.ibge.gov.br/tabela/1301"
+  },
+  "limitations": [
+    "Números de anos diferentes: população 2025 ÷ área 2010.",
+    "Não usar como densidade oficial do Censo do mesmo ano."
+  ],
+  "checksum_sha256": "c9b4c979c34bbf8de356ba986e280abc325f5d01549b1a2b0baf0d9acb4473dd",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 7.3738
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 5.3885
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 2.7718
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 3.2937
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 6.9804
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 5.6468
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 5.7159
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 21.1433
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 13.4533
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 62.2402
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 65.4268
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 73.7472
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 97.4261
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 115.9442
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 104.9084
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 26.3281
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 36.4752
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 89.5223
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 393.4095
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 185.6662
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 59.6564
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 85.5458
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 41.7932
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 8.1889
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 4.3103
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 21.8276
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 517.7959
+    }
+  ]
+}

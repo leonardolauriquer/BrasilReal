@@ -20,7 +20,9 @@
     "aggregate_id": 4099,
     "variable_id": 4099,
     "variable_name": "Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade",
-    "method_notes": "PNAD Contínua / Agregados 4099, variável 4099, N3. Período trimestral no formato AAAATT (ex.: 202602 = 2026 T2)."
+    "method_notes": "PNAD Contínua / Agregados 4099, variável 4099, N3. Período trimestral no formato AAAATT (ex.: 202602 = 2026 T2).",
+    "dataset": "Agregados 4099 / variável 4099",
+    "url": "https://sidra.ibge.gov.br/tabela/4099"
   },
   "checksum_sha256": "cbd0181229028be31d6832b6e2fdd7367e08b5456fefaa5c10e8b401e9ed7e52",
   "records": [
@@ -188,12 +190,12 @@
     }
   ],
   "limitations": [
-    "Taxa trimestral sujeita a sazonalidade e coeficiente de variação.",
-    "Desocupação ≠ informalidade nem desalento (há outras taxas na mesma tabela)."
+    "Taxa trimestral; sujeita a sazonalidade."
   ],
   "ingestion": {
     "connector": "ibge.agregados.unemployment_rate",
     "connector_version": "0.1.0",
     "mode": "api"
-  }
+  },
+  "definition": "Taxa de desocupação das pessoas de 14 anos ou mais (PNAD Contínua)."
 }

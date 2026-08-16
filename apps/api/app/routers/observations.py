@@ -1,29 +1,17 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Query
+from pydantic import ValidationError
 
+from app.core.data_integrity import (
+    enforce_additive_totals,
+    enforce_uf_coverage,
+    gate_observation_rows,
+    log_integrity_drops,
+)
 from app.core.store import store
-from app.services import ibge_live
+from app.schemas.observations import ObservationOut, ObservationsResponse
+from app.services import freshness
 
 router = APIRouter(tags=["observations"])
-
-
-def _unit_for(indicator: str) -> str:
-    return {
-        "population": "habitantes",
-        "pib": "BRL",
-        "poverty_rate": "%",
-        "literacy_rate": "%",
-        "unemployment_rate": "%",
-    }.get(indicator, "")
-
-
-def _label_for(indicator: str) -> str:
-    return {
-        "population": "ESTIMADO",
-        "pib": "ESTIMADO",
-        "poverty_rate": "ESTIMADO",
-        "literacy_rate": "OBSERVADO",
-        "unemployment_rate": "ESTIMADO",
-    }.get(indicator, "ESTIMADO")
 
 
 @router.get("/observations")
@@ -31,55 +19,73 @@ def list_observations(
     indicator: str | None = Query(default=None),
     geography: str | None = Query(default=None),
     period: str | None = Query(default=None),
+    refresh: bool = Query(
+        default=False,
+        description="Força revalidação do cache de períodos/série IBGE (TTL ignorado).",
+    ),
 ) -> dict:
-    items = store.observations(indicator=indicator, geography=geography, period=period)
+    """Observações UF. Sem `period`, resolve automaticamente o mais recente (+ cache)."""
+    result = freshness.observations_with_freshness(
+        indicator,
+        period,
+        geography,
+        prefer_latest=True,
+        force=refresh,
+    )
+    raw_items = result["items"]
+    items, dropped = gate_observation_rows(raw_items)
+    resolved = result.get("resolved_period")
 
-    # If a specific period was requested and fixtures don't cover it, fetch live IBGE.
-    live_error: str | None = None
-    if indicator and period and not items and indicator in ibge_live.INDICATOR_AGGREGATES:
+    schema_rejected = 0
+    modeled: list[dict] = []
+    for row in items:
         try:
-            available = set(ibge_live.list_periods(indicator))
-            if period not in available:
-                live_error = f"Período {period} indisponível para {indicator}."
-            else:
-                rows = ibge_live.fetch_uf_series(indicator, period)
-                geo_by_code = {g["ibge_code"]: g for g in store.list_geographies()}
-                unit = _unit_for(indicator)
-                for row in rows:
-                    g = geo_by_code.get(row["ibge_code"], {})
-                    if geography and geography not in {row["ibge_code"], g.get("uf")}:
-                        continue
-                    items.append(
-                        {
-                            "indicator": indicator,
-                            "geography_ibge_code": row["ibge_code"],
-                            "uf": g.get("uf", ""),
-                            "name": g.get("name") or row["name"],
-                            "value": row["value"],
-                            "unit": unit,
-                            "reference_period": period,
-                            "release_date": None,
-                            "status_label": _label_for(indicator),
-                            "evidence_grade": "A",
-                            "higher_is_worse": indicator
-                            in {
-                                "poverty_rate",
-                                "unemployment_rate",
-                                "homicide_rate",
-                                "homicide_count",
-                                "traffic_death_rate",
-                            },
-                            "source": {
-                                "organization": "IBGE",
-                                "dataset": f"Agregados sob demanda / {indicator} / {period}",
-                                "method_notes": "Série sob demanda via API de Agregados (cache local).",
-                            },
-                            "dataset_id": f"ibge.{indicator}.{period}",
-                            "quality": "official_estimate",
-                        }
-                    )
-        except Exception as exc:  # noqa: BLE001
-            live_error = str(exc)
+            modeled.append(ObservationOut.model_validate(row).model_dump())
+        except ValidationError:
+            schema_rejected += 1
+            dropped.append(
+                {
+                    "indicator": str(row.get("indicator") or indicator or "*"),
+                    "geography": str(row.get("geography_ibge_code") or "*"),
+                    "reason": "schema_reject",
+                }
+            )
+    items = modeled
+
+    items, dropped, coverage_ok = enforce_uf_coverage(
+        items,
+        dropped,
+        indicator=indicator,
+        geography=geography,
+    )
+
+    pop_ok = None
+    pib_ok = None
+    if not geography:
+        if indicator == "population":
+            items, dropped, pop_ok = enforce_additive_totals(
+                items,
+                dropped,
+                indicator="population",
+                expected_total=store.population.get("brazil_total"),
+                field="brazil_total",
+            )
+        elif indicator == "pib":
+            items, dropped, pib_ok = enforce_additive_totals(
+                items,
+                dropped,
+                indicator="pib",
+                expected_total=(store.pib or {}).get("brazil_total_brl"),
+                field="brazil_total_brl",
+                tolerance=1.0,
+            )
+
+    log_integrity_drops(
+        indicator=indicator,
+        raw_count=len(raw_items),
+        kept_count=len(items),
+        dropped=dropped,
+    )
 
     meta = {
         "population_brazil_total": store.population.get("brazil_total"),
@@ -90,7 +96,22 @@ def list_observations(
         "pib_reference_period": store.pib.get("reference_period") if store.pib else None,
         "pib_dataset_id": store.pib.get("dataset_id") if store.pib else None,
         "requested_period": period,
-        "live_fallback": bool(indicator and period and items),
-        "live_error": live_error,
+        "resolved_period": resolved,
+        "live_fallback": bool(result.get("live_fallback")),
+        "live_error": result.get("live_error"),
+        "freshness": result.get("freshness"),
+        "period_resolved": None if not period else bool(items),
+        "period_miss": bool(period) and not items,
+        "integrity": {
+            "gated": True,
+            "raw_count": len(raw_items),
+            "kept_count": len(items),
+            "dropped_count": len(dropped),
+            "dropped": dropped[:50],
+            "coverage_ok": coverage_ok,
+            "population_reconcile_ok": pop_ok,
+            "pib_reconcile_ok": pib_ok,
+            "schema_rejected": schema_rejected,
+        },
     }
-    return {"count": len(items), "meta": meta, "items": items}
+    return ObservationsResponse(count=len(items), meta=meta, items=items).model_dump()

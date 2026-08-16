@@ -1,0 +1,196 @@
+{
+  "indicator_id": "pns_health_plan",
+  "dataset_id": "ibge.pns_health_plan.2019",
+  "title": "Cobertura de plano de saúde médico — PNS 2019 — UFs 2019",
+  "short_name": "Plano de saúde (PNS 2019)",
+  "name": "Cobertura de plano de saúde médico — PNS 2019",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "saude",
+  "group_label": "Saúde",
+  "frequency": "irregular",
+  "reference_period": "2019",
+  "reference_date": "2019",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T06:53:16.560585+00:00",
+  "definition": "Percentual de pessoas que tinham algum plano de saúde médico (PNS 2019, SIDRA 7570 / variável 10908, sexo total, situação total).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "PNS 2019 SIDRA 7570 / var 10908",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/7570",
+    "url": "https://sidra.ibge.gov.br/tabela/7570",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/7570/n3/all/v/10908/p/2019/c2/6794/c1/6795?formato=json"
+  },
+  "limitations": [
+    "Retrato da PNS 2019 — cobertura posterior pode ter mudado.",
+    "Plano médico apenas; não inclui só odontológico nem mede qualidade da cobertura."
+  ],
+  "checksum_sha256": "f21fbff5f9348d0f0acd91973edff670e0e4e7e9a3ae481b468c4fbc0adb1b66",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 11.3
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 8.3
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 14.6
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 7.4
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 14.0
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 8.7
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 12.1
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 5.0
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 15.9
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 15.1
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 16.4
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 12.2
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 17.4
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 12.8
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 18.7
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 14.6
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 28.3
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 28.3
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 35.0
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 38.4
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 28.4
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 26.3
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 35.4
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 26.2
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 17.5
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 26.2
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 37.4
+    }
+  ]
+}

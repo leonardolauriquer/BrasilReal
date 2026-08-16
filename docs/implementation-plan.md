@@ -15,4 +15,4 @@
 
 ## Estado
 
-Checkpoint Fase 1 implementado neste repositório. Próximo: Fase 2 (dados fiscais observados).
+Checkpoint Fase 1 implementado. Fase 2 onda 1: cinco camadas SICONFI/RREO (27 UFs, fail-closed).

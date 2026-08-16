@@ -34,8 +34,9 @@ Regra do Brasil Real: preferir API/arquivo oficial → snapshot bruto imutável 
 | Bioma predominante | [IBGE FTP biomas 2024](https://geoftp.ibge.gov.br/informacoes_ambientais/estudos_ambientais/biomas/documentos/) | referência 2024 | **não** | Ficha territorial |
 | Costeiro/marinho | Lista IBGE CosteiroMarinho | referência lista | **não** | Ficha territorial |
 | Detecção ano novo | [FTP Estimativas](https://ftp.ibge.gov.br/Estimativas_de_Populacao/) | anual | não | Automatizado |
-| Contas/RREO/MSC | [SICONFI API](https://apidatalake.tesouro.gov.br/docs/siconfi/) | mensal/bimestral | **não** | Probe + snapshot |
-| Transferências | [Tesouro CKAN](https://www.tesourotransparente.gov.br/ckan/dataset/api-de-transferencias-constitucionais) | mensal | **não** | Discovery |
+| Contas/RREO/MSC | [SICONFI API](https://apidatalake.tesouro.gov.br/docs/siconfi/) | mensal/bimestral | **não** | 5 camadas UF (RCL, receita tributária, transf. União, despesa empenhada, DCL) |
+| Transferências | [Tesouro CKAN](https://www.tesourotransparente.gov.br/ckan/dataset/api-de-transferencias-constitucionais) · SICONFI RREO | mensal / anual | **não** | Linha UF no RREO; API CKAN ainda discovery |
+| Votos presidente UF (partido/turno) | [TSE Dados Abertos](https://dadosabertos.tse.jus.br/) `votacao_candidato_munzona` | eleitoral | **não** | Automatizado |
 | Arrecadação | ReceitaData / dados abertos RFB | mensal | **não** | Fase 2 |
 | Séries macro | [BCB Dados Abertos](https://dadosabertos.bcb.gov.br/) | diária/mensal | quase (séries) | Fase 2 |
 | Legislação | LexML / Planalto / INLABS | contínua editorial | texto ≠ regra | Catálogo inicial |
@@ -54,7 +55,14 @@ python run.py --source territory
 python run.py --source ipeadata
 python run.py --source comex
 python run.py --source comex --comex-from 2020
+python run.py --source tse
 ```
+
+### Eleições (TSE)
+
+Ingestão: `python run.py --source tse` → `data/fixtures/tse/indicators/`.
+
+Fonte: `votacao_candidato_munzona_{ano}.zip` (CSV `*_BR.csv`, cargo Presidente). Camadas: % do vencedor na UF, margem 1º−2º, e % por partido (PT, PL, PSL, MDB…). Períodos `YYYYTn` (ex.: `2022T2`). ZZ/VT excluídos.
 
 ### Comércio exterior (Comex Stat)
 
@@ -66,10 +74,12 @@ API oficial MDIC (`api-comexstat.mdic.gov.br`). Respeitar rate-limit (429 → re
 
 | Ideia | Canal candidato | Bloqueio |
 |---|---|---|
+| Eleições — presidente UF/partido | TSE dados abertos | **Shipado** (2018/2022; outros cargos depois) |
+| Governador / legislativo por UF | TSE munzona | Próximo corte eleitoral |
 | Consumo de carne / POF | IBGE POF | Poucos anos; validar UF vs região |
 | Farelo/óleo soja, milho, minério | Comex Stat | Só falta priorizar NCM/SH |
 | Renda / desigualdade | PNAD Contínua IBGE | OK — próximo social |
-| Arrecadação / gasto UF | SICONFI / ReceitaData | Roadmap Fase 2 |
+| Arrecadação / gasto UF | SICONFI / ReceitaData | **SICONFI RREO UF shipado** (5 camadas). ReceitaData e gasto federal territorializado: ainda Fase 2 |
 | Milionários / bilionários | — | Sem agregado oficial por UF |
 | Patrimônio (público) | SICONFI / Balanço | Definir métrica (ativo? dívida?) |
 | COVID | — | Sem API estável |
@@ -84,6 +94,17 @@ Ingestão: `python run.py --source ipeadata` → `data/fixtures/ipeadata/indicat
 Séries oficiais republicadas no Ipeadata (origem SIM/DATASUS + Atlas da Violência/IPEA). O OData **não filtra** por UF; o conector baixa a série e seleciona `NIVNOME=Estados`.
 
 **Ainda sem dado no mapa (honestidade):** COVID (APIs do painel covid.saude.gov.br / OpenDataSUS sem endpoint estável aberto) e processos judiciais (CNJ DataJud com autenticação). Até existir canal oficial reproduzível → `SEM DADO`, nunca inventar.
+
+### Freshness + cache (runtime)
+
+A API **prefere sempre o período mais recente** da fonte oficial:
+
+1. `GET /v1/indicators/{id}/periods` — revalida lista IBGE se o cache TTL (12h) expirou; devolve `latest`.  
+2. `GET /v1/observations?indicator=` (sem `period`) — resolve `latest` e serve fixture se cobrir; senão baixa IBGE e grava em `data/cache/`.  
+3. `?refresh=true` — ignora TTL e força rede.  
+4. Camadas Ipeadata/Comex: latest = fixture shippada (re-ingestão via `workers/ingestion`; request path não baixa séries de 400k linhas).
+
+Fail closed: se a rede falhar → fixture ou `SEM DADO`, nunca inventa.
 
 ## Ficha territorial + tooltip obrigatório
 

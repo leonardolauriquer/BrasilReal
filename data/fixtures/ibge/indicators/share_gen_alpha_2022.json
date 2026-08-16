@@ -1,0 +1,197 @@
+{
+  "indicator_id": "share_gen_alpha",
+  "dataset_id": "ibge.share_gen_alpha.2022",
+  "title": "Geração Alpha (0 a 9 anos) — Censo 2022 — UFs 2022",
+  "short_name": "Alpha (0–9)",
+  "name": "Geração Alpha (0 a 9 anos) — Censo 2022",
+  "status_label": "DERIVADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": false,
+  "kind": "derived",
+  "group": "demografia",
+  "group_label": "Gerações (Censo 2022)",
+  "frequency": "census",
+  "reference_period": "2022",
+  "reference_date": "2022",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T16:14:20.352131+00:00",
+  "definition": "Percentual de pessoas de 0 a 9 anos na população residente (Censo 2022, SIDRA 9514): grupos oficiais 0–4 e 5–9 ÷ total. Apelido Alpha = nascidos aproximadamente em 2013–2022.",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "SIDRA 9514 / var 93 / grupos÷100362",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/9514",
+    "url": "https://sidra.ibge.gov.br/tabela/9514",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/9514/n3/all/v/93/p/2022/c2/6794/c287/100362,93070,93084,93085,93095,93096,93097,93098,49108,49109,60040,60041,6653,93086,93087,93088,93089,93090,93091,93092,93093,93094/c286/113635?formato=json"
+  },
+  "limitations": [
+    "Apelido geracional é recorte local sobre grupos etários oficiais de 5 anos (DERIVADO) — o IBGE não classifica gerações.",
+    "Idade em anos completos no Censo 2022; anos de nascimento são aproximados e não coincidem com todas as definições (Pew, imprensa, etc.).",
+    "Não somar com 0–14 ou 60+ para «fechar 100%»: esses recortes usam outros cortes de idade."
+  ],
+  "checksum_sha256": "d9044d83f16e9c265a0e661058a37fdcd1aeedb9ffc0236fc0dc447bd339878c",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 14.6
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 17.5
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 18.3
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 20.1
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 16.0
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 18.1
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 15.3
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 15.7
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 13.5
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 13.5
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 12.9
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 13.6
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 13.7
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 14.9
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 13.8
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 13.1
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 11.9
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 12.9
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 11.8
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 11.8
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 12.7
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 12.6
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 11.7
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 14.8
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 15.4
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 13.5
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 12.5
+    }
+  ]
+}

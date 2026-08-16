@@ -52,10 +52,10 @@ def enrich_metric(row: dict[str, Any], metric_specs: dict[str, dict[str, Any]]) 
     spec = metric_specs.get(str(ind), {})
     definition = row.get("definition") or spec.get("definition")
     source = row.get("source") or {}
-    # Normalize source shape
-    if "organization" not in source and isinstance(source, dict):
+    # Normalize source shape — never invent an organization
+    if isinstance(source, dict) and "organization" not in source:
         source = {
-            "organization": source.get("organization") or "IBGE",
+            "organization": source.get("organization") or "",
             "dataset": source.get("dataset")
             or source.get("dataset_page")
             or source.get("api_url")

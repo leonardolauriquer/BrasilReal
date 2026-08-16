@@ -1,0 +1,196 @@
+{
+  "indicator_id": "pib_per_capita",
+  "dataset_id": "ibge.pib_per_capita.2023",
+  "title": "PIB per capita (derivado) — UFs 2023",
+  "short_name": "PIB per capita",
+  "name": "PIB per capita (derivado)",
+  "status_label": "DERIVADO",
+  "evidence_grade": "A",
+  "unit": "BRL/hab",
+  "higher_is_worse": false,
+  "kind": "derived",
+  "group": "economia",
+  "group_label": "Economia / demografia",
+  "frequency": "annual",
+  "reference_period": "2023",
+  "reference_date": "2023",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T06:19:29.495709+00:00",
+  "definition": "PIB a preços correntes IBGE 5938/37 (2023) dividido pela população residente estimada IBGE 6579 (2024). Anos diferentes — não é PIB per capita oficial da publicação de contas regionais. A tabela 6579 não publica o ano 2023; usa-se o período disponível mais próximo posterior.",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "5938/37 (PIB 2023) ÷ 6579 (pop 2024)",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/5938",
+    "url": "https://sidra.ibge.gov.br/tabela/5938"
+  },
+  "limitations": [
+    "DERIVADO com anos mistos: PIB 2023 ÷ população 2024 (6579 não tem 2023).",
+    "A tabela SIDRA 5938 não publica variável de PIB per capita; este recorte é razão local.",
+    "Não usar como renda domiciliar nem como IDHM."
+  ],
+  "checksum_sha256": "4138df8fcbb19888d86fbd8f93613741ed747011ac337a6cc81bab22af57424a",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 43783.64
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 29855.09
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 37791.89
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 35051.69
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 29378.75
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 34901.38
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 40776.0
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 21284.84
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 23970.78
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 25151.39
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 29523.56
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 23392.58
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 28354.55
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 27852.81
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 26545.01
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 29021.75
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 45584.19
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 51151.42
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 68112.27
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 74930.93
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 56738.96
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 63708.72
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 57890.64
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 63545.41
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 71162.72
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 45812.9
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 122591.83
+    }
+  ]
+}

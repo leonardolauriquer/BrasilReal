@@ -1,0 +1,19 @@
+# Deploy context: keep image lean
+.git
+.github
+**/node_modules
+**/.next
+**/out
+**/.venv
+**/venv
+**/__pycache__
+**/.pytest_cache
+scratch
+data/raw
+data/cache
+apps/web
+docs
+infra/docker/Dockerfile.web
+*.md
+.env
+.env.*

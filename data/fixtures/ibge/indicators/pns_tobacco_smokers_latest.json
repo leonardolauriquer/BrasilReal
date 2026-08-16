@@ -1,0 +1,196 @@
+{
+  "indicator_id": "pns_tobacco_smokers",
+  "dataset_id": "ibge.pns_tobacco_smokers.2019",
+  "title": "Fumantes atuais de tabaco (18 anos ou mais) — PNS 2019 — UFs 2019",
+  "short_name": "Fumantes (PNS 2019)",
+  "name": "Fumantes atuais de tabaco (18 anos ou mais) — PNS 2019",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": true,
+  "kind": "observed_estimate",
+  "group": "saude",
+  "group_label": "Saúde",
+  "frequency": "irregular",
+  "reference_period": "2019",
+  "reference_date": "2019",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T06:53:16.112458+00:00",
+  "definition": "Percentual de pessoas de 18 anos ou mais de idade fumantes atuais de tabaco (PNS 2019, SIDRA 4173 / variável 4163, sexo total, situação do domicílio total).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "PNS 2019 SIDRA 4173 / var 4163",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/4173",
+    "url": "https://sidra.ibge.gov.br/tabela/4173",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/4173/n3/all/v/4163/p/2019/c2/6794/c1/6795?formato=json"
+  },
+  "limitations": [
+    "Retrato da PNS 2019 — não atualizar mentalmente para 2024/2025.",
+    "Estimativa amostral com coeficiente de variação; não é censo."
+  ],
+  "checksum_sha256": "bca928fee1ab4309cd2ee5d84d15a93231f22a8adef984d74998a4cc5fdc5680",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 10.4
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 13.9
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 10.2
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 11.4
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 9.8
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 10.9
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 12.6
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 11.0
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 11.0
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 11.6
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 11.0
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 11.7
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 11.2
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 10.6
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 9.2
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 9.8
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 12.7
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 10.2
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 12.0
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 14.3
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 14.6
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 13.0
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 15.8
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 14.9
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 12.9
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 13.4
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 11.0
+    }
+  ]
+}

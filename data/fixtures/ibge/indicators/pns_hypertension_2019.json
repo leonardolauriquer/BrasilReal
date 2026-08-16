@@ -1,0 +1,196 @@
+{
+  "indicator_id": "pns_hypertension",
+  "dataset_id": "ibge.pns_hypertension.2019",
+  "title": "Diagnóstico médico de hipertensão arterial (18 anos ou mais) — PNS 2019 — UFs 2019",
+  "short_name": "Hipertensão (PNS 2019)",
+  "name": "Diagnóstico médico de hipertensão arterial (18 anos ou mais) — PNS 2019",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "%",
+  "higher_is_worse": true,
+  "kind": "observed_estimate",
+  "group": "saude",
+  "group_label": "Saúde",
+  "frequency": "irregular",
+  "reference_period": "2019",
+  "reference_date": "2019",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T14:34:11.757866+00:00",
+  "definition": "Percentual de pessoas de 18 anos ou mais de idade que referem diagnóstico médico de hipertensão arterial (PNS 2019, SIDRA 4418 / variável 4399, sexo total, situação total).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "PNS 2019 SIDRA 4418 / var 4399",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/4418",
+    "url": "https://sidra.ibge.gov.br/tabela/4418",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/4418/n3/all/v/4399/p/2019/c2/6794/c1/6795?formato=json"
+  },
+  "limitations": [
+    "Retrato da PNS 2019 — não é prevalência clínica atual.",
+    "Autoreferido («diagnóstico médico»); subdiagnóstico e diferenças de acesso afetam o indicador."
+  ],
+  "checksum_sha256": "2ed7a135564208fbcf20ae0265fdfd170e53a523f987ad9b43483aa824839ce5",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 18.8
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 19.2
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 16.0
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 15.7
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 15.3
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 18.2
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 22.5
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 19.3
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 23.6
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 21.3
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 21.9
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 25.1
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 23.4
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 23.9
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 22.5
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 25.2
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 27.7
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 25.5
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 28.1
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 24.2
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 22.9
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 23.6
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 26.6
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 24.5
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 21.6
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 23.4
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 16.6
+    }
+  ]
+}

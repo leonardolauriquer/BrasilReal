@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query
 
 from app.core.store import store
-from app.services import ibge_live
+from app.services import freshness, ibge_live
 
 router = APIRouter(tags=["geographies"])
 
@@ -13,30 +13,33 @@ def list_geographies(level: str = Query(default="state")) -> dict:
 
 
 @router.get("/indicators/{indicator_id}/periods")
-def indicator_periods(indicator_id: str) -> dict:
-    # Fixture-backed series (ex.: Ipeadata) first — avoid empty/502 for non-IBGE layers.
-    fixture_periods = store.indicator_periods(indicator_id)
-    if fixture_periods and indicator_id not in ibge_live.INDICATOR_AGGREGATES:
-        return {"indicator": indicator_id, "count": len(fixture_periods), "items": fixture_periods}
+def indicator_periods(
+    indicator_id: str,
+    refresh: bool = Query(
+        default=False,
+        description="Ignora TTL e reconsulta a fonte oficial (IBGE) quando aplicável.",
+    ),
+) -> dict:
+    """Lista períodos oficiais; por padrão revalida cache se TTL expirou e devolve `latest`."""
     try:
-        periods = ibge_live.list_periods(indicator_id)
+        resolved = freshness.resolve_periods(indicator_id, force=refresh)
     except Exception as exc:  # noqa: BLE001
-        if fixture_periods:
-            return {"indicator": indicator_id, "count": len(fixture_periods), "items": fixture_periods}
         raise HTTPException(status_code=502, detail=f"Falha ao listar períodos: {exc}") from exc
-    if not periods and fixture_periods:
-        periods = fixture_periods
-    return {"indicator": indicator_id, "count": len(periods), "items": periods}
+    if not resolved["items"]:
+        raise HTTPException(status_code=404, detail=f"Sem períodos para {indicator_id}")
+    return resolved
 
 
 # More specific than /geographies/{code}/profile — must be registered first.
 @router.get("/geographies/states/{uf_code}/municipalities")
 def state_municipalities(
     uf_code: str,
-    period: str = Query(default="2025"),
+    period: str | None = Query(default=None),
 ) -> dict:
     """Municipal malha + population for one UF (loaded on zoom)."""
     try:
+        if not period:
+            period = freshness.ensure_latest_period("population") or "2025"
         geo = ibge_live.fetch_municipality_geo(uf_code)
         values = ibge_live.fetch_municipality_population(uf_code, period=period)
     except Exception as exc:  # noqa: BLE001

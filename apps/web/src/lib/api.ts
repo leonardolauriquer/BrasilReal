@@ -1,11 +1,15 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
+import type {
+  Indicator,
+  Observation,
+  Profile,
+  SourceInfo,
+  TerritoryItem,
+} from "@brasil-real/contracts";
 
-export type SourceInfo = {
-  organization: string;
-  dataset: string;
-  url?: string;
-  retrieved_at?: string;
-};
+export type { Indicator, Observation, Profile, SourceInfo, TerritoryItem };
+export type { GeographyRef } from "@brasil-real/contracts";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 export type Provenance = {
   definition?: string;
@@ -13,69 +17,6 @@ export type Provenance = {
   limitations?: string[];
   reference_period?: string;
   status_label?: string;
-};
-
-export type Observation = {
-  indicator: string;
-  geography_ibge_code: string;
-  uf: string;
-  name: string;
-  value: number;
-  unit: string;
-  reference_period: string;
-  release_date?: string | null;
-  status_label: string;
-  evidence_grade?: string;
-  higher_is_worse?: boolean;
-  source: SourceInfo | Record<string, unknown>;
-  dataset_id: string;
-  limitations?: string[];
-  short_name?: string;
-  definition?: string;
-  label?: string;
-};
-
-export type Indicator = {
-  id: string;
-  name: string;
-  short_name?: string;
-  unit: string;
-  status_label: string;
-  kind?: string;
-  reference_period?: string;
-  higher_is_worse?: boolean;
-  group?: string;
-  group_label?: string;
-  definition?: string;
-  source?: SourceInfo;
-  limitations?: string[];
-};
-
-export type TerritoryItem = {
-  id: string;
-  label: string;
-  section: string;
-  value?: number | null;
-  text?: string | null;
-  unit?: string | null;
-  status_label: string;
-  reference_period: string;
-  definition: string;
-  source: SourceInfo;
-  limitations?: string[];
-};
-
-export type Profile = {
-  geography: {
-    ibge_code: string;
-    uf: string;
-    name: string;
-    uf_code?: string;
-    level?: string;
-  };
-  metrics: Observation[];
-  territory?: { items: TerritoryItem[] };
-  disclaimer: string;
 };
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
@@ -107,7 +48,12 @@ export async function fetchObservations(indicator: string, period?: string) {
   if (period) q.set("period", period);
   return api<{
     count: number;
-    meta: Record<string, unknown>;
+    meta: {
+      period_resolved?: boolean | null;
+      period_miss?: boolean;
+      resolved_period?: string | null;
+      [key: string]: unknown;
+    };
     items: Observation[];
   }>(`/v1/observations?${q.toString()}`);
 }
@@ -122,13 +68,20 @@ export async function fetchMunicipalityProfile(code: string) {
   );
 }
 
-export async function fetchPeriods(indicator: string) {
-  return api<{ indicator: string; count: number; items: string[] }>(
-    `/v1/indicators/${encodeURIComponent(indicator)}/periods`,
-  );
+export async function fetchPeriods(indicator: string, refresh = false) {
+  const q = refresh ? "?refresh=true" : "";
+  return api<{
+    indicator: string;
+    count: number;
+    items: string[];
+    latest?: string;
+    source?: string;
+    cache_hit?: boolean;
+  }>(`/v1/indicators/${encodeURIComponent(indicator)}/periods${q}`);
 }
 
-export async function fetchMunicipalities(ufCode: string, period = "2025") {
+export async function fetchMunicipalities(ufCode: string, period?: string) {
+  const q = period ? `?period=${encodeURIComponent(period)}` : "";
   return api<{
     uf_code: string;
     period: string;
@@ -146,6 +99,6 @@ export async function fetchMunicipalities(ufCode: string, period = "2025") {
     values: Array<{ ibge_code: string; name: string; value: number }>;
     source: SourceInfo & Record<string, string>;
   }>(
-    `/v1/geographies/states/${encodeURIComponent(ufCode)}/municipalities?period=${encodeURIComponent(period)}`,
+    `/v1/geographies/states/${encodeURIComponent(ufCode)}/municipalities${q}`,
   );
 }

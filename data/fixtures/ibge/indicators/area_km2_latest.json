@@ -1,0 +1,194 @@
+{
+  "indicator_id": "area_km2",
+  "dataset_id": "ibge.area_km2.2010",
+  "title": "Área territorial — UFs 2010",
+  "short_name": "Área",
+  "name": "Área territorial",
+  "status_label": "OBSERVADO",
+  "evidence_grade": "A",
+  "unit": "km²",
+  "higher_is_worse": false,
+  "kind": "observed_estimate",
+  "group": "territorio",
+  "group_label": "Território",
+  "frequency": "irregular",
+  "reference_period": "2010",
+  "reference_date": "2010",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T06:14:38.887456+00:00",
+  "definition": "Área total da unidade territorial publicada no agregado IBGE 1301 (referência 2010).",
+  "source": {
+    "organization": "IBGE",
+    "dataset": "Agregados 1301 / variável 615",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/1301",
+    "url": "https://sidra.ibge.gov.br/tabela/1301"
+  },
+  "limitations": [
+    "Período do agregado é 2010; limites territoriais posteriores podem diferir."
+  ],
+  "checksum_sha256": "6805058c3247046d6fd25ec90f3a71c543ff517d48cc87b32507974be692e3d0",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 237590.9
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 164122.3
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 1559161.7
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 224301.0
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 1247950.0
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 142827.9
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 277621.9
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 331935.5
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 251576.6
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 148920.5
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 52810.7
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 56469.5
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 98146.3
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 27779.3
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 21918.4
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 564830.9
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 586520.4
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 46098.6
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 43780.2
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 248197.0
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 199316.7
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 95703.5
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 268781.9
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 357145.8
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 903329.7
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 340103.5
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 5787.8
+    }
+  ]
+}

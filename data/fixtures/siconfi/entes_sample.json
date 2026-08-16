@@ -1,5 +1,5 @@
 {
-  "retrieved_at": "2026-08-14T14:32:43.296764+00:00",
+  "retrieved_at": "2026-08-15T15:45:24.672183+00:00",
   "source_url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/entes",
   "docs": "https://apidatalake.tesouro.gov.br/docs/siconfi/",
   "status_label": "OBSERVADO",
@@ -7,114 +7,114 @@
   "has_more": true,
   "sample": [
     {
-      "cod_ibge": 2305209,
-      "ente": "Hidrolândia",
+      "cod_ibge": 2310704,
+      "ente": "Pentecoste",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 18186,
-      "cnpj": "07707680000127"
+      "populacao": 39903,
+      "cnpj": "07682651000158"
     },
     {
-      "cod_ibge": 2305233,
-      "ente": "Horizonte",
+      "cod_ibge": 2310803,
+      "ente": "Pereiro",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 81161,
-      "cnpj": "23555196000186"
+      "populacao": 15858,
+      "cnpj": "07570518000100"
     },
     {
-      "cod_ibge": 2305266,
-      "ente": "Ibaretama",
+      "cod_ibge": 2310852,
+      "ente": "Pindoretama",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 12149,
-      "cnpj": "23444680000138"
+      "populacao": 24919,
+      "cnpj": "23563448000119"
     },
     {
-      "cod_ibge": 2305308,
-      "ente": "Ibiapina",
+      "cod_ibge": 2310902,
+      "ente": "Piquet Carneiro",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 24689,
-      "cnpj": "07523186000102"
+      "populacao": 17285,
+      "cnpj": "07738057000131"
     },
     {
-      "cod_ibge": 2305332,
-      "ente": "Ibicuitinga",
+      "cod_ibge": 2310951,
+      "ente": "Pires Ferreira",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 12008,
-      "cnpj": "12461646000155"
+      "populacao": 10984,
+      "cnpj": "10462208000186"
     },
     {
-      "cod_ibge": 2305357,
-      "ente": "Icapuí",
+      "cod_ibge": 2311009,
+      "ente": "Poranga",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 22562,
-      "cnpj": "10393593000157"
+      "populacao": 12441,
+      "cnpj": "07438187000159"
     },
     {
-      "cod_ibge": 2305407,
-      "ente": "Icó",
+      "cod_ibge": 2311108,
+      "ente": "Porteiras",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 64745,
-      "cnpj": "07669682000179"
+      "populacao": 17877,
+      "cnpj": "07654114000102"
     },
     {
-      "cod_ibge": 2305506,
-      "ente": "Iguatu",
+      "cod_ibge": 2311207,
+      "ente": "Potengi",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 102588,
-      "cnpj": "07810468000190"
+      "populacao": 8854,
+      "cnpj": "07658917000127"
     },
     {
-      "cod_ibge": 2305605,
-      "ente": "Independência",
+      "cod_ibge": 2311231,
+      "ente": "Potiretama",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 24463,
-      "cnpj": "07982028000110"
+      "populacao": 6128,
+      "cnpj": "12461653000157"
     },
     {
-      "cod_ibge": 2305654,
-      "ente": "Ipaporanga",
+      "cod_ibge": 2311264,
+      "ente": "Quiterianópolis",
       "capital": "0  ",
       "regiao": "NE",
       "uf": "CE",
       "esfera": "M",
       "exercicio": 2026,
-      "populacao": 11963,
-      "cnpj": "10462364000147"
+      "populacao": 20545,
+      "cnpj": "07551179000114"
     }
   ],
   "limitations": [

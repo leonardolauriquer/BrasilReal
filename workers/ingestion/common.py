@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -79,6 +80,15 @@ def fetch_json(url: str, **kwargs: Any) -> Any:
 
 
 def write_json(path: Path, payload: Any) -> str:
+    if isinstance(payload, dict):
+        api_root = Path(__file__).resolve().parents[2] / "apps" / "api"
+        if str(api_root) not in sys.path:
+            sys.path.insert(0, str(api_root))
+        from app.core.data_integrity import inspect_write_payload
+
+        errors = inspect_write_payload(path, payload)
+        if errors:
+            raise RuntimeError(f"refusing to write {path}: " + "; ".join(errors[:8]))
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(payload, ensure_ascii=False, indent=2)
     path.write_text(text, encoding="utf-8")

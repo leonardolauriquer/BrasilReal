@@ -86,7 +86,7 @@ def _post(body: dict[str, Any], *, retries: int = 6) -> dict[str, Any]:
         except urllib.error.HTTPError as exc:
             last_err = exc
             if exc.code in {429, 500, 502, 503, 504} and attempt < retries - 1:
-                time.sleep(2.5 * (attempt + 1))
+                time.sleep(8.0 * (attempt + 1) if exc.code == 429 else 2.5 * (attempt + 1))
                 continue
             raise
         except urllib.error.URLError as exc:
@@ -98,15 +98,16 @@ def _post(body: dict[str, Any], *, retries: int = 6) -> dict[str, Any]:
     raise RuntimeError(f"comexstat failed: {last_err}; raw={raw_last[:200]!r}")
 
 
-def _query_year(year: int, filters: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    body = {
+def _query_year(year: int, filters: list[dict[str, Any]] | None) -> list[dict[str, Any]]:
+    body: dict[str, Any] = {
         "flow": "export",
         "monthDetail": False,
         "period": {"from": f"{year}-01", "to": f"{year}-12"},
-        "filters": filters,
         "details": ["state"],
         "metrics": ["metricFOB", "metricKG"],
     }
+    if filters:
+        body["filters"] = filters
     payload = _post(body)
     snapshot_raw(
         "comex",
@@ -129,7 +130,14 @@ def _rows_to_values(
     for row in rows:
         state = str(row.get("state") or "")
         folded = _fold(state)
-        if folded in {"", "nao declarada", "nd", "n/d", "nao informado"}:
+        if folded in {
+            "",
+            "nao declarada",
+            "nd",
+            "n/d",
+            "nao informado",
+            "reexportacao",
+        }:
             raw = row.get(metric)
             if raw not in (None, "", "-"):
                 skipped_non_uf += float(str(raw).replace(",", "."))
@@ -165,8 +173,8 @@ def _fetch_year_values(
             for code, val in part.items():
                 acc[code] = acc.get(code, 0.0) + val
         return acc, skipped
-    time.sleep(2.2)
-    return _rows_to_values(_query_year(year, spec["filters"]), name_idx=name_idx, metric=metric)
+    time.sleep(4.0)
+    return _rows_to_values(_query_year(year, spec.get("filters") or []), name_idx=name_idx, metric=metric)
 
 
 def _complete_records(
@@ -281,9 +289,10 @@ def fetch_catalog_indicator(indicator_id: str, *, year_from: int = YEAR_FROM, ye
     }
 
 
-def fetch_bundle(year_from: int = YEAR_FROM) -> dict[str, Any]:
+def fetch_bundle(year_from: int = YEAR_FROM, ids: list[str] | None = None) -> dict[str, Any]:
     results = {}
-    for indicator_id in COMEX_SPECS:
+    keys = ids or list(COMEX_SPECS)
+    for indicator_id in keys:
         results[indicator_id] = fetch_catalog_indicator(indicator_id, year_from=year_from)
         time.sleep(3.0)
     return {"retrieved_at": utc_now(), "indicators": results}

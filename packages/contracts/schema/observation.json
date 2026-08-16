@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brasilreal.local/schema/observation.json",
+  "title": "Observation",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "indicator",
+    "geography_ibge_code",
+    "uf",
+    "name",
+    "value",
+    "unit",
+    "reference_period",
+    "status_label",
+    "definition",
+    "source",
+    "dataset_id"
+  ],
+  "properties": {
+    "indicator": { "type": "string", "minLength": 1 },
+    "geography_ibge_code": { "type": "string", "minLength": 1 },
+    "uf": { "type": "string", "minLength": 2, "maxLength": 2 },
+    "name": { "type": "string", "minLength": 1 },
+    "value": { "type": "number" },
+    "unit": { "type": "string", "minLength": 1 },
+    "reference_period": { "type": "string", "minLength": 4 },
+    "status_label": { "type": "string", "minLength": 1 },
+    "definition": { "type": "string", "minLength": 8 },
+    "source": {
+      "type": "object",
+      "required": ["organization", "dataset"],
+      "properties": {
+        "organization": { "type": "string", "minLength": 1 },
+        "dataset": { "type": "string", "minLength": 1 },
+        "url": { "type": ["string", "null"] },
+        "retrieved_at": { "type": ["string", "null"] }
+      }
+    },
+    "dataset_id": { "type": "string", "minLength": 1 },
+    "release_date": {},
+    "evidence_grade": { "type": "string" },
+    "higher_is_worse": { "type": "boolean" },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "short_name": { "type": "string" },
+    "label": { "type": "string" }
+  }
+}

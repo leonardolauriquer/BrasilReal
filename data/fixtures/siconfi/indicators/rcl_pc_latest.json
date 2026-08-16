@@ -1,0 +1,198 @@
+{
+  "indicator_id": "rcl_pc",
+  "dataset_id": "brasilreal.rcl_pc.2025",
+  "title": "Receita corrente líquida por habitante — UFs 2025",
+  "short_name": "RCL / hab",
+  "name": "Receita corrente líquida por habitante",
+  "status_label": "DERIVADO",
+  "evidence_grade": "B",
+  "unit": "BRL/hab",
+  "higher_is_worse": false,
+  "kind": "derived",
+  "group": "fiscal",
+  "group_label": "Fiscal",
+  "frequency": "annual",
+  "reference_period": "2025",
+  "reference_date": "2025",
+  "release_date": null,
+  "retrieved_at": "2026-08-15T22:38:38.371511+00:00",
+  "available_periods": [
+    "2025"
+  ],
+  "definition": "RCL do RREO 2025 (Anexo 14, até o 6º bimestre) dividida pela população residente estimada IBGE 2025. Razão local; o Tesouro não publica RCL/hab.",
+  "source": {
+    "organization": "Brasil Real",
+    "dataset": "RCL RREO ÷ população IBGE 2025",
+    "url": "https://apidatalake.tesouro.gov.br/docs/siconfi/"
+  },
+  "limitations": [
+    "Denominador é a estimativa de população 2025, não a população do SICONFI.",
+    "Nominal; não deflacionado. Não usar como renda.",
+    "Só o exercício em que RCL e população 2025 coincidem no recorte latest."
+  ],
+  "checksum_sha256": "68f47b2d5c0310436487e0f53f1243c06097caf7dc731b036d499856a87b4004",
+  "records": [
+    {
+      "ibge_code": "11",
+      "uf": "RO",
+      "name": "Rondônia",
+      "value": 9020.674050423813
+    },
+    {
+      "ibge_code": "12",
+      "uf": "AC",
+      "name": "Acre",
+      "value": 12766.277771152863
+    },
+    {
+      "ibge_code": "13",
+      "uf": "AM",
+      "name": "Amazonas",
+      "value": 6610.028875621989
+    },
+    {
+      "ibge_code": "14",
+      "uf": "RR",
+      "name": "Roraima",
+      "value": 11658.337305109018
+    },
+    {
+      "ibge_code": "15",
+      "uf": "PA",
+      "name": "Pará",
+      "value": 5131.911393117547
+    },
+    {
+      "ibge_code": "16",
+      "uf": "AP",
+      "name": "Amapá",
+      "value": 12032.14184373051
+    },
+    {
+      "ibge_code": "17",
+      "uf": "TO",
+      "name": "Tocantins",
+      "value": 9810.602311396287
+    },
+    {
+      "ibge_code": "21",
+      "uf": "MA",
+      "name": "Maranhão",
+      "value": 4623.916031262098
+    },
+    {
+      "ibge_code": "22",
+      "uf": "PI",
+      "name": "Piauí",
+      "value": 5534.651791096415
+    },
+    {
+      "ibge_code": "23",
+      "uf": "CE",
+      "name": "Ceará",
+      "value": 4274.3465170373065
+    },
+    {
+      "ibge_code": "24",
+      "uf": "RN",
+      "name": "Rio Grande do Norte",
+      "value": 5647.616157038187
+    },
+    {
+      "ibge_code": "25",
+      "uf": "PB",
+      "name": "Paraíba",
+      "value": 5071.634546489491
+    },
+    {
+      "ibge_code": "26",
+      "uf": "PE",
+      "name": "Pernambuco",
+      "value": 4936.785775874249
+    },
+    {
+      "ibge_code": "27",
+      "uf": "AL",
+      "name": "Alagoas",
+      "value": 5888.9089262920825
+    },
+    {
+      "ibge_code": "28",
+      "uf": "SE",
+      "name": "Sergipe",
+      "value": 7170.485254718027
+    },
+    {
+      "ibge_code": "29",
+      "uf": "BA",
+      "name": "Bahia",
+      "value": 4639.6377678584095
+    },
+    {
+      "ibge_code": "31",
+      "uf": "MG",
+      "name": "Minas Gerais",
+      "value": 5223.071060033307
+    },
+    {
+      "ibge_code": "32",
+      "uf": "ES",
+      "name": "Espírito Santo",
+      "value": 6805.387378414647
+    },
+    {
+      "ibge_code": "33",
+      "uf": "RJ",
+      "name": "Rio de Janeiro",
+      "value": 5838.295801290524
+    },
+    {
+      "ibge_code": "35",
+      "uf": "SP",
+      "name": "São Paulo",
+      "value": 5777.148235212204
+    },
+    {
+      "ibge_code": "41",
+      "uf": "PR",
+      "name": "Paraná",
+      "value": 5982.410185150065
+    },
+    {
+      "ibge_code": "42",
+      "uf": "SC",
+      "name": "Santa Catarina",
+      "value": 6233.284522448864
+    },
+    {
+      "ibge_code": "43",
+      "uf": "RS",
+      "name": "Rio Grande do Sul",
+      "value": 5807.114606069492
+    },
+    {
+      "ibge_code": "50",
+      "uf": "MS",
+      "name": "Mato Grosso do Sul",
+      "value": 7590.46196727724
+    },
+    {
+      "ibge_code": "51",
+      "uf": "MT",
+      "name": "Mato Grosso",
+      "value": 9568.704286923945
+    },
+    {
+      "ibge_code": "52",
+      "uf": "GO",
+      "name": "Goiás",
+      "value": 6111.687008747339
+    },
+    {
+      "ibge_code": "53",
+      "uf": "DF",
+      "name": "Distrito Federal",
+      "value": 13080.585011413465
+    }
+  ]
+}

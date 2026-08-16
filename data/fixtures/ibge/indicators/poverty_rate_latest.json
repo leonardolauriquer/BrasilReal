@@ -20,7 +20,9 @@
     "aggregate_id": 5877,
     "variable_id": 9948,
     "variable_name": "Proporção da população abaixo da linha de pobreza nacional",
-    "method_notes": "IBGE ODS 1.2.1 / Agregados 5877, variável 9948, localidades N3. Linha de pobreza nacional do IBGE — não confundir com linhas do Banco Mundial."
+    "method_notes": "IBGE ODS 1.2.1 / Agregados 5877, variável 9948, localidades N3. Linha de pobreza nacional do IBGE — não confundir com linhas do Banco Mundial.",
+    "dataset": "Agregados 5877 / variável 9948",
+    "url": "https://sidra.ibge.gov.br/tabela/5877"
   },
   "checksum_sha256": "a3eb3b45e0905c5e8771d11650c2c83b9e1d0791f98eea4f69b5a2522c88615f",
   "records": [
@@ -188,12 +190,12 @@
     }
   ],
   "limitations": [
-    "Definição depende da linha nacional vigente no ano de referência.",
-    "Não é tempo real; série anual com defasagem de publicação."
+    "Não confundir com linhas do Banco Mundial."
   ],
   "ingestion": {
     "connector": "ibge.agregados.poverty_rate",
     "connector_version": "0.1.0",
     "mode": "api"
-  }
+  },
+  "definition": "Proporção da população abaixo da linha de pobreza nacional do IBGE (indicador ODS 1.2.1)."
 }

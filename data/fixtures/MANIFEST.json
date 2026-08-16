@@ -1,0 +1,2622 @@
+{
+  "schema": "brasilreal.fixtures.manifest.v1",
+  "algorithm": "sha256-canonical-strip-volatile",
+  "files": {
+    "ibge/population_uf_2025.json": {
+      "sha256": "65cd6ffcb4349d7cdbc691740e6e7dfbddd91a090dbb83cbff83a321896918fb"
+    },
+    "ibge/pib_uf_latest.json": {
+      "sha256": "ca38f031789c706141c1463309dafff1beba46fd64405b2b8d7b65364d889790"
+    },
+    "ibge/indicators/aging_index_latest.json": {
+      "sha256": "425f3e772bb921d7429364acb652bcb68e9afca6c9f3d4447ff9e58adc33ccd0"
+    },
+    "ibge/indicators/area_km2_latest.json": {
+      "sha256": "310fad4a219ff6c8d92c0cad54325121e0f32f0b05e87dafc731fbd71e292762"
+    },
+    "ibge/indicators/cempre_avg_wage_latest.json": {
+      "sha256": "55177bf6c2310f3903e1c8a6001b83fcbf54994795c96a28157dfec6edf659ab"
+    },
+    "ibge/indicators/cempre_firms_latest.json": {
+      "sha256": "267288ce77d2f73ac4296ae5e1d521a9652128c071a8b6dc9a0de40033ab40eb"
+    },
+    "ibge/indicators/cempre_wage_in_sm_latest.json": {
+      "sha256": "af3accdf96af60736e16b44d4ad001a308f222c2ae65138dad158dadeaada218"
+    },
+    "ibge/indicators/crude_birth_rate_latest.json": {
+      "sha256": "aff28a60dad2a9d7131238caef7a82ecdac7104dee16c423b3cd035dc79dc1ca"
+    },
+    "ibge/indicators/crude_death_rate_latest.json": {
+      "sha256": "ab21cedead8fad230e8276ea0c14c07f282825bb23634976a56eb6b35208c030"
+    },
+    "ibge/indicators/dependency_ratio_latest.json": {
+      "sha256": "9361df0cdc8ac97503b4b2fe35e42896c3ed4d0f257e6d9571b2ca4e0f6fe637"
+    },
+    "ibge/indicators/employer_survival_1y_latest.json": {
+      "sha256": "1a1a5e1b01f2f57b573867cdfc7519f96bb5239cf0d9d3dae5ed4a2f7d69c543"
+    },
+    "ibge/indicators/employer_unit_birth_rate_latest.json": {
+      "sha256": "1ef163b1f34b26d86166ccf5ac57cd12a0d4bb48a64dd33e25bcf5c8921eebc1"
+    },
+    "ibge/indicators/employer_unit_births_latest.json": {
+      "sha256": "af0fb824b04d724ef18318ac838e6d87d9921e4655d7a44e193e258a083eac42"
+    },
+    "ibge/indicators/gini_household_latest.json": {
+      "sha256": "66996676d7f4c246ac6f40fde6a54a33a0f9aa1576e4cbd67e957059eb4c7d98"
+    },
+    "ibge/indicators/higher_education_share_latest.json": {
+      "sha256": "aad3d78d77bf9dd7470cbdd6a8a12231c02a0a170fcb7886a396bb8188a9b137"
+    },
+    "ibge/indicators/household_income_pc_latest.json": {
+      "sha256": "275318e262c14a6953e07689ab9a78f3ce34a58484d119443a8e3ccfcae76573"
+    },
+    "ibge/indicators/indigenous_population_latest.json": {
+      "sha256": "3fab1a5059cd89c95e3350a47f47c8c397c5e320c3795eaac7df8f21fa86f484"
+    },
+    "ibge/indicators/indigenous_share_latest.json": {
+      "sha256": "2f6a1051abf8bb1a044b2462262fa9c51567972cb51305fc334ec9998f754587"
+    },
+    "ibge/indicators/informality_rate_latest.json": {
+      "sha256": "54bd75bd49e37dc37d7df2b09d64a7890cc0c37c9cd160ae60384fa481174d24"
+    },
+    "ibge/indicators/internet_home_share_latest.json": {
+      "sha256": "c85e92cf13d476daeaa6e84596a0fa147fcb277edd76cc4ddd666e41d06e0bf1"
+    },
+    "ibge/indicators/labor_income_latest.json": {
+      "sha256": "4bf872a6f5605b6abbdbb6105fd456041d337163730c9b62c870f65ec74edc53"
+    },
+    "ibge/indicators/literacy_rate_latest.json": {
+      "sha256": "1d3b6059f97aac7a6730dccfbd5b7313935b9b217629c0edb003d217e3522db2"
+    },
+    "ibge/indicators/median_age_latest.json": {
+      "sha256": "53fbeaaa5ab9d0b50da0b850903564c02cb3ac999e4b56b69383170d680691da"
+    },
+    "ibge/indicators/owned_paid_share_latest.json": {
+      "sha256": "f39252366c1bc8c8385240b6dc4b31d695f790b9d3a9657e75e1f4bdcaf04113"
+    },
+    "ibge/indicators/owned_paying_share_latest.json": {
+      "sha256": "06239c7698631a6b6aff42ba27ec7359aca920c917842e29bead8926dca90402"
+    },
+    "ibge/indicators/pib_per_capita_latest.json": {
+      "sha256": "a5f12434107022fac242e87d87d605c804405ac35d248ab0a95e83c6e6115422"
+    },
+    "ibge/indicators/pns_alcohol_latest.json": {
+      "sha256": "7c4438dd0aede67bca2c4fb38148cb4de0036d76eaea66c52ec22a171f7d7bca"
+    },
+    "ibge/indicators/pns_diabetes_latest.json": {
+      "sha256": "d982acfcbe3fc250565f1f74555a227b1869b3dc24268073f93fbc5aacba4f99"
+    },
+    "ibge/indicators/pns_health_plan_latest.json": {
+      "sha256": "f04f73661dfb7dcd2e6e173aadbc845baa4f21d33792c9e21243f436cebccc2a"
+    },
+    "ibge/indicators/pns_hypertension_latest.json": {
+      "sha256": "324f6ddc09d6136a7ba4f57d1a7bd5b222fc3407c9f4559108e715e3c3283305"
+    },
+    "ibge/indicators/pns_tobacco_smokers_latest.json": {
+      "sha256": "628179063c22a9229d089bbe4ba5b796718f13aa30a35440a63277146efa9915"
+    },
+    "ibge/indicators/pns_violence_latest.json": {
+      "sha256": "130fd569cbea022dd9f7763e928d101fb8250a4d6fdb1c50006327b9786c1b27"
+    },
+    "ibge/indicators/population_density_latest.json": {
+      "sha256": "79408554d2c1b2897e63fb62155a7c313c84b318207a616947d666c8c843a6e5"
+    },
+    "ibge/indicators/poverty_rate_latest.json": {
+      "sha256": "59d046bd2d521ee48a4312100814237d5416ccef28028aeb0b4a5531fb8e829b"
+    },
+    "ibge/indicators/quilombola_residents_latest.json": {
+      "sha256": "67eaa56e1061fe86c1627d66c865f2b48f14fcdf08809080738bb37fadf9a678"
+    },
+    "ibge/indicators/race_branca_share_latest.json": {
+      "sha256": "a000cd4c4a3de7d01efbe51eb9e40bde9c2dc708d6d3b18cb6ae3efc8accc6af"
+    },
+    "ibge/indicators/race_parda_share_latest.json": {
+      "sha256": "cf69400a1f76f016a4838699b0643b17118f26cc8843b1005c8e5244d4e16802"
+    },
+    "ibge/indicators/race_preta_share_latest.json": {
+      "sha256": "36cb9b9c939cf4ba77bd53cb6e841e700a4df3adcdd1f0da94ea77c62f9b7278"
+    },
+    "ibge/indicators/rented_share_latest.json": {
+      "sha256": "a7dabca7c83864e12eadec161e2f4c98987682ed1fd3346f9efaa149e6e4b0cf"
+    },
+    "ibge/indicators/sanitation_adequate_latest.json": {
+      "sha256": "5378867de5f40dfb3b89f494fac45857dad81aa8298c6f7008c99e7c35034062"
+    },
+    "ibge/indicators/sex_ratio_latest.json": {
+      "sha256": "2895fbb180b0efc5cd1542e1f6427274f83b07a52bd4aee8279903ef671712e9"
+    },
+    "ibge/indicators/share_0_14_latest.json": {
+      "sha256": "97840010afc268c224f2b93e0a31be10c503b2eea9dda74e2ca2cc65c47ef32b"
+    },
+    "ibge/indicators/share_60_plus_latest.json": {
+      "sha256": "deb2f89795e257fd4d03c17f1b33ad1dcab0fbb406ff661952e315f588504b56"
+    },
+    "ibge/indicators/share_gen_alpha_latest.json": {
+      "sha256": "5dad1bde53d421e8503422eb8b98778aaea8c9719d202c30aeeee0a8615c1a60"
+    },
+    "ibge/indicators/share_gen_boomer_latest.json": {
+      "sha256": "e126f858c594d6444167e258f4997c39c941629ae5c67099221ba3e5bd916016"
+    },
+    "ibge/indicators/share_gen_silent_latest.json": {
+      "sha256": "d488866249cc30139218e2c1d1a6541bc005b3f851d2037aa9654845c53c9975"
+    },
+    "ibge/indicators/share_gen_x_latest.json": {
+      "sha256": "a8b30c9cf8bdc174893b76e3af64c3350611dbd959f086cdd9883b20dfb688b3"
+    },
+    "ibge/indicators/share_gen_y_latest.json": {
+      "sha256": "74029d4ecde094089bcde46a09fa3c66a069ae649887938ff4a987ff25e8faba"
+    },
+    "ibge/indicators/share_gen_z_latest.json": {
+      "sha256": "7c96f64c9bcef7e4ab371cab135127e4712824287624ce055bc6bdac2375a656"
+    },
+    "ibge/indicators/unemployment_rate_latest.json": {
+      "sha256": "5274cf61fe81de50cfb315b8bf6ba03499d64471c830d51841bb1e91f35dc8f1"
+    },
+    "ibge/indicators/urban_share_latest.json": {
+      "sha256": "5bd0cea23e4e17876f0d6926e0003fb29453fede0b61828ae6895233ee2278b9"
+    },
+    "ibge/indicators/waste_collected_share_latest.json": {
+      "sha256": "64793fcc7a07df0de8fedab5800c48491784ba889252661e06843bf39efcce95"
+    },
+    "ibge/indicators/water_network_share_latest.json": {
+      "sha256": "27ab7d3d15df4af3c01db8dcac778d7146d3ee2d28308d73312443b5cee43fd5"
+    },
+    "ipeadata/indicators/homicide_count_latest.json": {
+      "sha256": "86600d4cb25b0e5d42e884a78eab8dc85ef58e8ef72eb54713a984d35531faba"
+    },
+    "ipeadata/indicators/homicide_rate_latest.json": {
+      "sha256": "f23319654f15dfba203ee3d8649d850c047c5c79e69a743eaf153a6195a9d284"
+    },
+    "ipeadata/indicators/traffic_death_rate_latest.json": {
+      "sha256": "bd04a45fcbeec95048b6bd67afc2ff8b68618dde448f94d36a8b09f456e5b77b"
+    },
+    "comex/indicators/export_bovine_fob_latest.json": {
+      "sha256": "b3e1e597ef02030bb26d7bc3551c40edddc604b232abbeb8983cdd65359c75b8"
+    },
+    "comex/indicators/export_corn_fob_latest.json": {
+      "sha256": "4851b867739ea55cf4c8e093a5f7539bc0f3a02a1e048079465a452666f949e3"
+    },
+    "comex/indicators/export_fob_latest.json": {
+      "sha256": "802402d2a289d332c303fba1f6079ffec0becdb65996b934d649613a5120dda4"
+    },
+    "comex/indicators/export_fob_pc_latest.json": {
+      "sha256": "0f2130d7c34679cd8e30881a5a469180f9f604855bcc4c8b1eb420950aba9f41"
+    },
+    "comex/indicators/export_iron_ore_fob_latest.json": {
+      "sha256": "87e0c97e5358cb29ee6c99062df962dfac123728d5b2d9308128af0c49ac8257"
+    },
+    "comex/indicators/export_meat_fob_latest.json": {
+      "sha256": "f6971462c73405440df9306a31281d50be1446f028c17a045181ae246f2b29b3"
+    },
+    "comex/indicators/export_petroleum_fob_latest.json": {
+      "sha256": "514e9b30b39d364da9e84cbeb7e5312183f3f6ba750dc74e760ed86a48758e36"
+    },
+    "comex/indicators/export_soy_fob_latest.json": {
+      "sha256": "416de2d15a02613554a0823e30793844073de87d52b2f5d2494894d916a826ac"
+    },
+    "comex/indicators/export_soy_meal_fob_latest.json": {
+      "sha256": "1fd305a8f78c8539faf3a7f83d80d78c9ec473f484c9bc6e90e417c3590fe9e8"
+    },
+    "comex/indicators/export_soy_oil_fob_latest.json": {
+      "sha256": "a83f9552d02d1727fc5b883cdb5b0337aa410c0fa2cc1feef505540cf06d9e74"
+    },
+    "tse/indicators/gov_margin_pp_latest.json": {
+      "sha256": "1a864a2b119a35df49efe1cd831eaf73e4290ba7cff2ee723e1ad964521e6a22"
+    },
+    "tse/indicators/gov_winner_share_latest.json": {
+      "sha256": "66baee99df63b516f9477b685d15e4a30c7d0b7717fc47db8ca2910b4995bdb1"
+    },
+    "tse/indicators/pres_margin_pp_latest.json": {
+      "sha256": "54e079551ca61dc1cb31acffb5ab63b07dc463bbf294cb9d4c89d44d9cfaf961"
+    },
+    "tse/indicators/pres_party_mdb_latest.json": {
+      "sha256": "2b00178d9e2d36d5a8e0cd1c7e6028fc45b54a79cb8734edc11d1086b79ea85a"
+    },
+    "tse/indicators/pres_party_novo_latest.json": {
+      "sha256": "cc99dfd8111cd31f73d8ddb50e0901b137bcd85863d1e000330009f6efd25074"
+    },
+    "tse/indicators/pres_party_pdt_latest.json": {
+      "sha256": "7e2575a8faf21817e045639cac45cc014f9ef5723c45ff91c96ae033655dc98b"
+    },
+    "tse/indicators/pres_party_pl_latest.json": {
+      "sha256": "5c9a1a2e3aecc0d0fa7bd7730431112ce26e8b4a4b60f68ba539a83a1c1e8bc0"
+    },
+    "tse/indicators/pres_party_psl_latest.json": {
+      "sha256": "295cfb6e0a553f5ca1ef26e925b09434d7b5910fd670a9dc22dd62ef6cbb0506"
+    },
+    "tse/indicators/pres_party_pt_latest.json": {
+      "sha256": "5bfbb58349d4beb09e1fd455b3b8aa53be5d4ce4dfc0980111a703811274d296"
+    },
+    "tse/indicators/pres_party_rede_latest.json": {
+      "sha256": "57ce62dee61e47f91f7118f5320c8956cc9381dd829954b1bce5073f1973df42"
+    },
+    "tse/indicators/pres_party_uniao_latest.json": {
+      "sha256": "c63e5a91e168387472f707bbd0a9592a08206d8de6992a5d15f095e3f116d4a9"
+    },
+    "tse/indicators/pres_winner_share_latest.json": {
+      "sha256": "7c810cd14655dde5f3f0b6cfaaf3d4ae26aa96f969124cb6e69baff3451b31db"
+    },
+    "siconfi/indicators/dcl_rcl_latest.json": {
+      "sha256": "ece27ef9f3283f37b7416b14f8a82961b59fd1069d029d22f71925aa398ff2c3"
+    },
+    "siconfi/indicators/dcl_rreo_latest.json": {
+      "sha256": "98a67431060c6133b8b997fcf72affb37eff66f36d47588054dd36aba8b717bc"
+    },
+    "siconfi/indicators/despesa_empenhada_rreo_latest.json": {
+      "sha256": "e01becb69e44f42d1fc28a6252bf474681321a7d8529d0c58d361a0b32be5d19"
+    },
+    "siconfi/indicators/rcl_pc_latest.json": {
+      "sha256": "4e3dea1f45bebeb989746a87558fa5fd8dcc62e5658400c2cc91b5082d7cc9e9"
+    },
+    "siconfi/indicators/rcl_rreo_latest.json": {
+      "sha256": "7a5f2f525765d41e30a9b3c2f2fccdcd8b7d6d15ea107145f43e7eaa96a83323"
+    },
+    "siconfi/indicators/receita_tributaria_rreo_latest.json": {
+      "sha256": "e9b53324f17cbc2eb3353aebe8a9427cb932002ee8182d273c7a2f01733b009d"
+    },
+    "siconfi/indicators/transf_uniao_rreo_latest.json": {
+      "sha256": "abd876fb0949894aff5ecc5ebfcf8f714c323f7e6954dfd52158413ac418dc8a"
+    },
+    "siconfi/indicators/trib_share_rcl_latest.json": {
+      "sha256": "a5b1c72da1d4a73516490372775c75e3c5351ece723b3c4a02de16220c392dc2"
+    },
+    "dieese/indicators/basket_capital_latest.json": {
+      "sha256": "427cc02006b27153804c47a2fadfbcce08f1dd90f8b1e975894944b38290d242"
+    },
+    "dieese/indicators/basket_share_sm_latest.json": {
+      "sha256": "fc667a56ff48a7a5f450e9eb9d4d69642fe8fd458df92e5dd0633463fcc5c4fd"
+    },
+    "lentes/indicators/lens_aging_latest.json": {
+      "sha256": "747ad3c41fa7322ed14a0d466a119d4448da44ce4b3d3d18fbb7036123ba9822"
+    },
+    "lentes/indicators/lens_family_latest.json": {
+      "sha256": "4be6f09703116220153a01a9dc663f6384f43f984766ed230fce996aa8123c82"
+    },
+    "lentes/indicators/lens_live_latest.json": {
+      "sha256": "806490bea0c856d01e2edfa132ba73c4c08c0f1bed3bc1d01df6ab6d4b9579b3"
+    },
+    "lentes/indicators/lens_venture_latest.json": {
+      "sha256": "f42204775fcdd8d80fe26152d73f745872849a9cbe5481432f6e065d5aff466d"
+    }
+  },
+  "layers": {
+    "population": {
+      "indicator": "population",
+      "periods": {
+        "2025-07-01": {
+          "n": 27,
+          "values_sha256": "613a28d4cb0c5a4eb49c9eef4370e1ace3b65ecd0bc71bc5f22bc56331a25a59"
+        }
+      },
+      "brazil_total": 213421037
+    },
+    "pib": {
+      "indicator": "pib",
+      "periods": {
+        "2023": {
+          "n": 27,
+          "values_sha256": "02ba7d8c0f4b9bc90cb921f2d1e1f5d58c7c0fc8ba01ede3396d5a9b697c9471"
+        }
+      },
+      "brazil_total_brl": 10943345437000
+    },
+    "aging_index": {
+      "indicator": "aging_index",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "06bc2afa078929ef8f269262fbeb5bf18bae0ccd9bb7525abeb21b6160b69570"
+        }
+      }
+    },
+    "area_km2": {
+      "indicator": "area_km2",
+      "periods": {
+        "2010": {
+          "n": 27,
+          "values_sha256": "67e6235e931be88641d80c41d0065207c622f1dce5a9c33d5b4d5691f5582681"
+        }
+      }
+    },
+    "cempre_avg_wage": {
+      "indicator": "cempre_avg_wage",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "3b9cb9df3f5ccbf76e672496b9aec446b15b97b9399e02a7dfa4f6f2e0ace275"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "110127c30b9c44fb440d47a63a2a7c620002a2e55ad9fcbf97bdb3f2b6901c44"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "3b81b921b942f088dafc4eeafd501fea8c95f251fa27fce4cfd39e7bfed341bc"
+        }
+      }
+    },
+    "cempre_firms": {
+      "indicator": "cempre_firms",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "656e7209674f55e331af1b7c0efa3c62f4d0473ee9e89cc997264c68072973ee"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "b8fef0d6eac84d01b94fa0fa25895d54391da6d18ac279a2b562ba26162536bf"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "0917ef6f54104800ed9ffa62604b079dd6432a213321248838f3f36401cb735f"
+        }
+      }
+    },
+    "cempre_wage_in_sm": {
+      "indicator": "cempre_wage_in_sm",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "956d9f68c57810d37fd6c96ce4340c095cf9ea7e9ee4612c8134ccc091f8510a"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "815c52631392c2e182772aeac0d6b3f5b2fb252377c3c45089923c11f9733d42"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "e4ed1426723cf4f2667bf99aea955126d1ff5e4167afaff5034ee4f38f4ab047"
+        }
+      }
+    },
+    "crude_birth_rate": {
+      "indicator": "crude_birth_rate",
+      "periods": {
+        "2003": {
+          "n": 27,
+          "values_sha256": "d952b4cd60a72840c442ed07a419df52077749bd2b0024ecbc362b0adf45f7c3"
+        },
+        "2004": {
+          "n": 27,
+          "values_sha256": "ed3c85fb4ab8add78fdc2b9ecd9e1fe8228db2ba3ad60eb7ef799e0e429cd69a"
+        },
+        "2005": {
+          "n": 27,
+          "values_sha256": "64cf81438e0c7efd90084af56a86344d0f4f1ec48bdef5a6f8cb7cb0198e87c7"
+        },
+        "2006": {
+          "n": 27,
+          "values_sha256": "03b89b1822c3e0a9da03afee46ba4cf4607dedce512d3d6445ed49f95848b7de"
+        },
+        "2008": {
+          "n": 27,
+          "values_sha256": "cf9462ce146b097cd616a5eff9d256b62cfea797c85a8bbe8025abbea6731e56"
+        },
+        "2009": {
+          "n": 27,
+          "values_sha256": "a5c9ccde148621c7ebcfea7dbf42922335f9eb7db66ee7b2281c85aed9852e71"
+        },
+        "2011": {
+          "n": 27,
+          "values_sha256": "c6ef82e608bfbe20c73921f313a502596b24889d970fe6508b283996bea38da5"
+        },
+        "2012": {
+          "n": 27,
+          "values_sha256": "0d0d1eca6dfd8b1c019bff07264cacf3d1cc3cd3c23c70028d4c035f465ac4e8"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "86b29b847b2e7b8a2a53a87f2ba57c64c19cfc071edca87ab830bd07280af879"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "af02e2c637bd254348945cbd06f1d760e37050f6c55298a6403248ade23f77b4"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "1d4254b90faecf2bec718c0df7d83c8d4a8d1619442cb07c2d2579e6b96e117b"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "6066e9b068235286eee0013e3d374f749b99cb7c627786cb186d286a242b79d1"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "821214bed7bf4d81abb953060086ab05dda45022638cce95e6ae46ad92446286"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "9300c8663360078da5734b97518d8cb58a02d1aea3c41c3555785975a9be6f01"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "0d84df94569fe4a859cade033127b6c52001988de391554ddf34113bbab1932e"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "429249a6e7541d19bebaf55ac25df0173c194ef7b4f1a8f13e3d95d8cbddd8f9"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "63bf2195a0770fd500b7cf6af15bf12250e5d16a026523b06dbd940b4db8076d"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "a7c5834991aa0dcb70a510ce38fc4af70bf9a020a0696c5b7f95d76eec7f7bfb"
+        }
+      }
+    },
+    "crude_death_rate": {
+      "indicator": "crude_death_rate",
+      "periods": {
+        "2003": {
+          "n": 27,
+          "values_sha256": "3eff54a46c6d3719fa9583b26a7d386eb65ece3c99b7ccacabca8760ffba55d9"
+        },
+        "2004": {
+          "n": 27,
+          "values_sha256": "6fbf92fcdeca008ce03b6eb500ca69e2681a05bf275a2122f6d924b77de332fc"
+        },
+        "2005": {
+          "n": 27,
+          "values_sha256": "a114ba6fef54f45246969534e96978786690a0f15569d343755f4862d9754726"
+        },
+        "2006": {
+          "n": 27,
+          "values_sha256": "9629418553630ba5d7afb764ea64989820c2badc97864b35626a3643310950ac"
+        },
+        "2008": {
+          "n": 27,
+          "values_sha256": "688ae952898e9f98ad009e14aedbba6fa0a0da4733eb881c46186a814fb9ce7a"
+        },
+        "2009": {
+          "n": 27,
+          "values_sha256": "7b58f45c012e1f20b5987f73a7352dba66643ccd6aa6be07ded77ceb4fd2bda0"
+        },
+        "2011": {
+          "n": 27,
+          "values_sha256": "ee946df3e22e74f5abda8ca3cf74fc734eb2845599442bd98205ce9611933788"
+        },
+        "2012": {
+          "n": 27,
+          "values_sha256": "0cfd613143737583a4f8e1016d74cb12fa0ce6b4eaae36b8c5e03025477f881a"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "f2610f405d61e02288f3e2dfc616ebbb18ee2a619245936710577ecbfb0a5ab1"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "e2356379a9b2f7da0cbf4c7d1524c1fab3683cc33270d86fdb61f379acffad68"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "8b217d8b27a216aa830086505fbb836944c093ce08ecfacd35205331cad99368"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "b04a95b7784bfb530281bd7d5344302a3357a5df85e2521b6d99c076f8f960e5"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "ffd5c7159e2699eb891924fe7105f7d63503860eae6dc077f1f457f9a9dceb19"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "4702acd0ab5f699f9025fc6fb5770d5f923165570810d54e23a7ccc39a0ae340"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "5f2389d554519071384a3fcbfedcfd8027cc580bbee6df4d03936701a10c46c7"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "1f0eb204171a43a02110a2242f25015a8e5467999f8279ea358bca68cef2ad57"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "ad423fd402d3493b9d67048555a6444f2bfdc8bc89d397a9fed4a55f6c9d634a"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "6613873a6fa56240734ffb94617a13945637eacff8e38d7987c2d056b8a1eed1"
+        }
+      }
+    },
+    "dependency_ratio": {
+      "indicator": "dependency_ratio",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "6e3677d16db6ce66a3e8614faefcac4497084e121a1c51d47e86d5b95ebbc7b1"
+        }
+      }
+    },
+    "employer_survival_1y": {
+      "indicator": "employer_survival_1y",
+      "periods": {
+        "2017": {
+          "n": 27,
+          "values_sha256": "7a6ffa02925237db9352cdefceb58e892fbb7587fb11404ceefb163803213517"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "5d393a7f5fb40dafdc5c4007172ac8ccddc57cfe638d8759e90ab164ae0d2a94"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "cc1804c069636310381417152cd323371e2d73349c8a840fe44349cb605170c9"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "2a3925dc4889e7d400c41b2341a8a7610c74d317d69efe5ab28e82d1ae4c2fc6"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "9d4d292125f931eda1f78557bc66edf0bdb9be6e812ca83729694e595bdaceb2"
+        }
+      }
+    },
+    "employer_unit_birth_rate": {
+      "indicator": "employer_unit_birth_rate",
+      "periods": {
+        "2015": {
+          "n": 27,
+          "values_sha256": "258df6e683ab5f86718ae8fd6782fc8893a7ec0596ed9feacaee22a443f2bc69"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "0cb0beacf9f2edc2038d0aa7635a72b4774dedfd0849c2a17ee0df655f0108d6"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "a5d1e63b8bb29fdbabc6bb5252a5a9d00289d3070674c100e2795fa88792270e"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "dd5d52bda89342ee6b61d17a428e4ebb98646118bac8d0431eeed5475cdb835a"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "18b85f69c0c6797c33d50c0afda9cff1c63fa5b9e2f3faf23cd16eb158ebc995"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "10f114043ac2b6f294d3680ddf96222d8a0d30d943549ae9093e9fbd13bd51ad"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "d497789ded48ca39fea60bed9415d0c97f8fa337ce56f9ddb166322eed6f1222"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "7906a959a74fdcdc7f7a569d87cb789d85f39eece14c560133f5e6a228f89475"
+        }
+      }
+    },
+    "employer_unit_births": {
+      "indicator": "employer_unit_births",
+      "periods": {
+        "2015": {
+          "n": 27,
+          "values_sha256": "746740c9bad5617e49b2c156caf25abecaac6f563d83c58193f156bb25adb798"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "55aca2923f10c6b83889368ef68d2fb675eecfa51eebbdbddb26bb1c2e69cb74"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "14da3b01021bb4235208f572953425ed3ea5fc72493cb57b09157f5c8df035b3"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "1fd72a8bfd895a383ee6b35c7397e20929f021ce8079d294d6b6160b7d8f3cb8"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "b9600ca6e2a022ee0e12b6f42f6fa753736a4798163aea87d7d260f4ce4d22ae"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "16fa47d22e83011d0814c993b9f65de134d4cf9f86bcc631307f0f77b5466492"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "20f57b8e30956cfdbf14eea1a71d237c6d5251e6a788c10d1488c039969f673e"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "30870e586eb58666d0a68c8b5b295afc52fd795e855170d529d8ef328d1ca742"
+        }
+      }
+    },
+    "gini_household": {
+      "indicator": "gini_household",
+      "periods": {
+        "2012": {
+          "n": 27,
+          "values_sha256": "825a8fe3f37263bdc319a305865efcaa03f62ed0a0f9b8ff170ff86397e0c274"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "5d506296b1dcedec3a3ac3ff8ef0c0b58424c2159a9ca23658fc0bb88380a730"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "38bbdf0ce08e5d53e47a05051423cd50f1ed49234b4370b1d7c22256b6b4a8c2"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "48e93f0e8473ee7479f4a7ac4cf6976e7b8ac5db8836cc3ef121fe6fe4576f46"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "3954a0d7c84c7e002006cc8880360fca1724a0a40762025c8d680e1ea37f8f78"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "95cca520ac4fe7adccd0b5cc8384a5e2c8dd132806aa25bd643bd2887d07296a"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "be144f20633d8c158f2c28acc0daf430353d8361486ef153e20ec9eb0ba88e19"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "085fb9ba04dc099805125a4fafe1e3a947e905795cbed2829ba7065fc3c68c7a"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "260eb3285b196c4014d1b3febea83cc6137677854902a39ab266975a45e0cf6a"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "6485f8e0cf71096dca18ac503e970cc0c3ef9ab7a479d5491bb4d4074babca9d"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "37f521fb1d7735c8c50f483206344e0617587708a49a2a940744712d98adda39"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "20eb6ed0224b399006820b38351c420dc70dda1f0060cc9922812bc11f4076b9"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "c12f3594b3f0ccbe3407e60a64976e642cc42a7366bed0be823778de0dc8dbb6"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "e4d26506d534047b835dbeac84f1b08352382e93f50f9628cde0e5dca0074977"
+        }
+      }
+    },
+    "higher_education_share": {
+      "indicator": "higher_education_share",
+      "periods": {
+        "2016": {
+          "n": 27,
+          "values_sha256": "ba0e5821fc69aa0d90153401711bfe3e5bbe3f20da54edf7d3a87f0772ef1c25"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "c0139251e23bb7178f841b3a936eb88d6178b6f190d2241639f00bed0586c478"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "1933ce16d3f2fede2d1c0df5507543738a2c76d7365ecb0f7381e7327e265c0b"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "53aec1015e378f81f88294efcc5d4020dc76a648a039f62ca9c3a4f12b69ea5d"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "cd53596facd4527a2c7f276f4a8fcfb3b13e1ec04d38ce6ada387c1372ac39c1"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "9455209146509c67c0f0168f74e651097b00ac0b4383819d9a018d8d8ce8588a"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "7d786740dc11abcf8ec28850029a4d648b432a8ebafcabeacf1d75d797aa0ef9"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "31166ab84b9eccf25d55e016e0fef88e0dca548ca396103be2de6d9b0c0daf0d"
+        }
+      }
+    },
+    "household_income_pc": {
+      "indicator": "household_income_pc",
+      "periods": {
+        "2012": {
+          "n": 27,
+          "values_sha256": "528a2d6821f74410a2b724a622730259aef7a964b23a9bb80f6399ea9b75614f"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "122f3f087001b018a5844872f2f7803db25aeea4fedbc3a7bb3e71d33213306f"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "e104fbc5a24c83e88126364510bd6186d549c731d636b00834f68f9eae9b8b85"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "8ad36e09acba02fa4ea7c9e81750ef7c88f0a6fe0e13c644eab6483574110af0"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "9549016b9abc6870127fab8a07edf4b560ad45ad23a817fdd89837fbc161f017"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "eafb945d918ba418e015606b806769e32d7bad3d42431e71ce94af565eb15a3d"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "db9668362932dad82fc95996a63f0fd6fa3853252c6ed61c96524cc26b5b6a84"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "36d9201b52c458bd4ee6c15cf2f6f3c30f1b192005fb2738b0cad79a1e4ac229"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "fc29952c89aa15ed265303f3dcbf19f40ac70b75dc38ac469c5eb0f37edfc663"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "266401a923079965daefbd6471b432aaf355c4c2d5eb821c0475d24771472c59"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "681c7c053ce26744f3bd3b0ebd4cfbbae11dae5d4cbf5a4f73dd454c67aee402"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "3b485084293783aec7cec7caf25ac2fdde0ab4d6dc9b7d9f6bdb36ce0b1c1699"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "d91ad988dbe55eeec2352553fd7fa7490b96439226c7dff0595e5e0378fc2c9f"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "c854d3f875d1b29ae82453bf33692e75ff442fdddbcfff0a361e2aa1836415e0"
+        }
+      }
+    },
+    "indigenous_population": {
+      "indicator": "indigenous_population",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "a3589c2eb721ef56b85146e736ef53bc1b73100b64b240371ef6549d1a82d82f"
+        }
+      }
+    },
+    "indigenous_share": {
+      "indicator": "indigenous_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "f91cac26f71437f8290f73edf921a51816621711dbc97eace11563d763bb10ab"
+        }
+      }
+    },
+    "informality_rate": {
+      "indicator": "informality_rate",
+      "periods": {
+        "2016": {
+          "n": 27,
+          "values_sha256": "d62a06e0af94c900270c35b05c4424befe29a25561fea82006f2de78d82440e7"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "c7dc46ee29666d901d8adc60e675ff52f8e438d7604ef287717ec868a99bf6da"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "e59f5d91f1059fa8b17613367462554e15568123ca6a4030b952c49eb55bee78"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "575ca16eafa80e373eadcdb39e7e9ecaa57625c672a4f01934e2d5a032362f6b"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "7c8eaca0d1a3b1253bc592093d62e33f5c8d4ca1c0aeedbfc672f4fb2e81e113"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "a7d40fa0a297a21a19fdc3962d497c5735a3a869fc23d3d363209b63c4ed4a57"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "a9af69c68c3811cb6667d12b9dcf27ebb1bb644fc689856c45c4384b1df9558a"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "6f79b911463e75f5e355e9eae01feec75333567dd7a83aac044e404ff258153a"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "82f0a70c20f73cb824dd2c4b611873c31b30dd94ef6f3c88afdfc912580a9114"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "7d3d42ce8d23f43099c4595ceeb1f234c1abb490c649116db760de561559db55"
+        }
+      }
+    },
+    "internet_home_share": {
+      "indicator": "internet_home_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "a0c5f7cd3a90b5df2e8f19a5448bfe034a2ccb3335e377267b87d04824ee0a86"
+        }
+      }
+    },
+    "labor_income": {
+      "indicator": "labor_income",
+      "periods": {
+        "201201": {
+          "n": 27,
+          "values_sha256": "5aed9ea2f57d31a01e667ac7a5e7ecdf51c0d749db2214a2681517e767279e90"
+        },
+        "201202": {
+          "n": 27,
+          "values_sha256": "f1c68361ac2906c680367887beabd49d7f3ec5ba0afe67795c5f155aec6e5a6b"
+        },
+        "201203": {
+          "n": 27,
+          "values_sha256": "707437ca959af9129762f8813171da7f6cf65a175ebe9ec515da9960ec11fc65"
+        },
+        "201204": {
+          "n": 27,
+          "values_sha256": "c722b050b91ea2bf9b924c244468a7459e72452e8cd3c743a151e75778f9a788"
+        },
+        "201301": {
+          "n": 27,
+          "values_sha256": "5f476e61fd202674c935722ff6ae3e5cf9b4c947fca1c3544be9ed8ee94bcb5f"
+        },
+        "201302": {
+          "n": 27,
+          "values_sha256": "cd6648ba6d1b6d92e1a8fea4bd70b8b99aca4af1fe78e9898747b9c210bfd7bd"
+        },
+        "201303": {
+          "n": 27,
+          "values_sha256": "bf2c676175be0204b6b2d38e6358bdc8dd04737b888e61affe4aef9b1f824a66"
+        },
+        "201304": {
+          "n": 27,
+          "values_sha256": "1b66048c039ca52ceb6d7bf581df2fc0beb74ab44e19e7f4a1e7a525d808b9d5"
+        },
+        "201401": {
+          "n": 27,
+          "values_sha256": "4357624023b7ce11d3e5f44546c37374357e3199b534ad97865d7fb5bf4f62c2"
+        },
+        "201402": {
+          "n": 27,
+          "values_sha256": "cd2a953989d0fcee6909b01ed11840423fa42f5d22bf21b72a17ac4b3c2c0e52"
+        },
+        "201403": {
+          "n": 27,
+          "values_sha256": "0aa848ea0cc158c290126a49a022775e566e5e09ff77212755d35cc68627829a"
+        },
+        "201404": {
+          "n": 27,
+          "values_sha256": "4877e64228aaf131ceac3244ac2d0978a4c5ccb004a008abd5020c8ebc130adb"
+        },
+        "201501": {
+          "n": 27,
+          "values_sha256": "09300cb93145cc1d2fec6b384059cfee512fd908b8ed8ee78907deff98e722d9"
+        },
+        "201502": {
+          "n": 27,
+          "values_sha256": "02b3557430d7b32ae09759e7764a12b0a28ef3a416538eb69beb1ec588c55389"
+        },
+        "201503": {
+          "n": 27,
+          "values_sha256": "643a3ecf5a20caf89087fbbe8434c7b6ed1ab0343bd14040f8ac1330ba0fc580"
+        },
+        "201504": {
+          "n": 27,
+          "values_sha256": "d39749ca1b6a5c95814f45bfd20092cb998ef8294c8e5102a60a9fc881be6205"
+        },
+        "201601": {
+          "n": 27,
+          "values_sha256": "463b87f9e7146fcba7f0e57b643fbb4a928bcfb772ecf070d262eb4b2d889b5a"
+        },
+        "201602": {
+          "n": 27,
+          "values_sha256": "a9b94c57a9e80e19f6ef1504c57a16f29ba295c3bb5843e70b54b6d5492deb2c"
+        },
+        "201603": {
+          "n": 27,
+          "values_sha256": "2b0cf419bcd82822311f2392cc653a27dd1f28afc00185f81b4debf76c05d0a4"
+        },
+        "201604": {
+          "n": 27,
+          "values_sha256": "4e0af5debfdd88c373636780d2724a06e1794dcb7b4ad6980c07f3d3dd4fdd40"
+        },
+        "201701": {
+          "n": 27,
+          "values_sha256": "ad54dd9d78db5dec66e5043406d1cba90f61c9fa780d8068a45cd5b85cc46419"
+        },
+        "201702": {
+          "n": 27,
+          "values_sha256": "9d282fab527b30aa8bb7738af333bd8e7c5d200903e2be6614a4ae3038a2bdda"
+        },
+        "201703": {
+          "n": 27,
+          "values_sha256": "4a6208cd7c4baaca90e73f3dd49ab4353e95366e38d173cdf54ac813540e0794"
+        },
+        "201704": {
+          "n": 27,
+          "values_sha256": "918d0a81cdd439d1327bc609ae7584fc60f8d72f9e29fb759add476c05163f99"
+        },
+        "201801": {
+          "n": 27,
+          "values_sha256": "d3bbf6564060cbbc746187bdad946c9f18fdaacc3cde9bbf6251601745c560d3"
+        },
+        "201802": {
+          "n": 27,
+          "values_sha256": "024aa2ed5d40c67f16f41574f755fe7aff65ff366a5bcab6175d5efdee3b20ea"
+        },
+        "201803": {
+          "n": 27,
+          "values_sha256": "62f7f3f4e7378e84a3ca20ca464727c4605ccb04469cbea4199821d08236cdd8"
+        },
+        "201804": {
+          "n": 27,
+          "values_sha256": "2dd62ba8b770c9f22c9ba1a8f053f6088c28cf6c5b23e3bc0d3a1da2f62c111e"
+        },
+        "201901": {
+          "n": 27,
+          "values_sha256": "cb674c6053f7ce848fc75870c5650c8faa4af09e35eccbaa691951568946cb50"
+        },
+        "201902": {
+          "n": 27,
+          "values_sha256": "5a8dbb01ce8b3dd9beed376858fc4563608503c47e00b655866d5a372c517099"
+        },
+        "201903": {
+          "n": 27,
+          "values_sha256": "255ff7fa66dbf50f5b6f42847777cf0555a745bd0256724eb28ab4cf35ab7b85"
+        },
+        "201904": {
+          "n": 27,
+          "values_sha256": "9ba05c62823e44ce21e1d51a2bfbe3af1dcd1946af3e8d6c9c38a0da563ea66d"
+        },
+        "202001": {
+          "n": 27,
+          "values_sha256": "5ccd641029f22c709ff7ce2cf38b74c495fafc7d95eb35ca08ebc00e86294afd"
+        },
+        "202002": {
+          "n": 27,
+          "values_sha256": "ce82ea5168f9483c0d8add917df09da9321fac980863718ce1239c656fb6e702"
+        },
+        "202003": {
+          "n": 27,
+          "values_sha256": "8b525659ed6f00060a7e38406ea188aa8f0e0c7a60f6c734d011ea36d9e2fa8b"
+        },
+        "202004": {
+          "n": 27,
+          "values_sha256": "d7134a66c9c4717922ebd1486d168c14d04845ced69d64222ff3853b3dc4b02f"
+        },
+        "202101": {
+          "n": 27,
+          "values_sha256": "201e4703119b787c9f5a44e655b16bb572d657a018f0f0e0a2c99ca8b7811444"
+        },
+        "202102": {
+          "n": 27,
+          "values_sha256": "a11fb4349cc0cb2e597cfc6164ffbbf8136482f9ba39acbce373cecdbb0bf8fa"
+        },
+        "202103": {
+          "n": 27,
+          "values_sha256": "235873be22c3d591bde5bd247f6835d5290f5cf504608ce7d8a9f30d4d11148b"
+        },
+        "202104": {
+          "n": 27,
+          "values_sha256": "55ee19d1a96cc5533f94c2da02b0b741bfdcdb51880ad2f1c4dead44d4270dab"
+        },
+        "202201": {
+          "n": 27,
+          "values_sha256": "186f832ca3aaf741ce56f509aab22b77dbca91f49c2a1f5d8fbb6dfdd12138ba"
+        },
+        "202202": {
+          "n": 27,
+          "values_sha256": "da9ac96bf0927fc79f8f399dc18514a22b4db1bd562625628d3b96360bf858f2"
+        },
+        "202203": {
+          "n": 27,
+          "values_sha256": "7dd24a35960e23ad12ad6a24f8265e3c2857bba33e7d4ac236bef9a251ff3659"
+        },
+        "202204": {
+          "n": 27,
+          "values_sha256": "00669145a6c092107eac274544b802b77d666855e6d23213c3b0f6bfe19d0345"
+        },
+        "202301": {
+          "n": 27,
+          "values_sha256": "e13953a6134e254c1a82e836bfc6dc02189ba3ca8537a9fed432bbf3de76f242"
+        },
+        "202302": {
+          "n": 27,
+          "values_sha256": "86b28b7df30711259ba4a30373586e71d650e1640972fccec64a23a01938a32a"
+        },
+        "202303": {
+          "n": 27,
+          "values_sha256": "996b89b71a0c8f466fedb300db836dcbd90e050ece9c6c33e73679afcbd71323"
+        },
+        "202304": {
+          "n": 27,
+          "values_sha256": "590896364fcbdf3970d216e8615c55ebb24507c909caa28f8043453a7d89889c"
+        },
+        "202401": {
+          "n": 27,
+          "values_sha256": "e4fded793902e97f38961606fd64b7640dc3ed36916b112e116de9ef33994a7f"
+        },
+        "202402": {
+          "n": 27,
+          "values_sha256": "9af262160fce7af422926b0335882b1c870149e81e6df4f579a517deb2e2b7a9"
+        },
+        "202403": {
+          "n": 27,
+          "values_sha256": "6c50a3ab99615668d1bf44dd0eff983d6b63f5c57244ff3d4396a772cf9e6040"
+        },
+        "202404": {
+          "n": 27,
+          "values_sha256": "0f681e3c49fe74abcfaa8f2c88b9f3b53d84e3808d92984900bdbc53f57db5f1"
+        },
+        "202501": {
+          "n": 27,
+          "values_sha256": "e0ca7fe1960d687a3c1a0e9edd47f87fb84104b4374398e14b325bed961bedd7"
+        },
+        "202502": {
+          "n": 27,
+          "values_sha256": "31a2851bd9e6c134b21c968a0b54f25fe0409852ebed7f1bbde95373bd9cade8"
+        },
+        "202503": {
+          "n": 27,
+          "values_sha256": "0972a28668e14cdb2b4643d2a5261e97ac58ddd7032bb4720ce2c590a0609312"
+        },
+        "202504": {
+          "n": 27,
+          "values_sha256": "e40926bd3ceee0147bc14d9aeafbb1b2b028682ac69baf4c9bfb2d954fb82611"
+        },
+        "202601": {
+          "n": 27,
+          "values_sha256": "4208115c40f652a72828a44b84ed01d80a6583688a183a81392f75599e9c7afe"
+        },
+        "202602": {
+          "n": 27,
+          "values_sha256": "2ef5587eb8fc8dfdc4727dc4a2956c8cd53953391283efdd66ca298380ef9851"
+        }
+      }
+    },
+    "literacy_rate": {
+      "indicator": "literacy_rate",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "ef83739ed83483d9f25b112aa0d25ebf873acce861a9689a103d889ca6d11995"
+        }
+      }
+    },
+    "median_age": {
+      "indicator": "median_age",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "c7f9f64f3e7096b657d98309640381a2c5bc43a7216e6827d1f918525b150a51"
+        }
+      }
+    },
+    "owned_paid_share": {
+      "indicator": "owned_paid_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "347d2444590adcb338a4f7859922a62d428018e5c7baf64fde33d73970251054"
+        }
+      }
+    },
+    "owned_paying_share": {
+      "indicator": "owned_paying_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "cd54cd82ed12bf1fe936ac27526356a123f93dc615908ca4b7b0ae2a745366f7"
+        }
+      }
+    },
+    "pib_per_capita": {
+      "indicator": "pib_per_capita",
+      "periods": {
+        "2023": {
+          "n": 27,
+          "values_sha256": "11e9ed49b1c8315926946953a4df6b4d483fb7e30bb98d6f65136edae843bb80"
+        }
+      }
+    },
+    "pns_alcohol": {
+      "indicator": "pns_alcohol",
+      "periods": {
+        "2019": {
+          "n": 27,
+          "values_sha256": "3429f11261963fe5a4a3ffc2b9ca9faf05de6defe741a68a3e3f6c73cd1e846c"
+        }
+      }
+    },
+    "pns_diabetes": {
+      "indicator": "pns_diabetes",
+      "periods": {
+        "2019": {
+          "n": 27,
+          "values_sha256": "5d08bfc457eb0fbc7718867d2a249056a6612246e7dd7ffd5af92cec0af4f72d"
+        }
+      }
+    },
+    "pns_health_plan": {
+      "indicator": "pns_health_plan",
+      "periods": {
+        "2019": {
+          "n": 27,
+          "values_sha256": "928ca00850578d578b4119168b27147d3e1adfd90eab01009f2b6f1988b228cf"
+        }
+      }
+    },
+    "pns_hypertension": {
+      "indicator": "pns_hypertension",
+      "periods": {
+        "2019": {
+          "n": 27,
+          "values_sha256": "ea6ee294c830412297880b6c1c2c8429747ecdbb249e65ab477a2a3bfabe80cc"
+        }
+      }
+    },
+    "pns_tobacco_smokers": {
+      "indicator": "pns_tobacco_smokers",
+      "periods": {
+        "2019": {
+          "n": 27,
+          "values_sha256": "83f6677e2d65605c2790be1187a563ec1393e522adc0ed588a79524413329436"
+        }
+      }
+    },
+    "pns_violence": {
+      "indicator": "pns_violence",
+      "periods": {
+        "2019": {
+          "n": 27,
+          "values_sha256": "53202b4c1f95f417b8bc1ef4098b6086a24f7cf1a892772a8153de97e213552a"
+        }
+      }
+    },
+    "population_density": {
+      "indicator": "population_density",
+      "periods": {
+        "2025": {
+          "n": 27,
+          "values_sha256": "13ada19fc7de2b6cf30cb274bed446ee2a852fbae3e265cdcced41de37ef8939"
+        }
+      }
+    },
+    "poverty_rate": {
+      "indicator": "poverty_rate",
+      "periods": {
+        "2024": {
+          "n": 27,
+          "values_sha256": "9edee209013c3fb074db2c26f99ba1f4f819c0c68d01b016909b63dee02d6897"
+        }
+      }
+    },
+    "quilombola_residents": {
+      "indicator": "quilombola_residents",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "4d8c9eca6eaf23ba713e9e99788f7219b211d1ec36f8935eb07f4f948067c387"
+        }
+      }
+    },
+    "race_branca_share": {
+      "indicator": "race_branca_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "38ada9e845ffd362b372f117ac35dda0a6776720e1095e34577df2499091ca3b"
+        }
+      }
+    },
+    "race_parda_share": {
+      "indicator": "race_parda_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "bf228ebca46ca89c8e5e96ca61fb0fa7ed9a9ae0ef08331b00b52b73ecbbda2c"
+        }
+      }
+    },
+    "race_preta_share": {
+      "indicator": "race_preta_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "60bd6ffb94811634191b36005ae571daa6a818ad1d1e3d7f98ca260488d161fe"
+        }
+      }
+    },
+    "rented_share": {
+      "indicator": "rented_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "5b93e53f34a0d1206324614dd7b019b45d3d81e0087b56b6d962edce3f463f6d"
+        }
+      }
+    },
+    "sanitation_adequate": {
+      "indicator": "sanitation_adequate",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "6760dc4229d8fe48f91a773056d024101ad9d2d03ff4318725af25ef8c677f3b"
+        }
+      }
+    },
+    "sex_ratio": {
+      "indicator": "sex_ratio",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "f4acd794b61c218398cca22b94d35bf298c9e7e9de8c14b2c2c97055dc1359b2"
+        }
+      }
+    },
+    "share_0_14": {
+      "indicator": "share_0_14",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "6c471a738c6ca4763ce89bc4663d0116a63ce823590ec56c153bd4ce274fa5a9"
+        }
+      }
+    },
+    "share_60_plus": {
+      "indicator": "share_60_plus",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "eb40f8a574716c84153b0a0f231eb226bb61fec4b9e1e4f999eb79ecb4cb96fc"
+        }
+      }
+    },
+    "share_gen_alpha": {
+      "indicator": "share_gen_alpha",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "af605b78452f8eaf67c14e1beebfd0d431778809842a8cc88e8aa319c9bda3d2"
+        }
+      }
+    },
+    "share_gen_boomer": {
+      "indicator": "share_gen_boomer",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "5cdde8b8469edf152588d93b30f1cdbaecdcda138125cc53b6c78214262d842e"
+        }
+      }
+    },
+    "share_gen_silent": {
+      "indicator": "share_gen_silent",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "3924699647ae52060ed239f2ec4e2aacdd218a40f60a6cdf21caae984e05e3dd"
+        }
+      }
+    },
+    "share_gen_x": {
+      "indicator": "share_gen_x",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "32b138f2c544ad24ff460ab3265bbb10cb41a0e5b5a12e001792a2b76ba19962"
+        }
+      }
+    },
+    "share_gen_y": {
+      "indicator": "share_gen_y",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "f4cc52e5f4977c244342c5826858d7d42ca9cdb953a5af0aaa12e676d4dc1b1a"
+        }
+      }
+    },
+    "share_gen_z": {
+      "indicator": "share_gen_z",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "bfbb615d5cd4e6eccbc33e22118f863644e722c5c536f003f82602761cd367d1"
+        }
+      }
+    },
+    "unemployment_rate": {
+      "indicator": "unemployment_rate",
+      "periods": {
+        "202602": {
+          "n": 27,
+          "values_sha256": "dbf381cd35c20a3cdf9da7cc0d3afc6e92e3f1ce4d2480cb5cc3e022d790c748"
+        }
+      }
+    },
+    "urban_share": {
+      "indicator": "urban_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "fef039e4954e53db7edfc5b66b12d075e94eca8153490465e67e35fc5c6ee75c"
+        }
+      }
+    },
+    "waste_collected_share": {
+      "indicator": "waste_collected_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "6a13990d8296daec15d57638c40e4e6a2378b1a547b41a9f6d99988a0d2ba7b7"
+        }
+      }
+    },
+    "water_network_share": {
+      "indicator": "water_network_share",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "d57b5bd07b2cce707b707e9dc5ba206fbbd9e652cb4fce84ed8e17e02c2ed1b5"
+        }
+      }
+    },
+    "homicide_count": {
+      "indicator": "homicide_count",
+      "periods": {
+        "1979": {
+          "n": 27,
+          "values_sha256": "d63637ba125706b60b552f7856848fe638063b51b2c59f7f3bdc41f407ea6ae2"
+        },
+        "1980": {
+          "n": 27,
+          "values_sha256": "05c7b94d422c8ac599fc37643fa4fbec00d8ec0a6299d7bbe2a453d707c698fe"
+        },
+        "1981": {
+          "n": 27,
+          "values_sha256": "110fda62251cce4145102623fedaf20bf77fddcd788ed6eefa5ea76282fdf3d6"
+        },
+        "1982": {
+          "n": 27,
+          "values_sha256": "88d8afc503a498fb6725321041ce47023e3c719e2dcd04f1e745de0f6f123741"
+        },
+        "1983": {
+          "n": 27,
+          "values_sha256": "fe82e3882bf0bc1b1734e943bd7640101d700c7657299446c768bee738b6fd7f"
+        },
+        "1984": {
+          "n": 27,
+          "values_sha256": "04a1ad98deecfbebbbd643337ab00402a47dfec0dc5af38ac2146a3e1c602697"
+        },
+        "1985": {
+          "n": 27,
+          "values_sha256": "aa058f210e3b62292382a4cff6e2f1a37178e303f0de0e68288fc12d8742d58a"
+        },
+        "1986": {
+          "n": 27,
+          "values_sha256": "2de579e8324cb2540ceea6538f0e939380e0f40cf51aed72f64ce93b70be4aef"
+        },
+        "1987": {
+          "n": 27,
+          "values_sha256": "003e9e62b902bd2526ba7eee3c0053367d63bb6ab33bbf78ada2a75b6e549edc"
+        },
+        "1988": {
+          "n": 27,
+          "values_sha256": "3eadba6733482425391e82e330f25d7029c3dd5edadc0e3df1736d9fbc619077"
+        },
+        "1989": {
+          "n": 27,
+          "values_sha256": "d30a799cedfaf8048bb908ccd58ea0febbc59ccf0e451585fbae31190e7a0d8f"
+        },
+        "1990": {
+          "n": 27,
+          "values_sha256": "9b4fce99bdc7c5754f846ae71e1635e8ace47f24a6ef465026184acf5f3c430e"
+        },
+        "1991": {
+          "n": 27,
+          "values_sha256": "d3fd6036fef2266b7960faa47e84637545ca0f0d2784b38358e841eba027709c"
+        },
+        "1992": {
+          "n": 27,
+          "values_sha256": "b5d044b4ea984176b2fb72b8d68b47b5eb9c8511b9c484c11151182e265a5c94"
+        },
+        "1993": {
+          "n": 27,
+          "values_sha256": "dc889522bfca6564b7b320d24177479020d16b566701cc542273ee124d3955a4"
+        },
+        "1994": {
+          "n": 27,
+          "values_sha256": "46e593002455cb4daecfa5de05949124ae3ab2d0d5671f02d98440c5c984cc08"
+        },
+        "1995": {
+          "n": 27,
+          "values_sha256": "2a8fd6a856b9beacd1b0e29940437a31c9b9195d2fc61271666b31772fed0643"
+        },
+        "1996": {
+          "n": 27,
+          "values_sha256": "1f9f7356a6d6a2622b34c12eb6f952f12453a92671a8f807aadec76498dcaa3b"
+        },
+        "1997": {
+          "n": 27,
+          "values_sha256": "94f3ea625d17bed8bbbb3bd5ebdf550a41e162d42e5f31d6e2751bf8ff18995e"
+        },
+        "1998": {
+          "n": 27,
+          "values_sha256": "2887d7f10f4901791dc2bd7ee87c62f6451698e63710a2aa9b07dd0ee6ba5939"
+        },
+        "1999": {
+          "n": 27,
+          "values_sha256": "bc37241fd9418036f7d01a14ac002765b37680f4ae92664e08832da4933a3a70"
+        },
+        "2000": {
+          "n": 27,
+          "values_sha256": "f7a073d3e7ce73bcfa98cdd6d702437aa0b55a9d239264d9c4f31956893a64ec"
+        },
+        "2001": {
+          "n": 27,
+          "values_sha256": "ee4e807b29e99f7a5ca92aead04d859d33da1c75022b4c980c7120bf709fa2da"
+        },
+        "2002": {
+          "n": 27,
+          "values_sha256": "e49dcfa386e6413ebcbed03f9123bddefa8a52bd3cb98b89d4c6e5225112b3f0"
+        },
+        "2003": {
+          "n": 27,
+          "values_sha256": "fca4fc7b3ad716c0180e8d3b89144c30fb4b7facb2a54bdc302dcd2c05b79be9"
+        },
+        "2004": {
+          "n": 27,
+          "values_sha256": "b798fa06721d371086f05f75a1df764582d69e9a554991087949d35b5d295719"
+        },
+        "2005": {
+          "n": 27,
+          "values_sha256": "1e599c5af691470e24ce45f2dd37ab5265cff66f34a942b7904bd2a3549221b6"
+        },
+        "2006": {
+          "n": 27,
+          "values_sha256": "8e7a95271528b35e53a13343d5c69b2b01ce222d5aaadafcb4cfc5532f9b2c93"
+        },
+        "2007": {
+          "n": 27,
+          "values_sha256": "9d46c8a08568de28627a615b8d6d82c83aeb80666a54ed581bbf1abb0484be1f"
+        },
+        "2008": {
+          "n": 27,
+          "values_sha256": "cd5e4197118c770bc454df13b3d03a0ea7709e115d7fe903c6f952516b3c146b"
+        },
+        "2009": {
+          "n": 27,
+          "values_sha256": "07267538a53314cf88828eae818e5ee8ce400c21f0accf7c4a709e197279bb77"
+        },
+        "2010": {
+          "n": 27,
+          "values_sha256": "29462f8cf735143f8c52c93695cd65dca0c1f1df0b56acb6bd330c5c27532290"
+        },
+        "2011": {
+          "n": 27,
+          "values_sha256": "3e01f1f95fcdf2ae633c0658739d4a30d9d0dd948bb62038125437265c66e206"
+        },
+        "2012": {
+          "n": 27,
+          "values_sha256": "a0b35d545042fa1866359e777f2b21003ede63c448cf5450ab433f7452e5083b"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "7afc368f850111d3cd5260bbf677c81f42ee8eb1ecf6921728b28f809a72f719"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "9340581312c20289a1d0c0a0e664ffe9a7ff196201b4bd15e712ca90641402ff"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "1dacd8887c8caad05ec00227f398f52268074a1d7d6b3b6881e8e6d5aa2d59dd"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "091e3601565a3f21d8ea89486ecb35ceda002e6c40534af336ae93ac34b38e76"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "f9aadd149450d753a2c25b1877031d7867e36ceaae0ea8e0b0ba07edc92a87cf"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "c16a9ccaf360b85b8bbf79d00a1601e8e6947a9e061c8d20400a01348b875436"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "44e8e31ce4116dda15a43ca3c4b1860250d07627668fd4341f55a49a694bedbe"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "0c9b6bd5f400767e874a01cd00a8ae67eb9fd2c1726836cd89bd411ca74d18fc"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "f576340fafcfec09a7dca663c4117e7518221b3646a04f711bb45552ad7be91a"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "b37dce18a9ee230be8b0c701b952d9ed90adc4cca073040e58404ace2091b262"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "c02f95e88463367b29768f9be3665d1d54a47ef6c683a026efde9835a2f6a0bf"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "8f60477f5d190d5bfab696fd80558539c6f695416f279b8f041ac6b3afca22fc"
+        }
+      }
+    },
+    "homicide_rate": {
+      "indicator": "homicide_rate",
+      "periods": {
+        "1980": {
+          "n": 27,
+          "values_sha256": "461b51f2dad2325946bf26ad3894e63f428fe6b6f095d71db9b1fecef9bce6a5"
+        },
+        "1981": {
+          "n": 27,
+          "values_sha256": "650f8d96e5bee2a52497a5b25bd1cd8ee7e58e4b9c06e4753164a896969dae06"
+        },
+        "1982": {
+          "n": 27,
+          "values_sha256": "b0b954480da34a3bbb0666433ecb8515da9d79359a551ff23a417f293a5b1a43"
+        },
+        "1983": {
+          "n": 27,
+          "values_sha256": "c60e5889503bcd4ffe821c06a62f26d006867b07c7edc825a7ff686fd7b64520"
+        },
+        "1984": {
+          "n": 27,
+          "values_sha256": "84fa43d42e777e4dc2e216451965d51dcd1a4585de1c27e3231168108fcf1477"
+        },
+        "1985": {
+          "n": 27,
+          "values_sha256": "646aafad8973e31d2a7a0fcf640db06ef0a9207b5e0a32335dac812f0ca5c8c0"
+        },
+        "1986": {
+          "n": 27,
+          "values_sha256": "1191ac13f1b697f182920d71524c07e134bef655700bb30184100bfbf4660ab5"
+        },
+        "1987": {
+          "n": 27,
+          "values_sha256": "4d06b59b5258175ad488a3a2ff77810392d2e938d74862172378be04ae40125d"
+        },
+        "1988": {
+          "n": 27,
+          "values_sha256": "7ba4b2b6487fe2540bc1d60265463049e18aec859ab195f93e5e5dc1d51d0a7b"
+        },
+        "1989": {
+          "n": 27,
+          "values_sha256": "bd221ae9714d5813da902bda5429971475fd70368e72b817d23eedfa4d2c617e"
+        },
+        "1990": {
+          "n": 27,
+          "values_sha256": "5118a0b8b7fea45127d93ebd1e6c17a4390fc4b1605501710d2f91b0b0a982f5"
+        },
+        "1991": {
+          "n": 27,
+          "values_sha256": "0056487ca34b092db8a8f04b8bd31b842f79c262b369d6949ea94d0878f8a692"
+        },
+        "1992": {
+          "n": 27,
+          "values_sha256": "ea35281abdd217869585766bcb16118339915ce27c30693097ac9ffb190e58fd"
+        },
+        "1993": {
+          "n": 27,
+          "values_sha256": "e5c27b8f94f97a17e708492c5e71add1b4155b9b0e75f038ff86f943e525cbc5"
+        },
+        "1994": {
+          "n": 27,
+          "values_sha256": "4f955d52d1eeb5ff1105f2e613b274003170348f4d46f30a51b82e3488577623"
+        },
+        "1995": {
+          "n": 27,
+          "values_sha256": "25bc98bcdf631aeaaacd318de7e0f75fc8b03c8183c538639f88281b6ac279f9"
+        },
+        "1996": {
+          "n": 27,
+          "values_sha256": "3f468df615eb149ae977b77b5c540c476732c62ba27772e890ae0f801b6cf31b"
+        },
+        "1997": {
+          "n": 27,
+          "values_sha256": "8958280e5874dcc573278afd53486001783823b116eb9b5b1f854a5fd761e46a"
+        },
+        "1998": {
+          "n": 27,
+          "values_sha256": "a7efa9f5bf9c06f635113ecf200a05901570799920a9cc822fa3d5aec8163e2e"
+        },
+        "1999": {
+          "n": 27,
+          "values_sha256": "f300f70ce2c7d08696a98ff13d4faf5d5d7040f99ae7c1e33d7eee029d3a3bd7"
+        },
+        "2000": {
+          "n": 27,
+          "values_sha256": "c1a8175466e4074227b0bf7b087e81a688170eac0f42183e9a814b04d9e8b30d"
+        },
+        "2001": {
+          "n": 27,
+          "values_sha256": "d8f18bf305e2c69b67c31d18a126e92fd1f3e562ac8af5e04902e1eae2da655f"
+        },
+        "2002": {
+          "n": 27,
+          "values_sha256": "07281636d4e8f47e01a8346fc81ccc598f1a5ca1a29fd59d73c609629d88a8ba"
+        },
+        "2003": {
+          "n": 27,
+          "values_sha256": "7f38fda4856ed4563a2819a78278020ba3f4b68e0f8b9b70287e752439d35f1f"
+        },
+        "2004": {
+          "n": 27,
+          "values_sha256": "3c838d41da9dfc3d16d1a8b925d524d49adbff1bcee71be6231a2a4497598df1"
+        },
+        "2005": {
+          "n": 27,
+          "values_sha256": "0e81a0ca2808516638dbea27a9a743cbe261f88884bbab88672fcee2e8056e76"
+        },
+        "2006": {
+          "n": 27,
+          "values_sha256": "c840994e79d4846e3fc665eb4d62864444ca102d6b6230a23702d1884b6f6498"
+        },
+        "2007": {
+          "n": 27,
+          "values_sha256": "d6f64eb54d7bbcaf2e9addce429f426b9268270c391fad0c59f60a7f14af182c"
+        },
+        "2008": {
+          "n": 27,
+          "values_sha256": "01e55adf7b626e6a14db0d863a4dc5e74e52fd01c43713c7a876a5ce9a5cf4cb"
+        },
+        "2009": {
+          "n": 27,
+          "values_sha256": "22d1881074ab240fef4dd3256ad7bc4d5a7381c09f840569bdf8f60ff6b33f9f"
+        },
+        "2010": {
+          "n": 27,
+          "values_sha256": "91d94debfd506d2f34c900e39bbc34b084439a1941ed16c8420fdff06745e7f8"
+        },
+        "2011": {
+          "n": 27,
+          "values_sha256": "1eb1b8340c395f8f2817d9e3b2211586d5e063d70287df96cf8af0c79e20877d"
+        },
+        "2012": {
+          "n": 27,
+          "values_sha256": "2fc66fec75a6235d0bc96c60e979351231416e6f9daa2f8fabee70679c3de721"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "c785c33c93a0b2fef163678890312a41b5393f50199ecbf2ad2d7d787ee7331d"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "eeb21bb7fcff5e87f92605399830eae2cba327f2f750b226f67c9c5465beb044"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "dcd2e545be656ae75f23d53f40b2d2efac8e244781f27a1ed1c779f57ed84100"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "fff0be53751dabf7d945819dca4de412c02825248ec499377ca0d7102ee4de2a"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "7a5e68d64dc77272b627262f9081aa455107f7528cd4974b5fe0d75ace02c94f"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "bd60c29aae97138049e3567ee70363891342326db57842b2addbed5820395df9"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "8ae8063dfcfde3c77f7016516bb610b28f2e0ffc3b1659f557605ce66428b07f"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "9a629174fcb110d9145c4d90f2e54d40c4b34b50a002d5a46b93713737669bc6"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "d1c1c278f8edc432ea2cee8ef86d138127952c1a35092654ab8f23285a26636f"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "3dbb504f994b566b6f1bcaa9d9722266f025a67302850706624cbd244f172a2a"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "dc1354ce5e16b7156570408cbc3599a4b57020364ee76f14eddd9309754742f5"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "be6f0692439181fbc1f7280fd80ecb4a784f2acfe7b0c1fc41da29d86cf0b1f2"
+        }
+      }
+    },
+    "traffic_death_rate": {
+      "indicator": "traffic_death_rate",
+      "periods": {
+        "1989": {
+          "n": 27,
+          "values_sha256": "2df9cf9224ffd7a76a4c285bf6a23621acb80419cda4d1ae9b5dcf045d5c9cbc"
+        },
+        "1990": {
+          "n": 27,
+          "values_sha256": "681964cbcf2b38e75d1b74223b473469f29b9ae4dab7c0406f3f4934749d12d7"
+        },
+        "1991": {
+          "n": 27,
+          "values_sha256": "c6d1726439a489b525f5b3315e3e47e27c3896e7b5afe0dbf1685de84ec34908"
+        },
+        "1992": {
+          "n": 27,
+          "values_sha256": "6c3d4672c0b586c1af560a36f81b6dce7325dcd733e77685ff56773ddcd6bdc7"
+        },
+        "1993": {
+          "n": 27,
+          "values_sha256": "1d609aa79d08fec2b712d3ae045bc6fe379c2fb35cc6f489d9ca4079acb33993"
+        },
+        "1994": {
+          "n": 27,
+          "values_sha256": "3c4df4b22d1c4b73acc2c3264f2498f2d6d4ed8968a666bb627ae8b10df648ef"
+        },
+        "1995": {
+          "n": 27,
+          "values_sha256": "6728e82d016bd8aab295791ab629c13704148bb2315f80e53cf0574f7c697cb6"
+        },
+        "1996": {
+          "n": 27,
+          "values_sha256": "abc1fe9d8baa775d3c1b03005b8d17ec3a9ba4f2d1918399b81193cd37a11ae4"
+        },
+        "1997": {
+          "n": 27,
+          "values_sha256": "e7a2ffffe14d3b0b8d76ecb1691ce93dc7792028fcf699629176a7e8e824d202"
+        },
+        "1998": {
+          "n": 27,
+          "values_sha256": "a872ed0fb4eaba6b19ad426a961bad040c2fc943c97bb023fdcd403edcbf7d7e"
+        },
+        "1999": {
+          "n": 27,
+          "values_sha256": "fd5bbe694c89f75f0fdbe47418848513cdee6ca01b055877ca95c21734d98f88"
+        },
+        "2000": {
+          "n": 27,
+          "values_sha256": "6ac14ea29c402935b1af2f41fc9fe343b3725363c72111ca54ddb5e9b8ce2dff"
+        },
+        "2001": {
+          "n": 27,
+          "values_sha256": "121a1d6ab48c3f17d331024a06bd54b2708ea1b12925ecbc5114f2e23ef46066"
+        },
+        "2002": {
+          "n": 27,
+          "values_sha256": "26da0dc4ec1074e64ddf7bb2cd97d3458967efbcbcd7c0cc7544ddd57aa7d894"
+        },
+        "2003": {
+          "n": 27,
+          "values_sha256": "12d62594d1d0262caa6a9569f1bf1741ca1f359d0181b9e2b08a52bf45605f04"
+        },
+        "2004": {
+          "n": 27,
+          "values_sha256": "e48420c0189f7a35af7305bfbe681b502cfabccc9d7ffdf6c872dcddcc7f1b73"
+        },
+        "2005": {
+          "n": 27,
+          "values_sha256": "a11dc98d78df9de9ebbddc515e324028dcbde1f98ea6183f18fdca1622ba624d"
+        },
+        "2006": {
+          "n": 27,
+          "values_sha256": "a1d7a9ee93b4834acf3da6f6278499c7b51053de448b8bb64d58d2335cbacfb0"
+        },
+        "2007": {
+          "n": 27,
+          "values_sha256": "481e21f0cace55e22ff717a23b0f8a8d286d7acc52ee01ea8a70b12fcd29275b"
+        },
+        "2008": {
+          "n": 27,
+          "values_sha256": "cc69697edc6d24512cb2654a3c116816274e9600f8cb585b6f1d72a0eb84bfe5"
+        },
+        "2009": {
+          "n": 27,
+          "values_sha256": "77acf3831d1175b4f3a61b481ff2bcd4670effe9e9aa646dfe0f803d98eba7d8"
+        },
+        "2010": {
+          "n": 27,
+          "values_sha256": "6baf81dcec908741ddbe4496a780b9f0ef93ef2d7f4350658ef14d1269445610"
+        },
+        "2011": {
+          "n": 27,
+          "values_sha256": "630458d645c6fa7f4ace2153f8ed275dd4cb0054f28ec1d257d6424ce47d8d80"
+        },
+        "2012": {
+          "n": 27,
+          "values_sha256": "9338bb12c411acb301ceb50fe174add99321a37b9285eed12908ad852e1c5ed9"
+        },
+        "2013": {
+          "n": 27,
+          "values_sha256": "e654f3104bd2cf54f0927ec89a97b6d53d5e1bd122c9cb747b52d52b54050218"
+        },
+        "2014": {
+          "n": 27,
+          "values_sha256": "fa30e08f73c826e199b5bd9fbf8506569768a69b79e31fddc4c2a3357afb0a92"
+        },
+        "2015": {
+          "n": 27,
+          "values_sha256": "8bf99ff10d0358d0ed762b78527c50556da6492017b75dd3e3f46af29df264e4"
+        },
+        "2016": {
+          "n": 27,
+          "values_sha256": "9e2d3c0475616e180b98e2a3227c24c5c325f0958a1fc10cf7f418bf1d450801"
+        },
+        "2017": {
+          "n": 27,
+          "values_sha256": "458ddde8f28519678dd7200d17f0e84e730d42e2fd775bcf2211a44d4baf9d3b"
+        },
+        "2018": {
+          "n": 27,
+          "values_sha256": "3fc1df7f08b85b9ac2b4881168ac1ff4453c7fa84c66006d7d2407f4bc4eb151"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "267b9a4e6487a74cf5c7c047ddd1cbcd301312c42e8988f619ea42752d936654"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "90873bd68683f66c2873e4b4d70968d3ca92c6193012fbab80d3aa86698cba5c"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "1923df8c5094d1e8e460f10cf639635f56b9301459ee7d17f96c844cb51c340c"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "d033677a36518c0639d1dac26ae2247d9c796d080f596e8b6c2a5777bca50639"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "4e4f21350fce13d4f3eb529eeab2259f0c9e183f6b9730e67d6ba30f1cf978c4"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "0144c535f8b4f52e55d17c793ef288a08942d88eda2577c7a3b0a326172fa493"
+        }
+      }
+    },
+    "export_bovine_fob": {
+      "indicator": "export_bovine_fob",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "12bbde8f3982e81d09d2359fb1cf58e150bdc36cc6594c889dfeefced0d2d0bc"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "a1c22143768397089dee38c46af9a688f4afbaf6930c570de9a9c6e869150696"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "a911e021538546195eb214725335f5e7aea6bd02ceb9da16015e0a56f06647a8"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "fa193d8cb051958ec75a481a14bad94b216f77631c2134367ff6b375c546a951"
+        }
+      }
+    },
+    "export_corn_fob": {
+      "indicator": "export_corn_fob",
+      "periods": {
+        "2018": {
+          "n": 27,
+          "values_sha256": "3c1d09617abc62a1da191ef0212a43d976d2fa7049ef735a363df9d6631a31e5"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "be769e400770df24dcfa7b387493735c34613063434fa28f1ae3979cc187640d"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "e0ee1765a9489cd25f9002c2cd3867a114042efe6827263ecfa190bf048bdaca"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "a23c1ade66fc4cb309bb6797ae603c1dedc03f0a4faf084c9921cb44257210db"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "c3b44340a3c989601fa92a3f15a3ab640db2ab64f5bf1a94c37082c850a5ac8e"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "01aa8e6320057d49d2701d9b13c67e585a43cb72678bfad11695aa54d1dfd00f"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "b503aa3f937ae3515cf4d3858088f12d219533a12813cc5cc135e426a344e1ec"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "da5928216b1c029366cb393875e61aeff37f7b9b52ed89c9f3fa50f7c965e5b3"
+        }
+      }
+    },
+    "export_fob": {
+      "indicator": "export_fob",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "c2c46198bf62ceb19d2ea5e268c57a779fab8a1d981fcd8a9638bbb7fb41d12a"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "ef4c74cb4f13c07c66d2a18a5078f9f53f2581d3c68282f4aa6d047edc43ddd7"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "b7351f623b89232ce757cf8c617b41aaffa9826569e68553dc1ec1928adbb283"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "7fe9e26c3a63248f9f538ba8b325b9a09f0386cacc6a481d3fe0febc778f8306"
+        }
+      }
+    },
+    "export_fob_pc": {
+      "indicator": "export_fob_pc",
+      "periods": {
+        "2025": {
+          "n": 27,
+          "values_sha256": "85e19435477f087b476b30f8652e86aed1a043c45449c4619838a79a039ad2ff"
+        }
+      }
+    },
+    "export_iron_ore_fob": {
+      "indicator": "export_iron_ore_fob",
+      "periods": {
+        "2018": {
+          "n": 27,
+          "values_sha256": "898d939ea6dd7b4d25d1ead2b0db40edce50778c89e7b5c4334d3bd670372700"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "cdd0de5d961ab0c272c649c9d21dcc695c7af838b362aa9a5c4828b4b668fe56"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "995edbfdb3f624db80794404571c528804cda8e7b9e9c1b32ca2d2611dec7924"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "96565c456e68dea457012ef53d9bce17aa625fb5125e6e78073c4690d0ee75cd"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "c39963a175719b8b5de85aaaa82af1b6443d5676b3758bf17bfd6439bee668ed"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "45224a62e127a178d2633a80482599c8d6d26ec95db2b998427f178d9d6101f1"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "c61fcb6e1639e7b3c1f8f14fab2608fe4b9d7bf76ededfba421227eeddc39023"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "b777be60fc7cb7cdc3eef53ee7e9d1f789d4ede5b73dd62dfd845a8dc275df63"
+        }
+      }
+    },
+    "export_meat_fob": {
+      "indicator": "export_meat_fob",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "6e7c849b019785c76fd5391219294cb979daad4b6cc4143adc9c353b8df53bbd"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "001db4fa4e4aa78b25387b882cac07e142fbe489b0e1373401b6ca5d06cc64c7"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "630f13dc8490c6b3a774a7be541a8a131fdeabfba5abf4c876c9421474920dea"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "3e9976eeb597c43fbba25fbcfc2f5aa5d8140909f9a77f1f6dc685412d455b64"
+        }
+      }
+    },
+    "export_petroleum_fob": {
+      "indicator": "export_petroleum_fob",
+      "periods": {
+        "2018": {
+          "n": 27,
+          "values_sha256": "e1a82272a4be2c1b3fbe514e7b2b6d53337309199c72586ac8b14d0d75f92645"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "fad4b784c69a1288aa137a58ae18003876c5b86a8a96c5f6efe033104475011f"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "b74ac8947efffec93d39527eea03d9080e2a6e7f1cfb4996f7301b14b16b5858"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "3d17d7b69987c81b4dba3d3647cb9d996242f293ee96d51550b486ba07801ba4"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "45273a144c2cad45faf5c1ff0ebc050ec14510f5649555c613ac36488f16336c"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "802427a8b27923189a40fa2f537291de363ff980a67f14e469d625c47b78b428"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "d7b2d38cec228c9afb940cc46c65e9bfadc361a9b33f1b9790155e9efcaff162"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "426b3fba5c6866a4af54ab149307a1503aebff314b342d710714a68bd914f256"
+        }
+      }
+    },
+    "export_soy_fob": {
+      "indicator": "export_soy_fob",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "a182d2ea3362a525b91adf81fb83d1f2dc16fe4ec2b0592f6451edf23a97f4ab"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "0d05d1581a0ad8c90422d5548654bfc0dd92b9050e2f717d722c8e105f2d3b4e"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "d787049fe88ef1537bd6eeacd3a8b8e1d7703b106d1094d11d64c7fbef2fa9f5"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "32bea91174bbcf3011c37af26a55f992699bdd8ac9d672bb41b51dbe8f71eb90"
+        }
+      }
+    },
+    "export_soy_meal_fob": {
+      "indicator": "export_soy_meal_fob",
+      "periods": {
+        "2018": {
+          "n": 27,
+          "values_sha256": "201f8751c9795555a3841501111dcad71be43eb53b2a39d4d15dbb75899f10fb"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "ec6c3c0dfae2ad8e7c4a8d319cfc00a5c706fcb60072a2ce6963386a84d1eb5a"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "8461678c398671d6121eeea794c3e109d89de78f5d19fbcc25d1cd9337419625"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "1e652bd50929c7944d441fb032d3344f99f840ecca02bfcd6e0a29eba960de81"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "f2172a3893646064fb1f9582fdbe2763087ee4d13898d9c3ad9328df02324292"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "fdcd4666a95ba2fcb23402db4bbcb5088aa0fef2a02464263c9b33e966b17d98"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "d61f8a1fcc8f70155025d6e90f8f9ecd529df79c9fb116b31fe8a84d8f14b0a1"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "fe49f013f0bc02a0d3474cd5a7bc61ae434efb1e545b505a88f58e8dac8de5ac"
+        }
+      }
+    },
+    "export_soy_oil_fob": {
+      "indicator": "export_soy_oil_fob",
+      "periods": {
+        "2018": {
+          "n": 27,
+          "values_sha256": "26daa8810d79e19f479bb927fda43745a388137c3e5130fa6271678d07147721"
+        },
+        "2019": {
+          "n": 27,
+          "values_sha256": "c40fe4aba192cdf59a674462bcb5047011fa5593e7508a7df5bba97243270073"
+        },
+        "2020": {
+          "n": 27,
+          "values_sha256": "3a9b957260f613c7ab9a01e841fffbe71997a7638b467ea10d97e212ab8f5e1b"
+        },
+        "2021": {
+          "n": 27,
+          "values_sha256": "aef4c06330f5b12e8500de6ca674c71332976b889f77d2f505ce092c1aebd8c0"
+        },
+        "2022": {
+          "n": 27,
+          "values_sha256": "ab13143653ad217a84c3e9a939c7fbc846b6312d19dbea804dbd26b61ee1fafc"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "443baf4895412341282a452d3011bd06cead32b9a9e49e4986713279cfc7ab75"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "109709e07809eed31d8c402dc5d38982ec593bb7b0167f924de3870187ca336b"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "690b4bca2a2c6925f2d349c58bf8f3894a681ba80f6ed6c753567c9a28fb0f0c"
+        }
+      }
+    },
+    "gov_margin_pp": {
+      "indicator": "gov_margin_pp",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "0cd85ed392d68bbc52390f988edb72d6a175cdc70a99b41953d6fe6d0cd8ea5c"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "f3addd5b8ad5a2f68de35f2632be546a6f22533f20bf2b9003855b4686f3bb20"
+        }
+      }
+    },
+    "gov_winner_share": {
+      "indicator": "gov_winner_share",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "d5f36e78e3ba1faff50de0373b3626e3682e9dadbe34e295ee30e1c978d32be2"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "e97403bdf5fce78333a0fcdbf857911d0b104aca75c713e2c2721e8ab1baf3b3"
+        }
+      }
+    },
+    "pres_margin_pp": {
+      "indicator": "pres_margin_pp",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "816ce78717ba1f443093e908c4a0400181bcba464755b286434029b8a9774a8a"
+        },
+        "2018T2": {
+          "n": 27,
+          "values_sha256": "5615be7bb11dabc54f1416c25e136b929f821bf515b016967791e2e7a36580fc"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "33240d8119329166f3e71e2f1c049766b34d1bdc48e8bdc767b07dd4f765bb20"
+        },
+        "2022T2": {
+          "n": 27,
+          "values_sha256": "a3c0dca6e5bae52ee17e4672d7030a9cb7fbb57f4406725023993566f8eef854"
+        }
+      }
+    },
+    "pres_party_mdb": {
+      "indicator": "pres_party_mdb",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "efe648b83558aa630916a5065e1247cc3b23b20d2d6cb1c5cdc3dc586add274a"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "0cddad9d4457957ee737f48e3c36a4c187184712b655064075d62149aed1ff07"
+        }
+      }
+    },
+    "pres_party_novo": {
+      "indicator": "pres_party_novo",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "d9977b46aa63542bdeb3ab04adb386dda55b5376e4cb1813661c19495ebebf95"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "ae00f8ef7877dc99b0778352caa9cb13482d2430267cbd30644f8c8620122e25"
+        }
+      }
+    },
+    "pres_party_pdt": {
+      "indicator": "pres_party_pdt",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "8677f3003063cefa14001c39454564803b5b58c357e1985b7c058ab7156f70b2"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "3305c31b8f77112bbd4fd8ca005a3276038dd54a9a0b00d67453777867a2bf6d"
+        }
+      }
+    },
+    "pres_party_pl": {
+      "indicator": "pres_party_pl",
+      "periods": {
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "aaa08dfbc681df6695030a502ef198676da65c6743271f5439e35db7acdf5d41"
+        },
+        "2022T2": {
+          "n": 27,
+          "values_sha256": "610708cfd8654f39b3d3bd7e2a1373fae86f936e69d365da73ca18b2ca763fa3"
+        }
+      }
+    },
+    "pres_party_psl": {
+      "indicator": "pres_party_psl",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "e5aac0c164aa26cdbb6dd5a208da7e634feb7e5bfacb2889c05b15a2d11cc1f7"
+        },
+        "2018T2": {
+          "n": 27,
+          "values_sha256": "13b1fbfb17d3eb06d795aa7c774cd1ef015c3ec28d541f07a9767a87d440297e"
+        }
+      }
+    },
+    "pres_party_pt": {
+      "indicator": "pres_party_pt",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "d837bd0fe6df515e1f02f6ed187176df29a5b5c6f93165e3b476b41bedc7e68f"
+        },
+        "2018T2": {
+          "n": 27,
+          "values_sha256": "fa04f2dc43562725ecf49c8e0fdcb17d083bf0be2e405b9711e47d0c01f88544"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "db323fce8443bd63b4af780c4d0ea4448d3102feeb2151bea8c4dbbfa2360206"
+        },
+        "2022T2": {
+          "n": 27,
+          "values_sha256": "44055a647e7b95071b50a4b629e9f6d249b16cca7f421e784b9072d13bca9a3d"
+        }
+      }
+    },
+    "pres_party_rede": {
+      "indicator": "pres_party_rede",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "9693f79fd598ac1905c5d11c44620eacd726de694e5a91a237a6dac25c9f8d14"
+        }
+      }
+    },
+    "pres_party_uniao": {
+      "indicator": "pres_party_uniao",
+      "periods": {
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "c5e56366bb8cb68ada863ea91bdaf490017049bca65081888c96a60a7b98b5b2"
+        }
+      }
+    },
+    "pres_winner_share": {
+      "indicator": "pres_winner_share",
+      "periods": {
+        "2018T1": {
+          "n": 27,
+          "values_sha256": "2b28fb26e64d8d955bee0727f7bba8b28b3e0ce949a06d1d578a07022293ad6f"
+        },
+        "2018T2": {
+          "n": 27,
+          "values_sha256": "5b811b8def48be36b7005d75760cb6ba505a9277d484f9824af9fb35890dc6d7"
+        },
+        "2022T1": {
+          "n": 27,
+          "values_sha256": "a5daf4db7b53f653fe144d15a9ecb0ae1d7313b78d2f003531ad33cdf3ef613b"
+        },
+        "2022T2": {
+          "n": 27,
+          "values_sha256": "3a8932506c06b9ec8d615f193e9787614e97eb430b669e53104bcf1e9feb5bd0"
+        }
+      }
+    },
+    "dcl_rcl": {
+      "indicator": "dcl_rcl",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "50cf704f61e499de7c02183a21bfe81d692a2362fe91d5958228a9d2039bd353"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "dd4769e964b27135f8b376de03dc6b67df0f0b556c4b876b7166cc77dc38ec69"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "2447b14958e250654a9f0b2c549fe59692d201b8e3dba3bb1a50f6345f4fa0e0"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "123326e6a649952ce358d707d38d67bb15b7f3f4ee327dee1b09218a3d89fe9a"
+        }
+      }
+    },
+    "dcl_rreo": {
+      "indicator": "dcl_rreo",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "b83dd397607b625b2109cdb91f881861d36989f0e5bf5f2823707db788e9734f"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "ebcf504fe64b848a836f14c4b263a1d59bd5d061568528279c5c060fbb84ef92"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "5736a6d0c914d84e8a6ec90709fda8e9ff349d5e9cb86d09397076f2ad3f729f"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "f3c65c29522146c1b9bd9d7454a0ab94d9f7ebc08418ff5c365b28b8a41a223b"
+        }
+      }
+    },
+    "despesa_empenhada_rreo": {
+      "indicator": "despesa_empenhada_rreo",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "e75ccbd918728a0b5f4ebf5dd309036c845a5cb27bca81ce1ada5a7103c40233"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "6ad1dd142c72f9d6edd337ea598ff36e12c14507d0194849ee3ad0b5d5178246"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "4ce91ac7113416fa694492086933d4bfd794f0267430af831a1abfa6e280c1b0"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "f8c83d5c03cb58bf83bbb1458add9e866b76aef3cc05bb2513ec6868db467141"
+        }
+      }
+    },
+    "rcl_pc": {
+      "indicator": "rcl_pc",
+      "periods": {
+        "2025": {
+          "n": 27,
+          "values_sha256": "493f2b0c91c5ac09bbb6f249c9af9d7d5096bb2d25b11bc5c37e60c6e73c7819"
+        }
+      }
+    },
+    "rcl_rreo": {
+      "indicator": "rcl_rreo",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "607d25bf912f4ae8e5cdae769ccbe475d00975c5e068045ad9fc0ee0825f3f08"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "0a6cf2b2ae98b464023747fb46530aecc2210da23e32f9f1eeb0a4bd6e4b3f4e"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "04d429c06fb287095f9f9c43359894f76cd97749c7efda056c5e5d7a3ce6920e"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "cff7ea13c3d60f7966a524b936db29574c71749361987e13bc916bf631a8a280"
+        }
+      }
+    },
+    "receita_tributaria_rreo": {
+      "indicator": "receita_tributaria_rreo",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "27aa0da58198882f4cf958164d274818e9620476c1b0a1f1b99bee2f6420faba"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "8cb5d7d6f9771df8f5cf78e59a80be4034b6fc4094f32c4164804d20a7fe897f"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "a1a253a96d7b625c89005edaa3f4f4c7849ffa44f339a631c2b90fb22fab71c7"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "ea3463840622f8a3fff5f8db28ae4d9928770eb119ff742a700f80aa210776a0"
+        }
+      }
+    },
+    "transf_uniao_rreo": {
+      "indicator": "transf_uniao_rreo",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "659b2ef8c8575794a97da6cd20f9b17ce947e1931cf322aad62a198ed00caa60"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "51ac90ee68a873fa6a9a3502f45d6eaf23131c2a5988d822a38d7ab50bfcc4bf"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "1b042288d32f8f0cc41e37a791a171f94233122891809656dfa7367414855535"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "2676952d7e4a6b60cd11cc74a18829a39e94daf6e8e85209ba92b2b1c15a63e6"
+        }
+      }
+    },
+    "trib_share_rcl": {
+      "indicator": "trib_share_rcl",
+      "periods": {
+        "2022": {
+          "n": 27,
+          "values_sha256": "6eed6e064974d3977f4c3a761ca6f4616b6032839313584ea7865d9d9ff32355"
+        },
+        "2023": {
+          "n": 27,
+          "values_sha256": "a49c7d0112afe4b7c2054b476f755c504476749b811e0627842e67802248858b"
+        },
+        "2024": {
+          "n": 27,
+          "values_sha256": "e68e5deebfc9914c678cfe41203042dcbfe85ef8e76411a1b24389334d901c1a"
+        },
+        "2025": {
+          "n": 27,
+          "values_sha256": "14731ea6a8e86cc6eae6e9d84defc2960f553a843ce1207637f7a143fd3a3dcf"
+        }
+      }
+    },
+    "basket_capital": {
+      "indicator": "basket_capital",
+      "periods": {
+        "2026-01": {
+          "n": 27,
+          "values_sha256": "7c10b2325faee708da761e00be626fabe0d0104511d3e16c31612ce4f9fa8da1"
+        },
+        "2026-02": {
+          "n": 27,
+          "values_sha256": "875ca0453315e6409e04c70867fbc03e0f7ff672904ecef8187d30316bcda185"
+        },
+        "2026-03": {
+          "n": 27,
+          "values_sha256": "71431c6c669b21cef3956d2bf16715730f7e1ead9bcb3676d9e64b5225636900"
+        },
+        "2026-04": {
+          "n": 27,
+          "values_sha256": "3118b498dd30b0288662ba98863ee99f878c05269bbe80967524725cc60843e1"
+        },
+        "2026-05": {
+          "n": 27,
+          "values_sha256": "a372531d7fcad369470e4d76112dc356d79e67479be391b489e61585ea6a0aec"
+        },
+        "2026-06": {
+          "n": 27,
+          "values_sha256": "221af2ca40d10a5eb5c2e870e4034d2bf2a21d5f04f5425a1f314ea5e7019127"
+        },
+        "2026-07": {
+          "n": 27,
+          "values_sha256": "f0d7540bddba7bbfde2e7f6026efd602d03984a150b81cddd3d6117a63f3c961"
+        }
+      }
+    },
+    "basket_share_sm": {
+      "indicator": "basket_share_sm",
+      "periods": {
+        "2026-01": {
+          "n": 27,
+          "values_sha256": "bd7df9dd73d2a858b254532f355bc93211bff51dc6ee638eadc1d1c95fd97bdf"
+        },
+        "2026-02": {
+          "n": 27,
+          "values_sha256": "1e314430a9495bf734a223d9d65a5c7da126dd7224ece3559e6ff9ea0291d8cf"
+        },
+        "2026-03": {
+          "n": 27,
+          "values_sha256": "18394bb46c12c6b45d5608b97e0d50e505805b6771b8e8e2c6f8db78434995b0"
+        },
+        "2026-04": {
+          "n": 27,
+          "values_sha256": "f74c38b2ea568892f3453cf66ffc16288c93f2d1c4339af832e5262c8a471135"
+        },
+        "2026-05": {
+          "n": 27,
+          "values_sha256": "d8ad3a44655d8af82547e677a5db86c7521ffdc0ea795004ec01f0517cb7f3dc"
+        },
+        "2026-06": {
+          "n": 27,
+          "values_sha256": "2166c94b9c2342cf5a8a04656d0bd1a0d3d07d0e804657e82458247559c2b3e4"
+        },
+        "2026-07": {
+          "n": 27,
+          "values_sha256": "ef3bf72dbe3d4f9bdb7630b7ac2ab4858426ca08d858353c086eacb75c99307e"
+        }
+      }
+    },
+    "lens_aging": {
+      "indicator": "lens_aging",
+      "periods": {
+        "2026-08": {
+          "n": 27,
+          "values_sha256": "750b3b1ad4310b87f41927e5252a69bf4f572d62d451b11a03ba6c04ff4cb823"
+        }
+      }
+    },
+    "lens_family": {
+      "indicator": "lens_family",
+      "periods": {
+        "2026-08": {
+          "n": 27,
+          "values_sha256": "8879310d83b93a7b302fe15bb639f25b5e6e8a68eb8a739c6d6cf858f8aeb09c"
+        }
+      }
+    },
+    "lens_live": {
+      "indicator": "lens_live",
+      "periods": {
+        "2026-08": {
+          "n": 27,
+          "values_sha256": "a369810e44f7969f2eb4fa7d510a0a61d3ccd636e1e94c3cec9d7fa75d7fddaa"
+        }
+      }
+    },
+    "lens_venture": {
+      "indicator": "lens_venture",
+      "periods": {
+        "2026-08": {
+          "n": 27,
+          "values_sha256": "99b0ddaf414c375a6556fd7dc80ce7c81832029a9042a0627466ccc56123a07c"
+        }
+      }
+    }
+  }
+}
