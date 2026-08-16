@@ -90,7 +90,6 @@ No desenvolvimento local, **não** defina `NEXT_PUBLIC_API_URL` — o Next faz p
 
 - **Site:** https://brasilreal-atlas.web.app  
 - **API:** https://brasil-real-api-928790342045.southamerica-east1.run.app  
-- Conta: `leolr.trab@gmail.com` · projeto `brasilreal-atlas`  
 - Redeploy: [`docs/deploy-firebase.md`](docs/deploy-firebase.md) ou `scripts/deploy-firebase.ps1`
 
 <details>
