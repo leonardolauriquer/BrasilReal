@@ -13,6 +13,7 @@ import { buildRegionLabelPoints } from "@/lib/map/regions";
 import { capitalsGeoJSON, isStateCapitalName } from "@/lib/map/capitals";
 import { isIntermediateClickBand, ZOOM } from "@/lib/map/zoomLadder";
 import { mapChromePadding } from "@/lib/map/chrome";
+import { registerMapCanvas } from "@/lib/map/capture";
 import { formatMapLabel } from "@/lib/format";
 
 export type MapValue = {
@@ -59,6 +60,7 @@ type Props = {
   /** População por código IBGE (UF) para média ponderada / rótulos regionais. */
   popByIbge?: Map<string, number>;
   cardOpen?: boolean;
+  compareCodes?: string[];
 };
 
 function collectBounds(
@@ -122,6 +124,7 @@ export function BrazilMap({
   valueUnit,
   popByIbge,
   cardOpen = false,
+  compareCodes = [],
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -155,6 +158,7 @@ export function BrazilMap({
 
     const map = new maplibregl.Map({
       container: containerRef.current,
+      preserveDrawingBuffer: true,
       style: {
         version: 8,
         glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
@@ -332,9 +336,11 @@ export function BrazilMap({
     });
 
     mapRef.current = map;
+    registerMapCanvas(() => map.getCanvas());
     return () => {
       window.removeEventListener("resize", resize);
       ro?.disconnect();
+      registerMapCanvas(null);
       map.remove();
       mapRef.current = null;
     };
@@ -378,10 +384,16 @@ export function BrazilMap({
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !map.getLayer("uf-selected")) return;
-    const filter = ["==", ["get", "ibge_code"], selectedCode || ""];
-    map.setFilter("uf-selected", filter);
-    map.setFilter("uf-selected-outer", filter);
-  }, [selectedCode]);
+    const codes = [...new Set([selectedCode, ...compareCodes].filter((c): c is string => Boolean(c)))];
+    const filter =
+      codes.length === 0
+        ? ["==", ["get", "ibge_code"], ""]
+        : codes.length === 1
+          ? ["==", ["get", "ibge_code"], codes[0]]
+          : ["in", ["get", "ibge_code"], ["literal", codes]];
+    map.setFilter("uf-selected", filter as never);
+    map.setFilter("uf-selected-outer", filter as never);
+  }, [selectedCode, compareCodes]);
 
   useEffect(() => {
     const map = mapRef.current;

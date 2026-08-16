@@ -169,3 +169,19 @@ def observations(
                 }
             )
     return out
+
+
+def observation_series(
+    store: _StoreView,
+    indicator: str,
+    geography: str,
+) -> list[dict[str, Any]]:
+    """Every official period on disk for one UF. Never invents missing years."""
+    fixture = store.social.get(indicator)
+    series = fixture.get("series") if fixture and isinstance(fixture.get("series"), dict) else None
+    if series:
+        out: list[dict[str, Any]] = []
+        for period in sorted(series):
+            out.extend(observations(store, indicator, geography, str(period)))
+        return out
+    return observations(store, indicator, geography, period=None)

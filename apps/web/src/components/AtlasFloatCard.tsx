@@ -1,6 +1,7 @@
 "use client";
 
 import { InfoTip, hasProvenance, type ProvenanceFields } from "@/components/InfoTip";
+import { OfficialSparkline } from "@/components/OfficialSparkline";
 import { TerritorySections } from "@/components/TerritorySections";
 import { formatPeriodLabel, formatValue } from "@/lib/format";
 import type { RegionFiche } from "@/lib/map/regions";
@@ -20,6 +21,8 @@ type Props = {
   activeIndicator: Indicator | null;
   muniPopTip: ProvenanceFields | null;
   selectedObsTip: ProvenanceFields | null;
+  series?: Observation[];
+  onPickPeriod?: (period: string) => void;
 };
 
 function profileMetricTip(m: Observation): ProvenanceFields {
@@ -45,6 +48,8 @@ export function AtlasFloatCard({
   activeIndicator,
   muniPopTip,
   selectedObsTip,
+  series = [],
+  onPickPeriod,
 }: Props) {
   if (!selectedObs && !muniSelected && !regionFiche) return null;
 
@@ -137,10 +142,20 @@ export function AtlasFloatCard({
               {activeIndicator?.short_name || selectedObs.indicator} ·{" "}
               {formatPeriodLabel(selectedObs.reference_period)}
             </div>
-            <span className="status-mark observed">{selectedObs.status_label}</span>
+            <span className={`status-mark ${selectedObs.status_label === "SIMULADO" ? "simulado" : "observed"}`}>
+              {selectedObs.status_label}
+            </span>
           </div>
         )
       )}
+
+      {!regionFiche && !muniSelected && series.length > 1 && selectedObs ? (
+        <OfficialSparkline
+          rows={series}
+          currentPeriod={selectedObs.reference_period}
+          onPickPeriod={onPickPeriod}
+        />
+      ) : null}
 
       {!regionFiche && muniSelected && muniProfile?.territory?.items && (
         <TerritorySections items={muniProfile.territory.items} />

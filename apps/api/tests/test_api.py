@@ -325,6 +325,22 @@ def test_pnadc_income_and_gini_layers(client):
     assert gini_periods["count"] >= 2
 
 
+def test_observation_series_one_uf_keeps_periods_and_provenance(client):
+    missing = client.get("/v1/observations?indicator=gini_household&series=true")
+    assert missing.status_code == 422
+    data = client.get(
+        "/v1/observations?indicator=gini_household&geography=35&series=true"
+    ).json()
+    assert data["count"] >= 2
+    assert all(item["uf"] == "SP" and item["geography_ibge_code"] == "35" for item in data["items"])
+    periods = {item["reference_period"] for item in data["items"]}
+    assert len(periods) >= 2
+    assert all(item.get("definition") for item in data["items"])
+    assert all((item.get("source") or {}).get("organization") for item in data["items"])
+    latest = client.get("/v1/observations?indicator=gini_household&geography=35").json()
+    assert latest["count"] == 1
+
+
 def test_siconfi_fiscal_layers(client):
     indicators = {i["id"]: i for i in client.get("/v1/indicators").json()["items"]}
     keys = (

@@ -58,6 +58,51 @@ export async function fetchObservations(indicator: string, period?: string) {
   }>(`/v1/observations?${q.toString()}`);
 }
 
+export async function fetchObservationSeries(indicator: string, geography: string) {
+  const q = new URLSearchParams({
+    indicator,
+    geography,
+    series: "true",
+  });
+  return api<{ count: number; items: Observation[] }>(`/v1/observations?${q.toString()}`);
+}
+
+export type ScenarioSummary = {
+  id: string;
+  title: string;
+  is_hypothetical?: boolean;
+  disclaimer?: string;
+  params?: Record<string, string>;
+};
+
+export type SimuladoRow = {
+  uf: string;
+  ibge_code: string;
+  name: string;
+  scenario_amount_brl: string;
+  baseline_amount_brl: string;
+  delta_brl: string;
+  scenario_per_capita_brl?: string;
+  status_label: string;
+};
+
+export async function fetchScenarios() {
+  return api<{ count: number; items: ScenarioSummary[] }>("/v1/scenarios");
+}
+
+export async function runScenario(scenarioId: string, seed = 42) {
+  return api<{
+    id: string;
+    status_label: string;
+    disclaimer: string;
+    comparison: SimuladoRow[];
+    results: { allocations: Array<{ ibge_code: string; uf: string; name: string; amount_brl: string }> };
+  }>(`/v1/scenarios/${encodeURIComponent(scenarioId)}/runs`, {
+    method: "POST",
+    body: JSON.stringify({ seed }),
+  });
+}
+
 export async function fetchProfile(code: string) {
   return api<Profile>(`/v1/geographies/${encodeURIComponent(code)}/profile`);
 }

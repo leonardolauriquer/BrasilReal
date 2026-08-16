@@ -29,6 +29,8 @@ type Props = {
   recorteLabel?: string;
   rankMode?: "nivel" | "delta";
   comparePeriod?: string;
+  compareCodes?: string[];
+  onToggleCompare?: (ibgeCode: string) => void;
 };
 
 export function RankPanel({
@@ -53,6 +55,8 @@ export function RankPanel({
   recorteLabel,
   rankMode = "nivel",
   comparePeriod,
+  compareCodes = [],
+  onToggleCompare,
 }: Props) {
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -197,6 +201,7 @@ export function RankPanel({
             : higherIsWorse
               ? "melhor no topo · menor valor"
               : "melhor no topo · maior valor"}
+          {onToggleCompare ? " · pin compara até 3" : ""}
         </p>
       </div>
 
@@ -253,29 +258,45 @@ export function RankPanel({
         ) : (
           ranked.map((row, idx) => {
             const active = row.geography_ibge_code === selectedCode;
+            const compared = compareCodes.includes(row.geography_ibge_code);
             const share = showUfShare ? formatSharePercent(row.value, ufTotal) : null;
             return (
-              <button
+              <div
                 key={row.geography_ibge_code}
-                type="button"
-                role="listitem"
-                data-code={row.geography_ibge_code}
-                className={`rank-row ${active ? "is-active" : ""}`}
-                onClick={() => onSelect(row.geography_ibge_code)}
+                className={`rank-row-wrap ${active ? "is-active" : ""} ${compared ? "is-compared" : ""}`}
               >
-                <span className="rank-pos">{idx + 1}</span>
-                <span className="rank-place">
-                  <strong>{row.uf}</strong>
-                  <em>{row.name}</em>
-                </span>
-                <span className="rank-value">
-                  <strong>{formatValue({ value: row.value, unit: row.unit })}</strong>
-                  {share ? <em>{share}</em> : null}
-                </span>
-                <span className="rank-bar" aria-hidden="true">
-                  <span style={{ width: `${barShare(row.value)}%` }} />
-                </span>
-              </button>
+                <button
+                  type="button"
+                  role="listitem"
+                  data-code={row.geography_ibge_code}
+                  className={`rank-row ${active ? "is-active" : ""}`}
+                  onClick={() => onSelect(row.geography_ibge_code)}
+                >
+                  <span className="rank-pos">{idx + 1}</span>
+                  <span className="rank-place">
+                    <strong>{row.uf}</strong>
+                    <em>{row.name}</em>
+                  </span>
+                  <span className="rank-value">
+                    <strong>{formatValue({ value: row.value, unit: row.unit })}</strong>
+                    {share ? <em>{share}</em> : null}
+                  </span>
+                  <span className="rank-bar" aria-hidden="true">
+                    <span style={{ width: `${barShare(row.value)}%` }} />
+                  </span>
+                </button>
+                {onToggleCompare ? (
+                  <button
+                    type="button"
+                    className={`rank-pin ${compared ? "is-on" : ""}`}
+                    aria-pressed={compared}
+                    aria-label={compared ? `Tirar ${row.uf} da comparação` : `Comparar ${row.uf}`}
+                    onClick={() => onToggleCompare(row.geography_ibge_code)}
+                  >
+                    {compared ? "●" : "○"}
+                  </button>
+                ) : null}
+              </div>
             );
           })
         )}

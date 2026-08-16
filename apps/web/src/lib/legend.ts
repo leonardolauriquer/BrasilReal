@@ -6,6 +6,14 @@ export type RankingPresetGroup = {
   items: Array<{ value: string; label: string }>;
 };
 
+/** Digit 1–4 keyboard jumps — same order as the Lentes group. */
+export const LENS_SHORTCUTS = [
+  "lens_live",
+  "lens_venture",
+  "lens_family",
+  "lens_aging",
+] as const;
+
 /** Shortcuts + two editorial lenses (DERIVADO). Isolated metrics are not «melhor estado». */
 const RANKING_PRESET_GROUPS: RankingPresetGroup[] = [
   {

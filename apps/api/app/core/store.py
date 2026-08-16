@@ -102,6 +102,9 @@ class InMemoryStore:
     ) -> list[dict[str, Any]]:
         return observations_query.observations(self, indicator, geography, period)
 
+    def observation_series(self, indicator: str, geography: str) -> list[dict[str, Any]]:
+        return observations_query.observation_series(self, indicator, geography)
+
     def profile(self, geography: str) -> dict[str, Any] | None:
         geos = self.list_geographies()
         match = next((g for g in geos if geography in {g["ibge_code"], g["uf"]}), None)

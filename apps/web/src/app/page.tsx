@@ -1,16 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { AtlasFloatCard } from "@/components/AtlasFloatCard";
+import { AtlasSearch } from "@/components/AtlasSearch";
 import { BootScreen } from "@/components/BootScreen";
 import { BrandMark } from "@/components/BrandMark";
+import { CompareTray } from "@/components/CompareTray";
 import { DataDossier } from "@/components/DataDossier";
 import { MapControlsBar } from "@/components/MapControlsBar";
 import { PwaDock } from "@/components/PwaDock";
 import { RankPanel } from "@/components/RankPanel";
+import { SimuladoBanner } from "@/components/SimuladoBanner";
 import { useAtlasState } from "@/lib/atlas/useAtlasState";
+import { copyViewUrl, isTypingTarget } from "@/lib/atlas/viewUrl";
 import { getApiUrl } from "@/lib/api";
+import { LENS_SHORTCUTS } from "@/lib/legend";
+import { downloadMapPng } from "@/lib/map/capture";
+import { formatPeriodLabel } from "@/lib/format";
 
 const BrazilMap = dynamic(
   () => import("@/components/BrazilMap").then((m) => m.BrazilMap),
@@ -24,6 +31,83 @@ export default function HomePage() {
   const a = useAtlasState();
   const [dossierOpen, setDossierOpen] = useState(false);
   const [pwaOffer, setPwaOffer] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const layerLabel = a.simulado
+    ? a.simTitle || "Fundo hipotético"
+    : a.activeIndicator?.short_name || a.activeIndicator?.name || "Camada";
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (isTypingTarget(e.target) && e.key !== "Escape") return;
+      if (e.key === "Escape") {
+        if (searchOpen) {
+          setSearchOpen(false);
+          return;
+        }
+        if (filtersOpen) {
+          setFiltersOpen(false);
+          return;
+        }
+        if (dossierOpen) {
+          setDossierOpen(false);
+          return;
+        }
+        if (a.cardOpen) a.closeCard();
+        return;
+      }
+      if ((e.key === "/" && !e.ctrlKey && !e.metaKey) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k")) {
+        e.preventDefault();
+        setSearchOpen(true);
+        return;
+      }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        a.selectAdjacent(1);
+        return;
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        a.selectAdjacent(-1);
+        return;
+      }
+      if (e.key >= "1" && e.key <= "4" && !e.altKey && !e.ctrlKey && !e.metaKey) {
+        const lens = LENS_SHORTCUTS[Number(e.key) - 1];
+        if (lens) a.changeLayer(lens);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [a, dossierOpen, filtersOpen, searchOpen]);
+
+  const shareView = async () => {
+    const ok = await copyViewUrl();
+    setCopied(ok);
+    window.setTimeout(() => setCopied(false), 1800);
+  };
+
+  const exportPng = () => {
+    downloadMapPng({
+      layerLabel,
+      period: a.simulado ? "hipótese" : formatPeriodLabel(a.year || "—"),
+      status: a.simulado ? "SIMULADO" : a.rankMode === "delta" ? "DERIVADO" : a.activeIndicator?.status_label || "—",
+      organization: a.simulado
+        ? "Brasil Real (motor hipotético)"
+        : a.activeIndicator?.source?.organization,
+      url: typeof window !== "undefined" ? window.location.href : undefined,
+    });
+  };
+
+  const atlasClass = [
+    "atlas",
+    a.atlasLive ? "atlas--live" : "atlas--booting",
+    filtersOpen ? "atlas--filters" : "",
+    a.simulado ? "atlas--simulado" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className="app-shell">
@@ -36,10 +120,7 @@ export default function HomePage() {
         />
       )}
 
-      <div
-        className={`atlas ${a.atlasLive ? "atlas--live" : "atlas--booting"}`}
-        aria-hidden={!a.atlasLive}
-      >
+      <div className={atlasClass} aria-hidden={!a.atlasLive}>
         <BrazilMap
           values={a.mapValues}
           selectedCode={a.selected}
@@ -54,11 +135,20 @@ export default function HomePage() {
           municipalities={a.municipalities?.geojson || null}
           showMunicipalities={a.showMunicipalities}
           higherIsWorse={a.higherIsWorse}
-          valueUnit={a.activeIndicator?.unit}
+          valueUnit={a.simulado ? "BRL" : a.activeIndicator?.unit}
           popByIbge={a.popByIbge}
           cardOpen={a.cardOpen}
+          compareCodes={a.compareCodes}
         />
         <div className="map-veil" aria-hidden="true" />
+
+        {a.simulado ? (
+          <SimuladoBanner
+            title={a.simTitle}
+            disclaimer={a.simDisclaimer}
+            onExit={() => a.toggleSimulado(false)}
+          />
+        ) : null}
 
         <div className="left-rail">
           <header className="brand-block">
@@ -74,15 +164,15 @@ export default function HomePage() {
           </header>
 
           <RankPanel
-            rows={a.viewObs}
+            rows={a.displayObs}
             regionRows={a.regionRows}
-            regionMode={a.regionMode}
+            regionMode={a.regionMode && !a.simulado}
             selectedCode={a.selected}
             selectedRegionId={a.selectedRegionId}
-            layerLabel={a.activeIndicator?.short_name || a.activeIndicator?.name || "Camada"}
-            period={a.year}
-            periods={a.yearOptions}
-            statusLabel={a.rankMode === "delta" ? "DERIVADO" : a.activeIndicator?.status_label}
+            layerLabel={layerLabel}
+            period={a.simulado ? "hipótese" : a.year}
+            periods={a.simulado ? [] : a.yearOptions}
+            statusLabel={a.simulado ? "SIMULADO" : a.rankMode === "delta" ? "DERIVADO" : a.activeIndicator?.status_label}
             higherIsWorse={a.higherIsWorse}
             loading={a.loading}
             onSelect={a.onSelect}
@@ -91,10 +181,23 @@ export default function HomePage() {
             legendHigh={a.legendScale.high}
             legendNote={a.legendScale.note}
             legendWorse={a.higherIsWorse}
-            tip={a.layerTip}
+            tip={a.simulado
+              ? {
+                  definition: a.simDisclaimer,
+                  source: {
+                    organization: "Brasil Real (motor hipotético)",
+                    dataset: "hypothetical_federal_fund_v1",
+                  },
+                  reference_period: "hipótese",
+                  status_label: "SIMULADO",
+                  limitations: ["Não é transferência, orçamento nem gasto observado."],
+                }
+              : a.layerTip}
             recorteLabel={a.recorteCaption}
             rankMode={a.rankMode}
             comparePeriod={a.prevPeriod}
+            compareCodes={a.compareCodes}
+            onToggleCompare={a.toggleCompare}
           />
         </div>
 
@@ -114,9 +217,12 @@ export default function HomePage() {
             rankingGroups={a.rankingGroups}
             layerTip={a.layerTip}
             yearTip={a.yearTip}
-            controlHint={a.controlHint}
+            controlHint={copied ? "Link da vista copiado." : a.controlHint}
             loading={a.loading}
-            onChangeLayer={a.changeLayer}
+            onChangeLayer={(id) => {
+              a.changeLayer(id);
+              setFiltersOpen(false);
+            }}
             onChangeYear={a.setYear}
             onFitBrazil={a.fitBrazil}
             onOpenDossier={() => setDossierOpen(true)}
@@ -127,7 +233,17 @@ export default function HomePage() {
             rankMode={a.rankMode}
             onChangeRankMode={a.setRankMode}
             canDelta={a.canDelta}
+            sheet={filtersOpen}
+            peekLabel={`${layerLabel} · ${a.simulado ? "SIMULADO" : formatPeriodLabel(a.year || "…")} · Filtros`}
+            onToggleSheet={() => setFiltersOpen((v) => !v)}
+            onOpenSearch={() => setSearchOpen(true)}
+            onExportPng={exportPng}
+            onCopyLink={() => void shareView()}
+            simulado={a.simulado}
+            onToggleSimulado={() => a.toggleSimulado(!a.simulado)}
           />
+
+          <CompareTray rows={a.compareObs} onSelect={a.onSelect} onRemove={a.toggleCompare} />
 
           {a.cardOpen && (
             <AtlasFloatCard
@@ -143,6 +259,8 @@ export default function HomePage() {
               activeIndicator={a.activeIndicator}
               muniPopTip={a.muniPopTip}
               selectedObsTip={a.selectedObsTip}
+              series={a.simulado ? [] : a.series}
+              onPickPeriod={a.setYear}
             />
           )}
         </div>
@@ -164,7 +282,16 @@ export default function HomePage() {
           rankMode={a.rankMode}
           comparePeriod={a.prevPeriod}
           regionRows={a.regionRows}
-          regionMode={a.regionMode}
+          regionMode={Boolean(a.regionMode && !a.simulado)}
+        />
+
+        <AtlasSearch
+          open={searchOpen}
+          indicators={a.indicators}
+          ufs={a.displayObs}
+          onClose={() => setSearchOpen(false)}
+          onPickLayer={a.changeLayer}
+          onPickUf={a.onSelect}
         />
       </div>
 

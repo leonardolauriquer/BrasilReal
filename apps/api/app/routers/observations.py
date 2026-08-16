@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, HTTPException, Query
 from pydantic import ValidationError
 
 from app.core.data_integrity import (
@@ -19,19 +19,38 @@ def list_observations(
     indicator: str | None = Query(default=None),
     geography: str | None = Query(default=None),
     period: str | None = Query(default=None),
+    series: bool = Query(
+        default=False,
+        description="Série oficial completa de uma UF. Exige indicator e geography.",
+    ),
     refresh: bool = Query(
         default=False,
         description="Força revalidação do cache de períodos/série IBGE (TTL ignorado).",
     ),
 ) -> dict:
     """Observações UF. Sem `period`, resolve automaticamente o mais recente (+ cache)."""
-    result = freshness.observations_with_freshness(
-        indicator,
-        period,
-        geography,
-        prefer_latest=True,
-        force=refresh,
-    )
+    if series:
+        if not indicator or not geography:
+            raise HTTPException(
+                status_code=422,
+                detail="series=true exige indicator e geography",
+            )
+        raw_series = store.observation_series(indicator, geography)
+        result = {
+            "items": raw_series,
+            "resolved_period": None,
+            "live_fallback": False,
+            "live_error": None,
+            "freshness": None,
+        }
+    else:
+        result = freshness.observations_with_freshness(
+            indicator,
+            period,
+            geography,
+            prefer_latest=True,
+            force=refresh,
+        )
     raw_items = result["items"]
     items, dropped = gate_observation_rows(raw_items)
     resolved = result.get("resolved_period")
@@ -61,7 +80,7 @@ def list_observations(
 
     pop_ok = None
     pib_ok = None
-    if not geography:
+    if not geography and not series:
         if indicator == "population":
             items, dropped, pop_ok = enforce_additive_totals(
                 items,

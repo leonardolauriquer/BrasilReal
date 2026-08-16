@@ -7,6 +7,7 @@ import {
   buildIntermediateFiche,
   buildMacroFiche,
   buildRegionRanking,
+  compareRankValue,
   isAdditiveUnit,
   recorteLabel,
   ufsForRecorte,
@@ -23,15 +24,59 @@ import {
   type Indicator,
   type Observation,
   type Profile,
+  type SimuladoRow,
   fetchIndicators,
   fetchMunicipalities,
   fetchMunicipalityProfile,
+  fetchObservationSeries,
   fetchObservations,
   fetchPeriods,
   fetchProfile,
+  fetchScenarios,
+  runScenario,
 } from "@/lib/api";
+import { parseViewUrl, writeViewUrl } from "@/lib/atlas/viewUrl";
 import { gateObservations } from "@/lib/dataGate";
 import { comparePeriodKeys, deltaUnitFor } from "@/lib/format";
+
+const MAX_COMPARE = 3;
+const SIM_SOURCE = {
+  organization: "Brasil Real (motor hipotético)",
+  dataset: "hypothetical_federal_fund_v1",
+  url: "https://github.com/leonardolauriquer/BrasilReal",
+};
+
+function simRowsToObservations(
+  rows: SimuladoRow[],
+  disclaimer: string,
+): Observation[] {
+  return rows.map((row) => ({
+    indicator: "simulado_fund",
+    geography_ibge_code: row.ibge_code,
+    uf: row.uf,
+    name: row.name,
+    value: Number(row.scenario_amount_brl),
+    unit: "BRL",
+    reference_period: "hipótese",
+    status_label: "SIMULADO",
+    source: SIM_SOURCE,
+    dataset_id: "hypothetical_federal_fund_v1",
+    definition: disclaimer,
+    limitations: [
+      "Rateio hipotético. Não é transferência, orçamento nem gasto observado.",
+      "Conserva o orçamento declarado do cenário; sem efeitos comportamentais.",
+    ],
+    short_name: "Fundo hipotético",
+  }));
+}
+
+function matchGeo(rows: Observation[], token: string) {
+  const key = token.trim().toUpperCase();
+  if (!key) return undefined;
+  return rows.find(
+    (r) => r.uf === key || r.geography_ibge_code === key || r.name.toUpperCase() === key,
+  );
+}
 
 const BOOT_MIN_MS = 1200;
 
@@ -69,6 +114,16 @@ export function useAtlasState() {
   const [rankMode, setRankMode] = useState<"nivel" | "delta">("nivel");
   const [prevObs, setPrevObs] = useState<Observation[]>([]);
   const [popByIbge, setPopByIbge] = useState<Map<string, number>>(() => new Map());
+  const [urlReady, setUrlReady] = useState(false);
+  const [compareCodes, setCompareCodes] = useState<string[]>([]);
+  const [simulado, setSimulado] = useState(false);
+  const [simRows, setSimRows] = useState<Observation[]>([]);
+  const [simDisclaimer, setSimDisclaimer] = useState("");
+  const [simTitle, setSimTitle] = useState("");
+  const [series, setSeries] = useState<Observation[]>([]);
+  const pendingYearRef = useRef<string>("");
+  const pendingUfRef = useRef<string>("");
+  const pendingVsRef = useRef<string[]>([]);
 
   const [bootCatalog, setBootCatalog] = useState(false);
   const [bootPeriods, setBootPeriods] = useState(false);
@@ -96,6 +151,18 @@ export function useAtlasState() {
     loadingDepthRef.current = Math.max(0, loadingDepthRef.current - 1);
     if (loadingDepthRef.current === 0) setLoading(false);
   };
+
+  useEffect(() => {
+    const view = parseViewUrl();
+    pendingYearRef.current = view.ano;
+    pendingUfRef.current = view.uf;
+    pendingVsRef.current = view.vs;
+    if (view.camada) setLayer(view.camada);
+    if (view.recorte) setRecorte(view.recorte);
+    if (view.modo === "delta") setRankMode("delta");
+    if (view.sim) setSimulado(true);
+    setUrlReady(true);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -135,7 +202,7 @@ export function useAtlasState() {
   }, []);
 
   useEffect(() => {
-    if (!layer) return;
+    if (!urlReady || !layer) return;
     const seq = ++periodsSeq.current;
     setPeriods([]);
     setYear("");
@@ -148,7 +215,9 @@ export function useAtlasState() {
         const items = data.items || [];
         setPeriods(items);
         const latest = data.latest || items[items.length - 1] || "";
-        setYear(latest);
+        const want = pendingYearRef.current;
+        pendingYearRef.current = "";
+        setYear(want && items.includes(want) ? want : latest);
         setBootPeriods(true);
         if (!latest) {
           setError((prev) => prev || "Nenhum período oficial para esta camada.");
@@ -164,7 +233,7 @@ export function useAtlasState() {
       .finally(() => {
         if (seq === periodsSeq.current) endLoading();
       });
-  }, [layer]);
+  }, [layer, urlReady]);
 
   useEffect(() => {
     if (!layer || !year || !periods.length) return;
@@ -212,6 +281,63 @@ export function useAtlasState() {
       });
   }, [layer, year, periods]);
 
+  useEffect(() => {
+    if (!urlReady || !indicators.length) return;
+    if (layer && !indicators.some((i) => i.id === layer)) setLayer("population");
+  }, [indicators, layer, urlReady]);
+
+  useEffect(() => {
+    if (!selected || !layer || simulado) {
+      setSeries([]);
+      return;
+    }
+    let cancelled = false;
+    fetchObservationSeries(layer, selected)
+      .then((data) => {
+        if (cancelled) return;
+        setSeries(gateObservations(data.items).items);
+      })
+      .catch(() => {
+        if (!cancelled) setSeries([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selected, layer, simulado]);
+
+  useEffect(() => {
+    if (!simulado) {
+      setSimRows([]);
+      setSimDisclaimer("");
+      setSimTitle("");
+      return;
+    }
+    let cancelled = false;
+    fetchScenarios()
+      .then((data) => {
+        if (cancelled) return undefined;
+        const scenario =
+          data.items.find((s) => s.id === "scn_baseline_fund_demo") || data.items[0];
+        if (!scenario) throw new Error("Nenhum cenário hipotético na API.");
+        setSimTitle(scenario.title);
+        setSimDisclaimer(scenario.disclaimer || "");
+        return runScenario(scenario.id, 42);
+      })
+      .then((run) => {
+        if (cancelled || !run) return;
+        setSimDisclaimer(run.disclaimer || "");
+        setSimRows(
+          gateObservations(simRowsToObservations(run.comparison || [], run.disclaimer)).items,
+        );
+      })
+      .catch((err: Error) => {
+        if (!cancelled) setError(err.message);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [simulado]);
+
   const chronoOfficial = useMemo(
     () => [...periods].sort(comparePeriodKeys),
     [periods],
@@ -248,7 +374,7 @@ export function useAtlasState() {
       });
   }, [rankMode, layer, prevPeriod]);
 
-  const showMunicipalities = shouldShowMunicipalities(zoom, selected, layer);
+  const showMunicipalities = !simulado && shouldShowMunicipalities(zoom, selected, layer);
 
   useEffect(() => {
     if (!showMunicipalities || !selected) {
@@ -332,34 +458,59 @@ export function useAtlasState() {
     return rows;
   }, [obs, rankMode, prevObs, prevPeriod, year, recorte]);
 
+  const displayObs = useMemo(
+    () => (simulado && simRows.length ? simRows : viewObs),
+    [simulado, simRows, viewObs],
+  );
+
   const selectedObs = useMemo(
-    () => viewObs.find((o) => o.geography_ibge_code === selected) || null,
-    [viewObs, selected],
+    () => displayObs.find((o) => o.geography_ibge_code === selected) || null,
+    [displayObs, selected],
   );
 
   const mapValues = useMemo(
-    () => viewObs.map((o) => ({ ibge_code: o.geography_ibge_code, value: o.value })),
-    [viewObs],
+    () => displayObs.map((o) => ({ ibge_code: o.geography_ibge_code, value: o.value })),
+    [displayObs],
+  );
+
+  const rankedCodes = useMemo(
+    () =>
+      [...displayObs]
+        .sort((a, b) => compareRankValue(a.value, b.value, simulado ? false : higherIsWorse))
+        .map((r) => r.geography_ibge_code),
+    [displayObs, higherIsWorse, simulado],
+  );
+
+  const compareObs = useMemo(
+    () => compareCodes.map((code) => displayObs.find((r) => r.geography_ibge_code === code)).filter(Boolean) as Observation[],
+    [compareCodes, displayObs],
   );
 
   const regionMode = isRegionRankMode(zoom, showMunicipalities);
 
   const regionRows = useMemo(() => {
-    const valueByIbge = new Map(viewObs.map((o) => [o.geography_ibge_code, o.value]));
+    const valueByIbge = new Map(displayObs.map((o) => [o.geography_ibge_code, o.value]));
     return buildRegionRanking(
       valueByIbge,
-      viewObs.map((o) => ({
+      displayObs.map((o) => ({
         ibge_code: o.geography_ibge_code,
         uf: o.uf,
         unit: o.unit,
       })),
-      viewObs[0]?.unit || activeIndicator?.unit,
-      higherIsWorse,
+      displayObs[0]?.unit || activeIndicator?.unit,
+      higherIsWorse && !simulado,
       popByIbge,
     );
-  }, [viewObs, activeIndicator?.unit, higherIsWorse, popByIbge]);
+  }, [displayObs, activeIndicator?.unit, higherIsWorse, popByIbge, simulado]);
 
   const legendScale = useMemo(() => {
+    if (simulado) {
+      return {
+        low: "menor alocação hipotética",
+        high: "maior alocação hipotética",
+        note: "SIMULADO · não é gasto observado · orçamento do cenário conservado",
+      };
+    }
     if (rankMode === "delta") {
       return {
         low: higherIsWorse ? "maior queda (melhor)" : "maior queda",
@@ -368,7 +519,7 @@ export function useAtlasState() {
       };
     }
     return legendScaleFor(activeIndicator, higherIsWorse);
-  }, [activeIndicator, higherIsWorse, rankMode]);
+  }, [activeIndicator, higherIsWorse, rankMode, simulado]);
 
   const layerTip = useMemo(() => {
     if (!activeIndicator || !hasProvenance(activeIndicator)) return null;
@@ -514,7 +665,84 @@ export function useAtlasState() {
     setObs([]);
     setPrevObs([]);
     setRankMode("nivel");
+    if (simulado) setSimulado(false);
+  }, [simulado]);
+
+  const toggleCompare = useCallback((code: string) => {
+    setCompareCodes((prev) => {
+      if (prev.includes(code)) return prev.filter((c) => c !== code);
+      if (prev.length >= MAX_COMPARE) return [...prev.slice(1), code];
+      return [...prev, code];
+    });
   }, []);
+
+  const selectAdjacent = useCallback(
+    (dir: 1 | -1) => {
+      if (!rankedCodes.length) return;
+      const i = selected ? rankedCodes.indexOf(selected) : -1;
+      const next =
+        i < 0
+          ? rankedCodes[dir === 1 ? 0 : rankedCodes.length - 1]
+          : rankedCodes[(i + dir + rankedCodes.length) % rankedCodes.length];
+      if (next) onSelect(next);
+    },
+    [onSelect, rankedCodes, selected],
+  );
+
+  const toggleSimulado = useCallback((on: boolean) => {
+    setSimulado(on);
+    if (on) setRankMode("nivel");
+  }, []);
+
+  useEffect(() => {
+    if (!obs.length) return;
+    const ufToken = pendingUfRef.current;
+    const vsTokens = pendingVsRef.current;
+    if (ufToken) {
+      pendingUfRef.current = "";
+      const hit = matchGeo(obs, ufToken);
+      if (hit) onSelect(hit.geography_ibge_code);
+    }
+    if (vsTokens.length) {
+      pendingVsRef.current = [];
+      const codes = vsTokens
+        .map((t) => matchGeo(obs, t)?.geography_ibge_code)
+        .filter((c): c is string => Boolean(c))
+        .slice(0, MAX_COMPARE);
+      if (codes.length) setCompareCodes(codes);
+    }
+  }, [obs, onSelect]);
+
+  useEffect(() => {
+    if (!urlReady || !year) return;
+    const geoPool = simulado && simRows.length ? simRows : obs;
+    const uf =
+      geoPool.find((r) => r.geography_ibge_code === selected)?.uf || selectedObs?.uf || "";
+    const vs = compareCodes
+      .map((code) => geoPool.find((r) => r.geography_ibge_code === code)?.uf)
+      .filter((s): s is string => Boolean(s));
+    writeViewUrl({
+      camada: layer,
+      ano: year,
+      uf,
+      recorte,
+      modo: rankMode,
+      vs,
+      sim: simulado,
+    });
+  }, [
+    compareCodes,
+    layer,
+    obs,
+    rankMode,
+    recorte,
+    selected,
+    selectedObs?.uf,
+    simRows,
+    simulado,
+    urlReady,
+    year,
+  ]);
 
   const yearOptions = useMemo(() => {
     const chrono = [...periods].sort(comparePeriodKeys);
@@ -615,10 +843,17 @@ export function useAtlasState() {
     // derived
     recorte,
     rankMode,
-    canDelta,
+    canDelta: canDelta && !simulado,
     prevPeriod,
     recorteCaption: recorteLabel(recorte),
     viewObs,
+    displayObs,
+    compareCodes,
+    compareObs,
+    series,
+    simulado,
+    simTitle,
+    simDisclaimer,
     popByIbge,
     showMunicipalities,
     regionMode,
@@ -627,7 +862,7 @@ export function useAtlasState() {
     activeIndicator,
     indicatorGroups,
     rankingGroups,
-    higherIsWorse,
+    higherIsWorse: simulado ? false : higherIsWorse,
     selectedObs,
     legendScale,
     layerTip,
@@ -655,5 +890,8 @@ export function useAtlasState() {
     onSelectMunicipality,
     closeCard,
     fitBrazil,
+    toggleCompare,
+    selectAdjacent,
+    toggleSimulado,
   };
 }

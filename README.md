@@ -90,7 +90,8 @@ No desenvolvimento local, **não** defina `NEXT_PUBLIC_API_URL` — o Next faz p
 
 - **Site:** https://brasilreal-atlas.web.app  
 - **API:** https://brasil-real-api-928790342045.southamerica-east1.run.app  
-- Redeploy: [`docs/deploy-firebase.md`](docs/deploy-firebase.md) ou `scripts/deploy-firebase.ps1`
+- Vista compartilhada: `?camada=&ano=&uf=&recorte=&modo=&vs=&sim=1` na home. `sim=1` abre o fundo hipotético (rótulo SIMULADO).  
+- Redeploy: [`docs/deploy-firebase.md`](docs/deploy-firebase.md) ou `scripts/deploy-firebase.ps1``
 
 <details>
 <summary><strong>Docker Compose</strong> (web + api + Postgres/PostGIS)</summary>

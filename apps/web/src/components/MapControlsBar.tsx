@@ -33,6 +33,14 @@ type Props = {
   rankMode: "nivel" | "delta";
   onChangeRankMode: (mode: "nivel" | "delta") => void;
   canDelta: boolean;
+  sheet?: boolean;
+  peekLabel?: string;
+  onToggleSheet?: () => void;
+  onOpenSearch?: () => void;
+  onExportPng?: () => void;
+  onCopyLink?: () => void;
+  simulado?: boolean;
+  onToggleSimulado?: () => void;
 };
 
 export function MapControlsBar({
@@ -56,9 +64,35 @@ export function MapControlsBar({
   rankMode,
   onChangeRankMode,
   canDelta,
+  sheet = false,
+  peekLabel,
+  onToggleSheet,
+  onOpenSearch,
+  onExportPng,
+  onCopyLink,
+  simulado = false,
+  onToggleSimulado,
 }: Props) {
   return (
-    <div className="map-controls">
+    <>
+      {onToggleSheet ? (
+        <button
+          type="button"
+          className="chrome-peek"
+          onClick={onToggleSheet}
+          aria-expanded={sheet}
+        >
+          {peekLabel || "Filtros"}
+        </button>
+      ) : null}
+      <div className={`map-controls ${sheet ? "is-sheet" : ""}`}>
+      {onToggleSheet ? (
+        <div className="control-hint control-hint--sheet">
+          <button type="button" className="fit-brazil" onClick={onToggleSheet}>
+            Fechar
+          </button>
+        </div>
+      ) : null}
       {rankingGroups.length ? (
         <div className="control-block control-block--leitura">
           <span>
@@ -151,6 +185,30 @@ export function MapControlsBar({
         <button type="button" className="dossier-open" onClick={onOpenDossier}>
           Dossiê
         </button>
+        {onOpenSearch ? (
+          <button type="button" className="dossier-open" onClick={onOpenSearch}>
+            Busca
+          </button>
+        ) : null}
+        {onCopyLink ? (
+          <button type="button" className="dossier-open" onClick={onCopyLink}>
+            Copiar vista
+          </button>
+        ) : null}
+        {onExportPng ? (
+          <button type="button" className="dossier-open" onClick={onExportPng}>
+            PNG
+          </button>
+        ) : null}
+        {onToggleSimulado ? (
+          <button
+            type="button"
+            className={`dossier-open ${simulado ? "is-sim" : ""}`}
+            onClick={onToggleSimulado}
+          >
+            Simulado
+          </button>
+        ) : null}
         {showInstallApp && onInstallApp ? (
           <button type="button" className="pwa-open" onClick={onInstallApp}>
             Instalar app
@@ -162,6 +220,7 @@ export function MapControlsBar({
         </span>
       </div>
     </div>
+    </>
   );
 }
 

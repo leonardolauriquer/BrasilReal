@@ -23,11 +23,11 @@ export function mapChromePadding(cardOpen = false): ChromePadding {
   const phone = w < VIEW.phone;
 
   if (compact) {
-    const sheet = cardOpen ? Math.min(h * 0.5, 240) : Math.min(h * 0.24, 128);
+    const sheet = cardOpen ? Math.min(h * 0.58, 280) : Math.min(h * 0.24, 128);
     return { top: 70, right: 10, left: 10, bottom: sheet + 16 };
   }
   if (phone) {
-    const sheet = cardOpen ? Math.min(h * 0.5, 420) : Math.min(h * 0.34, 288);
+    const sheet = cardOpen ? Math.min(h * 0.62, 520) : Math.min(h * 0.34, 288);
     return { top: 84, right: 12, left: 12, bottom: sheet + 18 };
   }
   if (w < VIEW.tablet) {
