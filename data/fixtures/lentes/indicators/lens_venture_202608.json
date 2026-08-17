@@ -15,8 +15,8 @@
   "reference_period": "2026-08",
   "reference_date": "2026-08",
   "release_date": null,
-  "retrieved_at": "2026-08-15T22:36:27.060230+00:00",
-  "definition": "Nota 0–100 entre as 27 UFs para a pergunta «empreender». Três blocos com peso igual: (1) dinâmica — Taxa de abertura (IBGE 2022) e Sobrevivência 1 ano (IBGE 2021); (2) mercado formal — PIB per capita (IBGE 2023), Salário formal médio (IBGE 2024) e Informalidade (IBGE 2025) invertida; (3) densidade de empresas formais (CEMPRE 2024 ÷ população 2025, por mil hab.). Exclusive MEI no CEMPRE. Não é ambiente de negócios do Banco Mundial.",
+  "retrieved_at": "2026-08-17T13:28:45.411672+00:00",
+  "definition": "Nota 0–100 entre as 27 UFs para a pergunta «empreender». Três blocos com peso igual: (1) dinâmica — Taxa de abertura (IBGE 2022) e Sobrevivência 1 ano (IBGE 2021); (2) mercado — PIB per capita (IBGE 2023), Salário formal médio (IBGE 2024), Informalidade (IBGE 2025) invertida, Nível de ocupação (IBGE 202602) e Participação (força de trabalho) (IBGE 202602); (3) densidade formal — empresas e pessoal ocupado CEMPRE (2024/2024) ÷ população 2025, por mil hab. Exclusive MEI. Contagens absolutas e tributária/PIB não entram. Não é ambiente de negócios do Banco Mundial.",
   "source": {
     "organization": "Brasil Real",
     "dataset": "Lente empreender = 3 blocos iguais sobre camadas oficiais já no mapa",
@@ -28,174 +28,176 @@
     "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
     "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
     "A cesta DIEESE não entra: é preço da capital, não da UF.",
+    "Contagens absolutas (homicídios de mulheres, empregos totais, PIB total, impostos em R$) não entram: enviesam UFs grandes.",
+    "Tributária/PIB e RFB não entram: não são carga do empreendedor nem qualidade do serviço.",
     "Abertura e sobrevivência de empregadoras (não MEI). Sobrevivência é 2021; nascimentos, 2022."
   ],
   "available_periods": [
     "2026-08"
   ],
-  "checksum_sha256": "4edc57cacc94f63070490e62340dc8405f9353cb9e28ff4beef45e4a7b9c7238",
+  "checksum_sha256": "979038b03e5ad2ee6b8a556beb68683ae4c07868dbf5ab53e786faaafd42d2b0",
   "records": [
     {
       "ibge_code": "11",
       "uf": "RO",
       "name": "Rondônia",
-      "value": 31.6
+      "value": 33.4
     },
     {
       "ibge_code": "12",
       "uf": "AC",
       "name": "Acre",
-      "value": 37.5
+      "value": 37.3
     },
     {
       "ibge_code": "13",
       "uf": "AM",
       "name": "Amazonas",
-      "value": 36.1
+      "value": 41.4
     },
     {
       "ibge_code": "14",
       "uf": "RR",
       "name": "Roraima",
-      "value": 45.7
+      "value": 52.5
     },
     {
       "ibge_code": "15",
       "uf": "PA",
       "name": "Pará",
-      "value": 29.3
+      "value": 34.9
     },
     {
       "ibge_code": "16",
       "uf": "AP",
       "name": "Amapá",
-      "value": 32.1
+      "value": 34.9
     },
     {
       "ibge_code": "17",
       "uf": "TO",
       "name": "Tocantins",
-      "value": 43.4
+      "value": 46.6
     },
     {
       "ibge_code": "21",
       "uf": "MA",
       "name": "Maranhão",
-      "value": 25.3
+      "value": 25.0
     },
     {
       "ibge_code": "22",
       "uf": "PI",
       "name": "Piauí",
-      "value": 28.7
+      "value": 27.1
     },
     {
       "ibge_code": "23",
       "uf": "CE",
       "name": "Ceará",
-      "value": 23.6
+      "value": 22.8
     },
     {
       "ibge_code": "24",
       "uf": "RN",
       "name": "Rio Grande do Norte",
-      "value": 30.7
+      "value": 26.9
     },
     {
       "ibge_code": "25",
       "uf": "PB",
       "name": "Paraíba",
-      "value": 15.4
+      "value": 16.3
     },
     {
       "ibge_code": "26",
       "uf": "PE",
       "name": "Pernambuco",
-      "value": 23.6
+      "value": 22.3
     },
     {
       "ibge_code": "27",
       "uf": "AL",
       "name": "Alagoas",
-      "value": 23.9
+      "value": 23.7
     },
     {
       "ibge_code": "28",
       "uf": "SE",
       "name": "Sergipe",
-      "value": 18.8
+      "value": 21.1
     },
     {
       "ibge_code": "29",
       "uf": "BA",
       "name": "Bahia",
-      "value": 26.4
+      "value": 28.8
     },
     {
       "ibge_code": "31",
       "uf": "MG",
       "name": "Minas Gerais",
-      "value": 35.1
+      "value": 37.5
     },
     {
       "ibge_code": "32",
       "uf": "ES",
       "name": "Espírito Santo",
-      "value": 40.6
+      "value": 42.1
     },
     {
       "ibge_code": "33",
       "uf": "RJ",
       "name": "Rio de Janeiro",
-      "value": 46.9
+      "value": 46.3
     },
     {
       "ibge_code": "35",
       "uf": "SP",
       "name": "São Paulo",
-      "value": 67.0
+      "value": 62.5
     },
     {
       "ibge_code": "41",
       "uf": "PR",
       "name": "Paraná",
-      "value": 49.7
+      "value": 47.9
     },
     {
       "ibge_code": "42",
       "uf": "SC",
       "name": "Santa Catarina",
-      "value": 55.8
+      "value": 54.9
     },
     {
       "ibge_code": "43",
       "uf": "RS",
       "name": "Rio Grande do Sul",
-      "value": 48.8
+      "value": 46.9
     },
     {
       "ibge_code": "50",
       "uf": "MS",
       "name": "Mato Grosso do Sul",
-      "value": 48.8
+      "value": 50.0
     },
     {
       "ibge_code": "51",
       "uf": "MT",
       "name": "Mato Grosso",
-      "value": 53.9
+      "value": 56.2
     },
     {
       "ibge_code": "52",
       "uf": "GO",
       "name": "Goiás",
-      "value": 43.8
+      "value": 46.1
     },
     {
       "ibge_code": "53",
       "uf": "DF",
       "name": "Distrito Federal",
-      "value": 71.1
+      "value": 72.6
     }
   ]
 }

@@ -61,6 +61,13 @@ def test_ipeadata_safety_layers(client):
     assert traffic["count"] == 27
     counts = client.get("/v1/observations?indicator=homicide_count").json()
     assert counts["count"] == 27
+    female = client.get("/v1/observations?indicator=female_homicide_count").json()
+    assert female["count"] == 27
+    assert indicators["female_homicide_count"]["higher_is_worse"] is True
+    assert "feminicídio" not in indicators["female_homicide_count"]["short_name"].lower()
+    sp = next(item for item in obs["items"] if item["uf"] == "SP")
+    if latest == "2024":
+        assert sp["value"] == 6.6
 
 
 def test_periods_expose_latest(client):
@@ -346,6 +353,7 @@ def test_siconfi_fiscal_layers(client):
     keys = (
         "rcl_rreo",
         "receita_tributaria_rreo",
+        "impostos_rreo",
         "transf_uniao_rreo",
         "despesa_empenhada_rreo",
         "dcl_rreo",
@@ -362,6 +370,9 @@ def test_siconfi_fiscal_layers(client):
         assert periods["count"] >= 1, key
     assert all(item["value"] > 0 for item in client.get("/v1/observations?indicator=rcl_rreo").json()["items"])
     assert indicators["dcl_rreo"]["higher_is_worse"] is True
+    trib_obs = {i["uf"]: i["value"] for i in client.get("/v1/observations?indicator=receita_tributaria_rreo").json()["items"]}
+    tax_obs = {i["uf"]: i["value"] for i in client.get("/v1/observations?indicator=impostos_rreo").json()["items"]}
+    assert tax_obs["SP"] <= trib_obs["SP"]
 
 
 def test_cgu_union_transfer_layers(client):
@@ -422,6 +433,10 @@ def test_health_and_security_extra_layers(client):
         ("pns_violence", "seguranca", "2019"),
         ("pns_alcohol", "saude", "2019"),
         ("pns_hypertension", "saude", "2019"),
+        ("pns_physical_violence", "seguranca", "2019"),
+        ("pns_physical_women", "seguranca", "2019"),
+        ("pns_psych_violence", "seguranca", "2019"),
+        ("pns_sexual_lifetime", "seguranca", "2019"),
     ):
         assert key in indicators, key
         assert indicators[key]["group"] == group
@@ -561,6 +576,15 @@ def test_census_pnadc_wave_layers(client):
     assert all(item["value"] > 0 for item in labor["items"])
     labor_periods = client.get("/v1/indicators/labor_income/periods").json()
     assert labor_periods["count"] >= 2
+    occ = client.get("/v1/observations?indicator=occupancy_rate").json()
+    part = client.get("/v1/observations?indicator=participation_rate").json()
+    assert occ["count"] == part["count"] == 27
+    assert indicators["occupancy_rate"]["unit"] == "%"
+    assert indicators["participation_rate"]["unit"] == "%"
+    assert all(0 < item["value"] < 100 for item in occ["items"])
+    assert all(0 < item["value"] < 100 for item in part["items"])
+    occ_by = {i["uf"]: i["value"] for i in occ["items"]}
+    assert occ_by["SC"] > occ_by["PE"]
 
 
 def test_cempre_formal_wage_and_firms(client):
@@ -577,6 +601,12 @@ def test_cempre_formal_wage_and_firms(client):
     assert all(item["value"] > 0 for item in firms["items"])
     by_f = {i["uf"]: i["value"] for i in firms["items"]}
     assert by_f["SP"] > by_f["AM"]
+    jobs = client.get("/v1/observations?indicator=cempre_jobs").json()
+    assert jobs["count"] == 27
+    assert indicators["cempre_jobs"]["unit"] == "pessoas"
+    assert all(item["value"] > 0 for item in jobs["items"])
+    by_j = {i["uf"]: i["value"] for i in jobs["items"]}
+    assert by_j["SP"] > by_j["RR"]
 
 
 def test_housing_firm_demography_and_capital_basket(client):
@@ -635,6 +665,10 @@ def test_editorial_lenses_live_and_venture(client):
             ]
         ).lower()
         assert "idhm" in blob or "ranking oficial" in blob or "receita" in blob
+        if key == "lens_live":
+            assert "pns" in blob or "violência" in blob or "violencia" in blob
+        if key == "lens_venture":
+            assert "ocup" in blob or "emprego" in blob or "pessoal" in blob
         obs = client.get(f"/v1/observations?indicator={key}").json()
         assert obs["count"] == 27, key
         vals = [item["value"] for item in obs["items"]]
@@ -648,13 +682,16 @@ def test_editorial_lenses_live_and_venture(client):
 
 def test_derived_fiscal_ratios_and_family_aging_lenses(client):
     indicators = {i["id"]: i for i in client.get("/v1/indicators").json()["items"]}
-    for key in ("rcl_pc", "trib_share_rcl", "dcl_rcl"):
+    for key in ("rcl_pc", "trib_share_rcl", "dcl_rcl", "trib_pc", "trib_pib_share", "pib_share"):
         assert key in indicators, key
         assert indicators[key]["status_label"] == "DERIVADO"
         obs = client.get(f"/v1/observations?indicator={key}").json()
         assert obs["count"] == 27, key
         assert all(item.get("definition") for item in obs["items"])
     assert indicators["rcl_pc"]["unit"] == "BRL/hab"
+    assert indicators["trib_pc"]["unit"] == "BRL/hab"
+    assert indicators["trib_pib_share"]["unit"] == "% do PIB"
+    assert indicators["pib_share"]["unit"] == "% do PIB"
     assert indicators["trib_share_rcl"]["unit"] == "% da RCL"
     assert indicators["dcl_rcl"]["unit"] == "DCL/RCL"
     assert indicators["dcl_rcl"]["higher_is_worse"] is True
@@ -664,8 +701,19 @@ def test_derived_fiscal_ratios_and_family_aging_lenses(client):
     assert abs(pc["SP"] - rcl["SP"] / pop["SP"]) < 1e-6
     trib = {i["uf"]: i["value"] for i in client.get("/v1/observations?indicator=trib_share_rcl").json()["items"]}
     assert 0 < trib["SP"] < 200
+    trib_pc = {i["uf"]: i["value"] for i in client.get("/v1/observations?indicator=trib_pc").json()["items"]}
+    trib_brl = {i["uf"]: i["value"] for i in client.get("/v1/observations?indicator=receita_tributaria_rreo").json()["items"]}
+    assert abs(trib_pc["SP"] - trib_brl["SP"] / pop["SP"]) < 1e-6
     assert indicators["lens_family"]["status_label"] == "DERIVADO"
     assert indicators["lens_aging"]["higher_is_worse"] is True
+    fam_blob = " ".join(
+        [
+            indicators["lens_family"].get("definition") or "",
+            *(indicators["lens_family"].get("limitations") or []),
+        ]
+    ).lower()
+    assert "pns" in fam_blob or "mulher" in fam_blob
+    assert "ideb" in fam_blob
     fam = client.get("/v1/observations?indicator=lens_family").json()
     age = client.get("/v1/observations?indicator=lens_aging").json()
     assert fam["count"] == age["count"] == 27

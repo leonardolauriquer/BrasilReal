@@ -1,203 +1,197 @@
 {
-  "indicator_id": "lens_aging",
-  "dataset_id": "brasilreal.lens_aging.2026-08",
-  "title": "Pressão etária (lente Brasil Real) — UFs 2026-08",
-  "short_name": "Pressão etária",
-  "name": "Pressão etária (lente Brasil Real)",
-  "status_label": "DERIVADO",
-  "evidence_grade": "B",
-  "unit": "nota 0-100",
+  "indicator_id": "pns_physical_violence",
+  "dataset_id": "ibge.pns_physical_violence.2019",
+  "title": "Pessoas de 18+ que sofreram violência física nos últimos 12 meses — PNS 2019 — UFs 2019",
+  "short_name": "Violência física (PNS 2019)",
+  "name": "Pessoas de 18+ que sofreram violência física nos últimos 12 meses — PNS 2019",
+  "status_label": "ESTIMADO",
+  "evidence_grade": "A",
+  "unit": "%",
   "higher_is_worse": true,
-  "kind": "derived",
-  "group": "lentes",
-  "group_label": "Lentes (pesos declarados)",
+  "kind": "observed_estimate",
+  "group": "seguranca",
+  "group_label": "Segurança",
   "frequency": "irregular",
-  "reference_period": "2026-08",
-  "reference_date": "2026-08",
+  "reference_period": "2019",
+  "reference_date": "2019",
   "release_date": null,
-  "retrieved_at": "2026-08-17T13:28:45.419741+00:00",
-  "definition": "Nota 0–100 de pressão etária (maior = mais pressão): média min–máx de 60 anos ou mais (IBGE 2022), Envelhecimento (IBGE 2022) e Dependência etária (IBGE 2022). Não é «melhor para idoso» nem qualidade do SUS.",
+  "retrieved_at": "2026-08-17T13:02:09.307082+00:00",
+  "definition": "Percentual de pessoas de 18 anos ou mais de idade que sofreram violência física nos últimos 12 meses (PNS 2019, SIDRA 8058 / variável 11458, sexo total, situação total). Não é assalto/roubo policial nem homicídio.",
   "source": {
-    "organization": "Brasil Real",
-    "dataset": "Lente pressão etária = 60+, envelhecimento e dependência",
-    "url": "https://brasilreal-atlas.web.app"
+    "organization": "IBGE",
+    "dataset": "PNS 2019 SIDRA 8058 / var 11458",
+    "dataset_page": "https://sidra.ibge.gov.br/tabela/8058",
+    "url": "https://sidra.ibge.gov.br/tabela/8058",
+    "api_url": "https://apisidra.ibge.gov.br/values/t/8058/n3/all/v/11458/p/2019/c2/6794/c1/6795?formato=json"
   },
   "limitations": [
-    "Não é ranking oficial, IDHM nem «melhor estado» do IBGE — é receita editorial do Brasil Real.",
-    "Pesos iguais entre blocos. Dentro do bloco, média simples das camadas oficiais já no mapa.",
-    "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
-    "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
-    "A cesta DIEESE não entra: é preço da capital, não da UF.",
-    "Contagens absolutas (homicídios de mulheres, empregos totais, PIB total, impostos em R$) não entram: enviesam UFs grandes.",
-    "Tributária/PIB e RFB não entram: não são carga do empreendedor nem qualidade do serviço.",
-    "Maior nota = mais pressão, não melhor qualidade de vida do idoso."
+    "Retrato da PNS 2019 — violência física autorreferida, não BO de assalto.",
+    "Não há série nacional UF de «assalto a pessoa» no SIDRA; o SINESP VDE publica roubos específicos (veículo, carga, etc.), não esse recorte.",
+    "Estimativa amostral; subnotificação por medo ou estigma é possível."
   ],
-  "available_periods": [
-    "2026-08"
-  ],
-  "checksum_sha256": "d4473d16a48a80d1a289fc6daa11bab422a49acca9dbafdeb90ac80ef2444e64",
+  "checksum_sha256": "390b529bf4f2776c68483798e3d44b66a3295a61f4ef0f588eb218d45ff26e8c",
   "records": [
     {
       "ibge_code": "11",
       "uf": "RO",
       "name": "Rondônia",
-      "value": 36.3
+      "value": 3.4
     },
     {
       "ibge_code": "12",
       "uf": "AC",
       "name": "Acre",
-      "value": 31.1
+      "value": 2.8
     },
     {
       "ibge_code": "13",
       "uf": "AM",
       "name": "Amazonas",
-      "value": 30.7
+      "value": 4.3
     },
     {
       "ibge_code": "14",
       "uf": "RR",
       "name": "Roraima",
-      "value": 30.4
+      "value": 5.5
     },
     {
       "ibge_code": "15",
       "uf": "PA",
       "name": "Pará",
-      "value": 33.3
+      "value": 5.4
     },
     {
       "ibge_code": "16",
       "uf": "AP",
       "name": "Amapá",
-      "value": 22.6
+      "value": 4.8
     },
     {
       "ibge_code": "17",
       "uf": "TO",
       "name": "Tocantins",
-      "value": 44.4
+      "value": 4.0
     },
     {
       "ibge_code": "21",
       "uf": "MA",
       "name": "Maranhão",
-      "value": 46.3
+      "value": 4.6
     },
     {
       "ibge_code": "22",
       "uf": "PI",
       "name": "Piauí",
-      "value": 60.1
+      "value": 5.3
     },
     {
       "ibge_code": "23",
       "uf": "CE",
       "name": "Ceará",
-      "value": 54.1
+      "value": 3.8
     },
     {
       "ibge_code": "24",
       "uf": "RN",
       "name": "Rio Grande do Norte",
-      "value": 54.9
+      "value": 3.9
     },
     {
       "ibge_code": "25",
       "uf": "PB",
       "name": "Paraíba",
-      "value": 64.4
+      "value": 2.7
     },
     {
       "ibge_code": "26",
       "uf": "PE",
       "name": "Pernambuco",
-      "value": 55.8
+      "value": 3.2
     },
     {
       "ibge_code": "27",
       "uf": "AL",
       "name": "Alagoas",
-      "value": 47.9
+      "value": 3.4
     },
     {
       "ibge_code": "28",
       "uf": "SE",
       "name": "Sergipe",
-      "value": 42.8
+      "value": 5.8
     },
     {
       "ibge_code": "29",
       "uf": "BA",
       "name": "Bahia",
-      "value": 58.9
+      "value": 6.1
     },
     {
       "ibge_code": "31",
       "uf": "MG",
       "name": "Minas Gerais",
-      "value": 76.2
+      "value": 3.5
     },
     {
       "ibge_code": "32",
       "uf": "ES",
       "name": "Espírito Santo",
-      "value": 66.8
+      "value": 4.0
     },
     {
       "ibge_code": "33",
       "uf": "RJ",
       "name": "Rio de Janeiro",
-      "value": 86.2
+      "value": 4.0
     },
     {
       "ibge_code": "35",
       "uf": "SP",
       "name": "São Paulo",
-      "value": 69.4
+      "value": 4.2
     },
     {
       "ibge_code": "41",
       "uf": "PR",
       "name": "Paraná",
-      "value": 66.9
+      "value": 4.4
     },
     {
       "ibge_code": "42",
       "uf": "SC",
       "name": "Santa Catarina",
-      "value": 54.1
+      "value": 3.1
     },
     {
       "ibge_code": "43",
       "uf": "RS",
       "name": "Rio Grande do Sul",
-      "value": 100.0
+      "value": 3.7
     },
     {
       "ibge_code": "50",
       "uf": "MS",
       "name": "Mato Grosso do Sul",
-      "value": 55.1
+      "value": 4.0
     },
     {
       "ibge_code": "51",
       "uf": "MT",
       "name": "Mato Grosso",
-      "value": 33.2
+      "value": 3.6
     },
     {
       "ibge_code": "52",
       "uf": "GO",
       "name": "Goiás",
-      "value": 41.6
+      "value": 4.1
     },
     {
       "ibge_code": "53",
       "uf": "DF",
       "name": "Distrito Federal",
-      "value": 29.2
+      "value": 4.3
     }
   ]
 }

@@ -1,203 +1,197 @@
 {
-  "indicator_id": "lens_aging",
-  "dataset_id": "brasilreal.lens_aging.2026-08",
-  "title": "Pressão etária (lente Brasil Real) — UFs 2026-08",
-  "short_name": "Pressão etária",
-  "name": "Pressão etária (lente Brasil Real)",
+  "indicator_id": "pib_share",
+  "dataset_id": "brasilreal.pib_share.2023",
+  "title": "Participação da UF no PIB nacional — UFs 2023",
+  "short_name": "Peso no PIB Brasil",
+  "name": "Participação da UF no PIB nacional",
   "status_label": "DERIVADO",
   "evidence_grade": "B",
-  "unit": "nota 0-100",
-  "higher_is_worse": true,
+  "unit": "% do PIB",
+  "higher_is_worse": false,
   "kind": "derived",
-  "group": "lentes",
-  "group_label": "Lentes (pesos declarados)",
-  "frequency": "irregular",
-  "reference_period": "2026-08",
-  "reference_date": "2026-08",
+  "group": "economia",
+  "group_label": "Economia",
+  "frequency": "annual",
+  "reference_period": "2023",
+  "reference_date": "2023",
   "release_date": null,
-  "retrieved_at": "2026-08-17T13:28:45.419741+00:00",
-  "definition": "Nota 0–100 de pressão etária (maior = mais pressão): média min–máx de 60 anos ou mais (IBGE 2022), Envelhecimento (IBGE 2022) e Dependência etária (IBGE 2022). Não é «melhor para idoso» nem qualidade do SUS.",
+  "retrieved_at": "2026-08-17T13:20:10.959066+00:00",
+  "available_periods": [
+    "2023"
+  ],
+  "definition": "PIB a preços correntes da UF (IBGE contas regionais 2023, agregado 5938 / var 37) dividido pelo PIB do Brasil na mesma publicação. Razão local; a tabela não publica essa participação como variável própria para o mapa.",
   "source": {
     "organization": "Brasil Real",
-    "dataset": "Lente pressão etária = 60+, envelhecimento e dependência",
-    "url": "https://brasilreal-atlas.web.app"
+    "dataset": "PIB UF 2023 ÷ PIB Brasil 2023 (IBGE 5938/37)",
+    "url": "https://sidra.ibge.gov.br/tabela/5938"
   },
   "limitations": [
-    "Não é ranking oficial, IDHM nem «melhor estado» do IBGE — é receita editorial do Brasil Real.",
-    "Pesos iguais entre blocos. Dentro do bloco, média simples das camadas oficiais já no mapa.",
-    "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
-    "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
-    "A cesta DIEESE não entra: é preço da capital, não da UF.",
-    "Contagens absolutas (homicídios de mulheres, empregos totais, PIB total, impostos em R$) não entram: enviesam UFs grandes.",
-    "Tributária/PIB e RFB não entram: não são carga do empreendedor nem qualidade do serviço.",
-    "Maior nota = mais pressão, não melhor qualidade de vida do idoso."
+    "Participação nominal no PIB nacional — não é crescimento nem PIB per capita.",
+    "UFs grandes dominam; compare também PIB per capita."
   ],
-  "available_periods": [
-    "2026-08"
-  ],
-  "checksum_sha256": "d4473d16a48a80d1a289fc6daa11bab422a49acca9dbafdeb90ac80ef2444e64",
+  "checksum_sha256": "b47eb10cd6f0dcecab807d093a479c826b8988b002db77bedc0b88d00a54c22d",
   "records": [
     {
       "ibge_code": "11",
       "uf": "RO",
       "name": "Rondônia",
-      "value": 36.3
+      "value": 0.6987
     },
     {
       "ibge_code": "12",
       "uf": "AC",
       "name": "Acre",
-      "value": 31.1
+      "value": 0.2402
     },
     {
       "ibge_code": "13",
       "uf": "AM",
       "name": "Amazonas",
-      "value": 30.7
+      "value": 1.4785
     },
     {
       "ibge_code": "14",
       "uf": "RR",
       "name": "Roraima",
-      "value": 30.4
+      "value": 0.2296
     },
     {
       "ibge_code": "15",
       "uf": "PA",
       "name": "Pará",
-      "value": 33.3
+      "value": 2.326
     },
     {
       "ibge_code": "16",
       "uf": "AP",
       "name": "Amapá",
-      "value": 22.6
+      "value": 0.256
     },
     {
       "ibge_code": "17",
       "uf": "TO",
       "name": "Tocantins",
-      "value": 44.4
+      "value": 0.5877
     },
     {
       "ibge_code": "21",
       "uf": "MA",
       "name": "Maranhão",
-      "value": 46.3
+      "value": 1.3636
     },
     {
       "ibge_code": "22",
       "uf": "PI",
       "name": "Piauí",
-      "value": 60.1
+      "value": 0.7394
     },
     {
       "ibge_code": "23",
       "uf": "CE",
       "name": "Ceará",
-      "value": 54.1
+      "value": 2.1222
     },
     {
       "ibge_code": "24",
       "uf": "RN",
       "name": "Rio Grande do Norte",
-      "value": 54.9
+      "value": 0.9297
     },
     {
       "ibge_code": "25",
       "uf": "PB",
       "name": "Paraíba",
-      "value": 64.4
+      "value": 0.886
     },
     {
       "ibge_code": "26",
       "uf": "PE",
       "name": "Pernambuco",
-      "value": 55.8
+      "value": 2.4716
     },
     {
       "ibge_code": "27",
       "uf": "AL",
       "name": "Alagoas",
-      "value": 47.9
+      "value": 0.8196
     },
     {
       "ibge_code": "28",
       "uf": "SE",
       "name": "Sergipe",
-      "value": 42.8
+      "value": 0.5557
     },
     {
       "ibge_code": "29",
       "uf": "BA",
       "name": "Bahia",
-      "value": 58.9
+      "value": 3.9384
     },
     {
       "ibge_code": "31",
       "uf": "MG",
       "name": "Minas Gerais",
-      "value": 76.2
+      "value": 8.8819
     },
     {
       "ibge_code": "32",
       "uf": "ES",
       "name": "Espírito Santo",
-      "value": 66.8
+      "value": 1.9174
     },
     {
       "ibge_code": "33",
       "uf": "RJ",
       "name": "Rio de Janeiro",
-      "value": 86.2
+      "value": 10.7177
     },
     {
       "ibge_code": "35",
       "uf": "SP",
       "name": "São Paulo",
-      "value": 69.4
+      "value": 31.4786
     },
     {
       "ibge_code": "41",
       "uf": "PR",
       "name": "Paraná",
-      "value": 66.9
+      "value": 6.1308
     },
     {
       "ibge_code": "42",
       "uf": "SC",
       "name": "Santa Catarina",
-      "value": 54.1
+      "value": 4.6914
     },
     {
       "ibge_code": "43",
       "uf": "RS",
       "name": "Rio Grande do Sul",
-      "value": 100.0
+      "value": 5.9407
     },
     {
       "ibge_code": "50",
       "uf": "MS",
       "name": "Mato Grosso do Sul",
-      "value": 55.1
+      "value": 1.6851
     },
     {
       "ibge_code": "51",
       "uf": "MT",
       "name": "Mato Grosso",
-      "value": 33.2
+      "value": 2.4947
     },
     {
       "ibge_code": "52",
       "uf": "GO",
       "name": "Goiás",
-      "value": 41.6
+      "value": 3.0772
     },
     {
       "ibge_code": "53",
       "uf": "DF",
       "name": "Distrito Federal",
-      "value": 29.2
+      "value": 3.3415
     }
   ]
 }

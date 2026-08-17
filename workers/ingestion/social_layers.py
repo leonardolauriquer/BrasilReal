@@ -703,6 +703,67 @@ SIDRA_PERCENT_SPECS: dict[str, dict[str, Any]] = {
             "Não confundir com desocupação (tabela 4099).",
         ],
     },
+    "occupancy_rate": {
+        "name": "Nível da ocupação (14 anos ou mais)",
+        "short_name": "Nível de ocupação",
+        "unit": "%",
+        "status_label": "ESTIMADO",
+        "higher_is_worse": False,
+        "kind": "observed_estimate",
+        "group": "economia",
+        "group_label": "Economia / demografia",
+        "frequency": "quarterly",
+        "dataset_id": "ibge.occupancy_rate.{period}",
+        "table": "4093",
+        "variable": "4097",
+        "period": "all",
+        "class_path": "c2/6794",
+        "definition": (
+            "Nível da ocupação na semana de referência das pessoas de 14 anos ou mais "
+            "(PNAD Contínua trimestral, SIDRA 4093 / variável 4097, sexo total): ocupados "
+            "divididos pela população de 14 anos ou mais."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "PNADC SIDRA 4093 / var 4097 / sexo total",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/4093",
+            "url": "https://sidra.ibge.gov.br/tabela/4093",
+        },
+        "limitations": [
+            "Não é o complemento da desocupação: o denominador é a população 14+, não a força de trabalho.",
+            "Estimativa amostral trimestral; sazonalidade.",
+        ],
+    },
+    "participation_rate": {
+        "name": "Taxa de participação na força de trabalho (14 anos ou mais)",
+        "short_name": "Participação (força de trabalho)",
+        "unit": "%",
+        "status_label": "ESTIMADO",
+        "higher_is_worse": False,
+        "kind": "observed_estimate",
+        "group": "economia",
+        "group_label": "Economia / demografia",
+        "frequency": "quarterly",
+        "dataset_id": "ibge.participation_rate.{period}",
+        "table": "4093",
+        "variable": "4096",
+        "period": "all",
+        "class_path": "c2/6794",
+        "definition": (
+            "Taxa de participação na força de trabalho na semana de referência das pessoas "
+            "de 14 anos ou mais (PNAD Contínua trimestral, SIDRA 4093 / variável 4096, sexo total)."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "PNADC SIDRA 4093 / var 4096 / sexo total",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/4093",
+            "url": "https://sidra.ibge.gov.br/tabela/4093",
+        },
+        "limitations": [
+            "Força de trabalho / população 14+ — não é taxa de emprego nem desocupação.",
+            "Estimativa amostral trimestral.",
+        ],
+    },
     "higher_education_share": {
         "name": "Pessoas de 14 anos ou mais com superior completo",
         "short_name": "Superior completo",
@@ -853,6 +914,134 @@ SIDRA_PERCENT_SPECS: dict[str, dict[str, Any]] = {
             "Retrato da PNS 2019 — não é série anual do SIM nem Anuário FBSP.",
             "Violência autorreferida (física, psicológica, sexual etc. no questionário PNS); não confundir com homicídios.",
             "Estimativa amostral; subnotificação por medo ou estigma é possível.",
+        ],
+    },
+    "pns_physical_violence": {
+        "name": "Pessoas de 18+ que sofreram violência física nos últimos 12 meses — PNS 2019",
+        "short_name": "Violência física (PNS 2019)",
+        "unit": "%",
+        "status_label": "ESTIMADO",
+        "higher_is_worse": True,
+        "kind": "observed_estimate",
+        "group": "seguranca",
+        "group_label": "Segurança",
+        "frequency": "irregular",
+        "dataset_id": "ibge.pns_physical_violence.{period}",
+        "table": "8058",
+        "variable": "11458",
+        "period": "2019",
+        "class_path": "c2/6794/c1/6795",
+        "definition": (
+            "Percentual de pessoas de 18 anos ou mais de idade que sofreram violência física "
+            "nos últimos 12 meses (PNS 2019, SIDRA 8058 / variável 11458, sexo total, "
+            "situação total). Não é assalto/roubo policial nem homicídio."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "PNS 2019 SIDRA 8058 / var 11458",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/8058",
+            "url": "https://sidra.ibge.gov.br/tabela/8058",
+        },
+        "limitations": [
+            "Retrato da PNS 2019 — violência física autorreferida, não BO de assalto.",
+            "Não há série nacional UF de «assalto a pessoa» no SIDRA; o SINESP VDE publica "
+            "roubos específicos (veículo, carga, etc.), não esse recorte.",
+            "Estimativa amostral; subnotificação por medo ou estigma é possível.",
+        ],
+    },
+    "pns_physical_women": {
+        "name": "Mulheres de 18+ que sofreram violência física nos últimos 12 meses — PNS 2019",
+        "short_name": "Violência física — mulheres (PNS 2019)",
+        "unit": "%",
+        "status_label": "ESTIMADO",
+        "higher_is_worse": True,
+        "kind": "observed_estimate",
+        "group": "seguranca",
+        "group_label": "Segurança",
+        "frequency": "irregular",
+        "dataset_id": "ibge.pns_physical_women.{period}",
+        "table": "8058",
+        "variable": "11458",
+        "period": "2019",
+        "class_path": "c2/110096/c1/6795",
+        "definition": (
+            "Percentual de mulheres de 18 anos ou mais de idade que sofreram violência física "
+            "nos últimos 12 meses (PNS 2019, SIDRA 8058 / variável 11458, sexo feminino, "
+            "situação total). Não é feminicídio."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "PNS 2019 SIDRA 8058 / var 11458 / sexo feminino",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/8058",
+            "url": "https://sidra.ibge.gov.br/tabela/8058",
+        },
+        "limitations": [
+            "Não é feminicídio (categoria penal) nem homicídio de mulheres do SIM.",
+            "Retrato amostral de 2019; violência física autorreferida.",
+        ],
+    },
+    "pns_psych_violence": {
+        "name": "Pessoas de 18+ que sofreram violência psicológica nos últimos 12 meses — PNS 2019",
+        "short_name": "Violência psicológica (PNS 2019)",
+        "unit": "%",
+        "status_label": "ESTIMADO",
+        "higher_is_worse": True,
+        "kind": "observed_estimate",
+        "group": "seguranca",
+        "group_label": "Segurança",
+        "frequency": "irregular",
+        "dataset_id": "ibge.pns_psych_violence.{period}",
+        "table": "8049",
+        "variable": "11445",
+        "period": "2019",
+        "class_path": "c2/6794/c1/6795",
+        "definition": (
+            "Percentual de pessoas de 18 anos ou mais de idade que sofreram violência "
+            "psicológica nos últimos 12 meses (PNS 2019, SIDRA 8049 / variável 11445, "
+            "sexo total, situação total)."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "PNS 2019 SIDRA 8049 / var 11445",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/8049",
+            "url": "https://sidra.ibge.gov.br/tabela/8049",
+        },
+        "limitations": [
+            "Retrato da PNS 2019; autorreferida — não é registro policial.",
+            "Estimativa amostral; não confundir com violência física nem homicídio.",
+        ],
+    },
+    "pns_sexual_lifetime": {
+        "name": "Pessoas de 18+ que sofreram violência sexual alguma vez na vida — PNS 2019",
+        "short_name": "Violência sexual na vida (PNS 2019)",
+        "unit": "%",
+        "status_label": "ESTIMADO",
+        "higher_is_worse": True,
+        "kind": "observed_estimate",
+        "group": "seguranca",
+        "group_label": "Segurança",
+        "frequency": "irregular",
+        "dataset_id": "ibge.pns_sexual_lifetime.{period}",
+        "table": "8076",
+        "variable": "11482",
+        "period": "2019",
+        "class_path": "c2/6794/c1/6795",
+        "definition": (
+            "Percentual de pessoas de 18 anos ou mais de idade que sofreram violência sexual "
+            "alguma vez na vida (PNS 2019, SIDRA 8076 / variável 11482, sexo total, "
+            "situação total). A tabela de violência sexual nos últimos 12 meses (SIDRA 8067) "
+            "não tem recorte UF — por isso este mapa usa a prevalência na vida."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "PNS 2019 SIDRA 8076 / var 11482",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/8076",
+            "url": "https://sidra.ibge.gov.br/tabela/8076",
+        },
+        "limitations": [
+            "É prevalência na vida, não incidência nos últimos 12 meses.",
+            "SIDRA 8067 (12 meses) não publica UF — não inventamos esse recorte.",
+            "Autorreferida; amostral; subnotificação por medo ou estigma é possível.",
         ],
     },
     "pns_alcohol": {
@@ -1285,6 +1474,36 @@ SIDRA_VALUE_SPECS: dict[str, dict[str, Any]] = {
             "Não incluir MEI; UF da unidade local, não da sede se diferirem no recorte da tabela.",
         ],
     },
+    "cempre_jobs": {
+        "name": "Pessoal ocupado total nas empresas formais (CEMPRE)",
+        "short_name": "Empregos formais (CEMPRE)",
+        "unit": "pessoas",
+        "status_label": "OBSERVADO",
+        "higher_is_worse": False,
+        "kind": "observed_estimate",
+        "group": "economia",
+        "group_label": "Economia / demografia",
+        "frequency": "annual",
+        "dataset_id": "ibge.cempre_jobs.{period}",
+        "table": "9509",
+        "variable": "707",
+        "period": "all",
+        "class_path": "",
+        "definition": (
+            "Pessoal ocupado total em 31 de dezembro nas unidades locais do Cadastro Central "
+            "de Empresas (CEMPRE, SIDRA 9509 / variável 707). Universo formal (CNPJ), exclusive MEI."
+        ),
+        "source": {
+            "organization": "IBGE",
+            "dataset": "CEMPRE SIDRA 9509 / var 707",
+            "dataset_page": "https://sidra.ibge.gov.br/tabela/9509",
+            "url": "https://sidra.ibge.gov.br/tabela/9509",
+        },
+        "limitations": [
+            "Estoque formal em 31/12 — não é PNADC (inclui informal) nem empregos gerados no ano.",
+            "Exclusive MEI. Contagem absoluta: UFs grandes dominam.",
+        ],
+    },
     "employer_unit_births": {
         "name": "Nascimentos de unidades locais empregadoras",
         "short_name": "Aberturas (empregadoras)",
@@ -1366,6 +1585,8 @@ def _assert_sidra_value(indicator_id: str, unit: str, code: str, val: float) -> 
         raise RuntimeError(f"{indicator_id}: negative rate for {code}: {val}")
     if unit in {"BRL", "BRL/mês"} and val < 0:
         raise RuntimeError(f"{indicator_id}: negative income for {code}: {val}")
+    if unit == "pessoas" and val < 0:
+        raise RuntimeError(f"{indicator_id}: negative headcount for {code}: {val}")
     if unit == "unidades locais" and val < 0:
         raise RuntimeError(f"{indicator_id}: negative local units for {code}: {val}")
 

@@ -20,6 +20,11 @@ Regra do Brasil Real: preferir API/arquivo oficial → snapshot bruto imutável 
 | Desocupação | [IBGE 4099 PNADC](https://sidra.ibge.gov.br/tabela/4099) | trimestral | quase | Automatizado |
 | Taxa de homicídios UF | [Ipeadata AVIOL12_THOMIC](http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=AVIOL12_THOMIC) (IPEA/DATASUS) | anual | **não** | Automatizado |
 | Nº de homicídios UF | [Ipeadata AVIOL12_HOMIC](http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=AVIOL12_HOMIC) | anual | **não** | Automatizado |
+| Homicídios do sexo feminino | [Ipeadata AVIOL12_HOMICF](http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=AVIOL12_HOMICF) (SIM/DATASUS) | anual | **não** | Automatizado — **não é** feminicídio penal |
+| Violência física 12 meses | [PNS 2019 SIDRA 8058](https://sidra.ibge.gov.br/tabela/8058) | irregular | **não** | Automatizado (autorreferida; não é BO de assalto) |
+| Violência física — mulheres | PNS 2019 SIDRA 8058 / sexo feminino | irregular | **não** | Automatizado |
+| Violência psicológica 12 meses | [PNS 2019 SIDRA 8049](https://sidra.ibge.gov.br/tabela/8049) | irregular | **não** | Automatizado |
+| Violência sexual na vida | [PNS 2019 SIDRA 8076](https://sidra.ibge.gov.br/tabela/8076) | irregular | **não** | Automatizado (prevalência na vida; 8067 12 meses não tem UF) |
 | Óbitos trânsito /100 mil | [Ipeadata AVIOL12_TACIDT](http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=AVIOL12_TACIDT) | anual | **não** | Automatizado |
 | Export. carnes (SH 02) | [Comex Stat MDIC](https://comexstat.mdic.gov.br/) API `/general` | anual | **não** | Automatizado |
 | Export. bovina (0201+0202) | Comex Stat headings 0201/0202 | anual | **não** | Automatizado |
@@ -34,7 +39,8 @@ Regra do Brasil Real: preferir API/arquivo oficial → snapshot bruto imutável 
 | Bioma predominante | [IBGE FTP biomas 2024](https://geoftp.ibge.gov.br/informacoes_ambientais/estudos_ambientais/biomas/documentos/) | referência 2024 | **não** | Ficha territorial |
 | Costeiro/marinho | Lista IBGE CosteiroMarinho | referência lista | **não** | Ficha territorial |
 | Detecção ano novo | [FTP Estimativas](https://ftp.ibge.gov.br/Estimativas_de_Populacao/) | anual | não | Automatizado |
-| Contas/RREO/MSC | [SICONFI API](https://apidatalake.tesouro.gov.br/docs/siconfi/) | mensal/bimestral | **não** | 5 camadas UF (RCL, receita tributária, transf. União RREO, despesa empenhada, DCL) |
+| Contas/RREO/MSC | [SICONFI API](https://apidatalake.tesouro.gov.br/docs/siconfi/) | mensal/bimestral | **não** | Automatizado — RCL, tributária, **impostos**, DCL, despesa; trib/hab e trib/PIB derivados |
+| Tributária estadual / hab e / PIB | RREO ÷ IBGE pop 2025 e ÷ PIB 5938 (mesmo ano) | anual | **não** | Automatizado (DERIVADO) |
 | Transferências (favorecido) | [CGU Portal da Transparência / Transferencias](https://portaldatransparencia.gov.br/download-de-dados/transferencias) | mensal (ZIP CSV) | **não** | Soma anual por UF do favorecido; constitucionais; R$/hab. Sem microdado pessoal |
 | Votos presidente UF (partido/turno) | [TSE Dados Abertos](https://dadosabertos.tse.jus.br/) `votacao_candidato_munzona` | eleitoral | **não** | Automatizado |
 | Arrecadação | ReceitaData / dados abertos RFB | mensal | **não** | Fase 2 |
@@ -100,7 +106,7 @@ Ingestão: `python run.py --source ipeadata` → `data/fixtures/ipeadata/indicat
 
 Séries oficiais republicadas no Ipeadata (origem SIM/DATASUS + Atlas da Violência/IPEA). O OData **não filtra** por UF; o conector baixa a série e seleciona `NIVNOME=Estados`.
 
-**Ainda sem dado no mapa (honestidade):** COVID (APIs do painel covid.saude.gov.br / OpenDataSUS sem endpoint estável aberto) e processos judiciais (CNJ DataJud com autenticação). Até existir canal oficial reproduzível → `SEM DADO`, nunca inventar.
+**Ainda sem dado no mapa (honestidade):** feminicídio da Lei 13.104 e assalto/roubo a pessoa (SINESP VDE / portal dados.mj.gov.br sem extração UF estável neste corte); ICMS/IPVA isolados no RREO (a API SICONFI só devolve a conta consolidada Impostos nas 27 UFs); arrecadação federal da RFB por UF (ReceitaData) ainda sem conector fail-closed; COVID (APIs do painel sem endpoint estável); processos judiciais (CNJ DataJud autenticado). Até existir canal oficial reproduzível → `SEM DADO`, nunca inventar. Violência física da PNS 2019 é o recorte UF mais próximo de «agressão»; não é BO de assalto.
 
 ### Freshness + cache (runtime)
 

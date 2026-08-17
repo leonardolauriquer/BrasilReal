@@ -31,17 +31,21 @@ const RANKING_PRESET_GROUPS: RankingPresetGroup[] = [
     label: "Economia",
     items: [
       { value: "pib_per_capita", label: "PIB per capita" },
+      { value: "pib_share", label: "Peso no PIB Brasil" },
       { value: "household_income_pc", label: "Renda domiciliar per capita" },
       { value: "labor_income", label: "Renda do trabalho" },
       { value: "cempre_avg_wage", label: "Salário formal médio" },
       { value: "cempre_wage_in_sm", label: "Salário formal em SM" },
       { value: "cempre_firms", label: "Empresas formais" },
+      { value: "cempre_jobs", label: "Empregos formais (CEMPRE)" },
       { value: "employer_unit_birth_rate", label: "Taxa de abertura (empregadoras)" },
       { value: "employer_unit_births", label: "Aberturas (empregadoras)" },
       { value: "employer_survival_1y", label: "Sobrevivência 1 ano" },
       { value: "gini_household", label: "Gini (desigualdade)" },
       { value: "poverty_rate", label: "Pobreza" },
       { value: "unemployment_rate", label: "Desocupação" },
+      { value: "occupancy_rate", label: "Nível de ocupação" },
+      { value: "participation_rate", label: "Participação (força de trabalho)" },
       { value: "informality_rate", label: "Informalidade" },
       { value: "pib", label: "PIB total" },
     ],
@@ -53,6 +57,9 @@ const RANKING_PRESET_GROUPS: RankingPresetGroup[] = [
       { value: "rcl_rreo", label: "RCL" },
       { value: "rcl_pc", label: "RCL por habitante" },
       { value: "receita_tributaria_rreo", label: "Receita tributária" },
+      { value: "impostos_rreo", label: "Impostos (RREO)" },
+      { value: "trib_pc", label: "Tributária por habitante" },
+      { value: "trib_pib_share", label: "Tributária / PIB" },
       { value: "trib_share_rcl", label: "Tributária / RCL" },
       { value: "transf_uniao_rreo", label: "Transf. União (RREO estado)" },
       { value: "despesa_empenhada_rreo", label: "Despesa empenhada" },
@@ -145,6 +152,12 @@ const RANKING_PRESET_GROUPS: RankingPresetGroup[] = [
     label: "Segurança",
     items: [
       { value: "homicide_rate", label: "Homicídios /100 mil" },
+      { value: "homicide_count", label: "Homicídios (nº)" },
+      { value: "female_homicide_count", label: "Homicídios de mulheres (nº)" },
+      { value: "pns_physical_violence", label: "Violência física (PNS 2019)" },
+      { value: "pns_physical_women", label: "Violência física — mulheres" },
+      { value: "pns_psych_violence", label: "Violência psicológica (PNS 2019)" },
+      { value: "pns_sexual_lifetime", label: "Violência sexual na vida (PNS 2019)" },
       { value: "traffic_death_rate", label: "Mortos no trânsito /100 mil" },
       { value: "pns_violence", label: "Violência 12 meses (PNS 2019)" },
     ],
@@ -209,6 +222,7 @@ export const RANKING_PRESET_TIP = {
   limitations: [
     "Trocar um peso muda o 1º lugar das lentes — abra as camadas oficiais uma a uma.",
     "A cesta DIEESE não entra nas lentes: é preço da capital, não da UF.",
+    "Homicídios de mulheres em nº, ICMS isolado e tributária/PIB não entram nas lentes.",
   ],
 };
 
@@ -265,7 +279,12 @@ export function legendScaleFor(
     return {
       low: "mais baixa na lente",
       high: "mais alta na lente",
-      note: "receita editorial 0–100 · DERIVADO · não é IDHM nem ranking oficial",
+      note:
+        id === "lens_venture"
+          ? "lente DERIVADO · dinâmica, mercado (ocupação) e densidade formal · não é ranking oficial"
+          : id === "lens_family"
+            ? "lente DERIVADO · renda, trabalho, segurança (SIM+PNS mulheres) e serviços · não é IDEB"
+            : "lente DERIVADO · renda, trabalho, segurança (SIM+PNS) e serviços/RCL · não é IDHM",
     };
   }
   if (id === "basket_capital") {

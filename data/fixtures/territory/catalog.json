@@ -1,5 +1,5 @@
 {
-  "retrieved_at": "2026-08-15T22:38:38.463911+00:00",
+  "retrieved_at": "2026-08-17T13:28:45.432038+00:00",
   "territory": {
     "indigenous_population": {
       "id": "indigenous_population",
@@ -385,6 +385,17 @@
         "A tabela 5938 não publica PIB per capita; não usar como renda domiciliar."
       ]
     },
+    "pib_share": {
+      "definition": "PIB da UF dividido pelo PIB do Brasil na mesma publicação de contas regionais (IBGE 5938/37).",
+      "source": {
+        "organization": "Brasil Real",
+        "dataset": "PIB UF ÷ PIB Brasil",
+        "url": "https://sidra.ibge.gov.br/tabela/5938"
+      },
+      "limitations": [
+        "Participação nominal; UFs grandes dominam."
+      ]
+    },
     "sanitation_adequate": {
       "definition": "Percentual de domicílios com esgotamento na categoria IBGE «Rede geral, rede pluvial ou fossa ligada à rede» (SIDRA 6805, Censo 2022).",
       "source": {
@@ -460,6 +471,62 @@
       },
       "limitations": [
         "Autorreferido; não confundir com homicídios do SIM."
+      ]
+    },
+    "pns_physical_violence": {
+      "definition": "Percentual de pessoas de 18 anos ou mais que sofreram violência física nos últimos 12 meses (PNS 2019, SIDRA 8058).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "PNS 2019 SIDRA 8058 / var 11458",
+        "url": "https://sidra.ibge.gov.br/tabela/8058"
+      },
+      "limitations": [
+        "Autorreferida; não é BO de assalto nem homicídio."
+      ]
+    },
+    "pns_physical_women": {
+      "definition": "Percentual de mulheres de 18 anos ou mais que sofreram violência física nos últimos 12 meses (PNS 2019, SIDRA 8058, sexo feminino).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "PNS 2019 SIDRA 8058 / sexo feminino",
+        "url": "https://sidra.ibge.gov.br/tabela/8058"
+      },
+      "limitations": [
+        "Não é feminicídio nem homicídio de mulheres do SIM."
+      ]
+    },
+    "pns_psych_violence": {
+      "definition": "Percentual de pessoas de 18 anos ou mais que sofreram violência psicológica nos últimos 12 meses (PNS 2019, SIDRA 8049).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "PNS 2019 SIDRA 8049 / var 11445",
+        "url": "https://sidra.ibge.gov.br/tabela/8049"
+      },
+      "limitations": [
+        "Autorreferida; retrato de 2019."
+      ]
+    },
+    "pns_sexual_lifetime": {
+      "definition": "Percentual de pessoas de 18 anos ou mais que sofreram violência sexual alguma vez na vida (PNS 2019, SIDRA 8076).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "PNS 2019 SIDRA 8076 / var 11482",
+        "url": "https://sidra.ibge.gov.br/tabela/8076"
+      },
+      "limitations": [
+        "Prevalência na vida — não é incidência em 12 meses."
+      ]
+    },
+    "female_homicide_count": {
+      "definition": "Número absoluto de óbitos de pessoas do sexo feminino classificados como homicídio (Ipeadata AVIOL12_HOMICF / SIM-DATASUS).",
+      "source": {
+        "organization": "DATASUS / IPEA",
+        "dataset": "Ipeadata AVIOL12_HOMICF",
+        "url": "http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=AVIOL12_HOMICF"
+      },
+      "limitations": [
+        "Não é feminicídio da Lei 13.104; o SIM não publica essa categoria penal.",
+        "Contagem absoluta; comparar UFs com cautela."
       ]
     },
     "pns_alcohol": {
@@ -704,6 +771,28 @@
         "Não confundir com desocupação."
       ]
     },
+    "occupancy_rate": {
+      "definition": "Nível da ocupação das pessoas de 14 anos ou mais (PNADC, SIDRA 4093 / var 4097).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "SIDRA 4093 / var 4097",
+        "url": "https://sidra.ibge.gov.br/tabela/4093"
+      },
+      "limitations": [
+        "Ocupados / população 14+ — não é o complemento da desocupação."
+      ]
+    },
+    "participation_rate": {
+      "definition": "Taxa de participação na força de trabalho das pessoas de 14 anos ou mais (PNADC, SIDRA 4093 / var 4096).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "SIDRA 4093 / var 4096",
+        "url": "https://sidra.ibge.gov.br/tabela/4093"
+      },
+      "limitations": [
+        "Força de trabalho / população 14+."
+      ]
+    },
     "higher_education_share": {
       "definition": "Percentual de pessoas de 14 anos ou mais com ensino superior completo (PNAD Contínua, SIDRA 7128).",
       "source": {
@@ -779,6 +868,17 @@
       },
       "limitations": [
         "Cadastro formal exclusive MEI; não é abertura de empresas."
+      ]
+    },
+    "cempre_jobs": {
+      "definition": "Pessoal ocupado total nas unidades locais formais (CEMPRE, SIDRA 9509 / var 707).",
+      "source": {
+        "organization": "IBGE",
+        "dataset": "SIDRA 9509 / var 707",
+        "url": "https://sidra.ibge.gov.br/tabela/9509"
+      },
+      "limitations": [
+        "Estoque formal exclusive MEI; não é PNADC."
       ]
     },
     "rented_share": {
@@ -880,6 +980,17 @@
         "RCL da LRF; valor nominal; não é PIB nem transferência isolada."
       ]
     },
+    "impostos_rreo": {
+      "definition": "Receita realizada de impostos do ente estadual no RREO Anexo 01 (conta Impostos, até o 6º bimestre). Linha consolidada: a API não separa ICMS/IPVA.",
+      "source": {
+        "organization": "STN — SICONFI",
+        "dataset": "RREO Anexo 01 / Impostos",
+        "url": "https://apidatalake.tesouro.gov.br/docs/siconfi/"
+      },
+      "limitations": [
+        "Não é arrecadação da RFB no território; ICMS isolado não cobre 27 UFs nesta API."
+      ]
+    },
     "gov_winner_share": {
       "definition": "Percentual dos votos nominais válidos do candidato a governador mais votado na UF naquele turno.",
       "source": {
@@ -903,18 +1014,19 @@
       ]
     },
     "lens_live": {
-      "definition": "Nota 0–100 entre as 27 UFs para «morar»: 4 blocos iguais (renda, trabalho invertido, segurança invertida, serviços), min–máx de camadas oficiais já no mapa. Não é IDHM.",
+      "definition": "Nota 0–100 entre as 27 UFs para «morar»: 4 blocos iguais (renda incl. pobreza invertida, trabalho com ocupação, segurança SIM+PNS, serviços + RCL/hab). Min–máx de camadas oficiais. Não é IDHM.",
       "source": {
         "organization": "Brasil Real",
         "dataset": "Lente morar — pesos iguais declarados",
         "url": "https://brasilreal-atlas.web.app"
       },
       "limitations": [
-        "Receita editorial; anos mistos; cesta da capital não entra."
+        "Receita editorial; anos mistos; cesta da capital não entra.",
+        "Contagens absolutas e tributária/PIB não entram nas lentes."
       ]
     },
     "lens_venture": {
-      "definition": "Nota 0–100 entre as 27 UFs para «empreender»: 3 blocos iguais (dinâmica de empregadoras, mercado formal, densidade de empresas por mil hab.). Não é ranking de ambiente de negócios.",
+      "definition": "Nota 0–100 entre as 27 UFs para «empreender»: 3 blocos iguais (dinâmica de empregadoras, mercado formal com ocupação/participação, densidade de empresas e empregos formais por mil hab.). Não é ranking de ambiente de negócios.",
       "source": {
         "organization": "Brasil Real",
         "dataset": "Lente empreender — pesos iguais declarados",
@@ -925,14 +1037,15 @@
       ]
     },
     "lens_family": {
-      "definition": "Nota 0–100 para «criar criança»: renda, desocupação invertida, segurança invertida e serviços do Censo. Sem PNS 2019. Não é IDEB.",
+      "definition": "Nota 0–100 para «criar criança»: renda, trabalho, segurança (homicídio, trânsito e violência física PNS entre mulheres) e serviços/RCL. Não é IDEB nem feminicídio penal.",
       "source": {
         "organization": "Brasil Real",
         "dataset": "Lente criança — pesos iguais declarados",
         "url": "https://brasilreal-atlas.web.app"
       },
       "limitations": [
-        "Receita editorial; anos mistos; cesta da capital não entra."
+        "Receita editorial; anos mistos; cesta da capital não entra.",
+        "PNS 2019 só como violência física entre mulheres; homicídios de mulheres (nº) ficam de fora."
       ]
     },
     "lens_aging": {
@@ -955,6 +1068,28 @@
       },
       "limitations": [
         "Razão local; não é renda."
+      ]
+    },
+    "trib_pc": {
+      "definition": "Receita tributária do RREO dividida pela população IBGE 2025.",
+      "source": {
+        "organization": "Brasil Real",
+        "dataset": "Tributária ÷ população",
+        "url": "https://apidatalake.tesouro.gov.br/docs/siconfi/"
+      },
+      "limitations": [
+        "Ente estadual; não é RFB. Denominador 2025 em toda a série."
+      ]
+    },
+    "trib_pib_share": {
+      "definition": "Receita tributária estadual do RREO dividida pelo PIB da UF no mesmo ano.",
+      "source": {
+        "organization": "Brasil Real",
+        "dataset": "Tributária RREO ÷ PIB IBGE",
+        "url": "https://apidatalake.tesouro.gov.br/docs/siconfi/"
+      },
+      "limitations": [
+        "Não é carga tributária da RFB; só o ano em que RREO e contas regionais coincidem."
       ]
     },
     "trib_share_rcl": {

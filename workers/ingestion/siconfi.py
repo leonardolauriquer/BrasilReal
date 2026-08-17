@@ -174,6 +174,29 @@ RREO_LAYERS: tuple[RreoLayer, ...] = (
         ],
     },
     {
+        "indicator_id": "impostos_rreo",
+        "anexo": "RREO-Anexo 01",
+        "cod_conta": "Impostos",
+        "short_name": "Impostos (RREO)",
+        "name": "Receita de impostos realizada — RREO Anexo 01",
+        "title_prefix": "Impostos (RREO 6º bimestre)",
+        "dataset": "RREO Anexo 01 / Impostos",
+        "extra_method": "conta Impostos (sem taxas nem contribuição de melhoria)",
+        "require_positive": True,
+        "higher_is_worse": False,
+        "definition": (
+            "Receita realizada de impostos do ente estadual (e DF) no Balanço Orçamentário "
+            "do RREO (Anexo 01), conta Impostos, coluna «Até o Bimestre», 6º bimestre. "
+            "Inclui ICMS, IPVA, ITCMD e demais impostos lançados nessa linha consolidada. "
+            "Fonte: API SICONFI / Tesouro Nacional."
+        ),
+        "limitations": [
+            "A API do RREO não publica ICMS/IPVA/ITCMD em linhas separadas com 27 UFs — só o total Impostos.",
+            "Não é arrecadação federal da RFB no território nem carga tributária nacional.",
+            "Valor nominal do exercício; não deflacionado.",
+        ],
+    },
+    {
         "indicator_id": "transf_uniao_rreo",
         "anexo": "RREO-Anexo 01",
         "cod_conta": "TransferenciasCorrentesDaUniaoEDeSuasEntidades",

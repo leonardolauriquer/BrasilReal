@@ -15,8 +15,8 @@
   "reference_period": "2026-08",
   "reference_date": "2026-08",
   "release_date": null,
-  "retrieved_at": "2026-08-15T22:36:27.056686+00:00",
-  "definition": "Nota 0–100 entre as 27 UFs para a pergunta «morar». Quatro blocos com peso igual: (1) renda Renda domiciliar/hab (IBGE 2025); (2) trabalho — Desocupação (IBGE 202602) e Informalidade (IBGE 2025), invertidos; (3) segurança — Homicídios /100 mil (IPEA / DATASUS 2024) e Trânsito /100 mil (IPEA / DATASUS 2024), invertidos; (4) serviços — Esgoto adequado (IBGE 2022), Água da rede (IBGE 2022), Lixo coletado (IBGE 2022), Alfabetização (IBGE 2022) e Internet no domicílio (IBGE 2022). Dentro do bloco, média dos min–máx. Não é qualidade de vida medida; é essa receita.",
+  "retrieved_at": "2026-08-17T13:28:45.408631+00:00",
+  "definition": "Nota 0–100 entre as 27 UFs para a pergunta «morar». Quatro blocos com peso igual: (1) renda — Renda domiciliar/hab (IBGE 2025), Renda do trabalho (IBGE 202602) e Pobreza (IBGE 2024) invertida; (2) trabalho — Desocupação (IBGE 202602) e Informalidade (IBGE 2025) invertidos, Nível de ocupação (IBGE 202602); (3) segurança — Homicídios /100 mil (IPEA / DATASUS 2024), Trânsito /100 mil (IPEA / DATASUS 2024), Violência física (PNS 2019) (IBGE 2019) e Violência psicológica (PNS 2019) (IBGE 2019), invertidos; (4) serviços e caixa estadual — Esgoto adequado (IBGE 2022), Água da rede (IBGE 2022), Lixo coletado (IBGE 2022), Alfabetização (IBGE 2022), Internet no domicílio (IBGE 2022) e RCL / hab (Brasil Real 2025). Dentro do bloco, média dos min–máx. Não é qualidade de vida medida; é essa receita.",
   "source": {
     "organization": "Brasil Real",
     "dataset": "Lente morar = 4 blocos iguais sobre camadas oficiais já no mapa",
@@ -28,174 +28,176 @@
     "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
     "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
     "A cesta DIEESE não entra: é preço da capital, não da UF.",
+    "Contagens absolutas (homicídios de mulheres, empregos totais, PIB total, impostos em R$) não entram: enviesam UFs grandes.",
+    "Tributária/PIB e RFB não entram: não são carga do empreendedor nem qualidade do serviço.",
     "Trocar um peso muda o 1º lugar — abra as camadas oficiais uma a uma."
   ],
   "available_periods": [
     "2026-08"
   ],
-  "checksum_sha256": "da01562b97a0fd49effd99055515690438e9fe85d98a37a7111ec65f2eb48df7",
+  "checksum_sha256": "3d45a817c1dda75c1f5f4dda807b73e4e084346e8913e0b840bb8725c30afa2e",
   "records": [
     {
       "ibge_code": "11",
       "uf": "RO",
       "name": "Rondônia",
-      "value": 39.1
+      "value": 49.3
     },
     {
       "ibge_code": "12",
       "uf": "AC",
       "name": "Acre",
-      "value": 34.4
+      "value": 40.5
     },
     {
       "ibge_code": "13",
       "uf": "AM",
       "name": "Amazonas",
-      "value": 32.6
+      "value": 34.6
     },
     {
       "ibge_code": "14",
       "uf": "RR",
       "name": "Roraima",
-      "value": 45.7
+      "value": 44.6
     },
     {
       "ibge_code": "15",
       "uf": "PA",
       "name": "Pará",
-      "value": 25.8
+      "value": 26.1
     },
     {
       "ibge_code": "16",
       "uf": "AP",
       "name": "Amapá",
-      "value": 29.7
+      "value": 34.4
     },
     {
       "ibge_code": "17",
       "uf": "TO",
       "name": "Tocantins",
-      "value": 43.1
+      "value": 50.7
     },
     {
       "ibge_code": "21",
       "uf": "MA",
       "name": "Maranhão",
-      "value": 20.8
+      "value": 19.7
     },
     {
       "ibge_code": "22",
       "uf": "PI",
       "name": "Piauí",
-      "value": 22.0
+      "value": 21.3
     },
     {
       "ibge_code": "23",
       "uf": "CE",
       "name": "Ceará",
-      "value": 31.3
+      "value": 30.3
     },
     {
       "ibge_code": "24",
       "uf": "RN",
       "name": "Rio Grande do Norte",
-      "value": 48.0
+      "value": 41.8
     },
     {
       "ibge_code": "25",
       "uf": "PB",
       "name": "Paraíba",
-      "value": 36.9
+      "value": 38.8
     },
     {
       "ibge_code": "26",
       "uf": "PE",
       "name": "Pernambuco",
-      "value": 31.1
+      "value": 32.3
     },
     {
       "ibge_code": "27",
       "uf": "AL",
       "name": "Alagoas",
-      "value": 26.2
+      "value": 28.6
     },
     {
       "ibge_code": "28",
       "uf": "SE",
       "name": "Sergipe",
-      "value": 36.9
+      "value": 31.0
     },
     {
       "ibge_code": "29",
       "uf": "BA",
       "name": "Bahia",
-      "value": 25.7
+      "value": 24.2
     },
     {
       "ibge_code": "31",
       "uf": "MG",
       "name": "Minas Gerais",
-      "value": 65.2
+      "value": 63.6
     },
     {
       "ibge_code": "32",
       "uf": "ES",
       "name": "Espírito Santo",
-      "value": 59.1
+      "value": 60.4
     },
     {
       "ibge_code": "33",
       "uf": "RJ",
       "name": "Rio de Janeiro",
-      "value": 66.0
+      "value": 63.4
     },
     {
       "ibge_code": "35",
       "uf": "SP",
       "name": "São Paulo",
-      "value": 78.7
+      "value": 73.3
     },
     {
       "ibge_code": "41",
       "uf": "PR",
       "name": "Paraná",
-      "value": 67.6
+      "value": 67.3
     },
     {
       "ibge_code": "42",
       "uf": "SC",
       "name": "Santa Catarina",
-      "value": 77.6
+      "value": 80.7
     },
     {
       "ibge_code": "43",
       "uf": "RS",
       "name": "Rio Grande do Sul",
-      "value": 70.5
+      "value": 70.1
     },
     {
       "ibge_code": "50",
       "uf": "MS",
       "name": "Mato Grosso do Sul",
-      "value": 62.4
+      "value": 63.1
     },
     {
       "ibge_code": "51",
       "uf": "MT",
       "name": "Mato Grosso",
-      "value": 52.6
+      "value": 65.4
     },
     {
       "ibge_code": "52",
       "uf": "GO",
       "name": "Goiás",
-      "value": 59.8
+      "value": 62.4
     },
     {
       "ibge_code": "53",
       "uf": "DF",
       "name": "Distrito Federal",
-      "value": 89.5
+      "value": 83.5
     }
   ]
 }

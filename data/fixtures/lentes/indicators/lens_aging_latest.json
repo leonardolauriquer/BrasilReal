@@ -15,7 +15,7 @@
   "reference_period": "2026-08",
   "reference_date": "2026-08",
   "release_date": null,
-  "retrieved_at": "2026-08-15T22:36:27.068196+00:00",
+  "retrieved_at": "2026-08-17T13:28:45.419741+00:00",
   "definition": "Nota 0–100 de pressão etária (maior = mais pressão): média min–máx de 60 anos ou mais (IBGE 2022), Envelhecimento (IBGE 2022) e Dependência etária (IBGE 2022). Não é «melhor para idoso» nem qualidade do SUS.",
   "source": {
     "organization": "Brasil Real",
@@ -28,6 +28,8 @@
     "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
     "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
     "A cesta DIEESE não entra: é preço da capital, não da UF.",
+    "Contagens absolutas (homicídios de mulheres, empregos totais, PIB total, impostos em R$) não entram: enviesam UFs grandes.",
+    "Tributária/PIB e RFB não entram: não são carga do empreendedor nem qualidade do serviço.",
     "Maior nota = mais pressão, não melhor qualidade de vida do idoso."
   ],
   "available_periods": [

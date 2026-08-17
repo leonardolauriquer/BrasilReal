@@ -242,6 +242,122 @@ def materialize_derived() -> dict[str, Any]:
         series=debt_series,
     )
 
+    trib_latest = str(trib.get("reference_period") or "")
+    if trib_latest not in trib_years:
+        raise RuntimeError("derived: tributária latest year missing 27 UFs")
+    trib_pc_series: dict[str, list[dict[str, Any]]] = {}
+    for year, mapped in trib_years.items():
+        trib_pc_series[year] = _records(
+            {code: mapped[code] / pop[code] for code in UF_CODES},
+            estados,
+        )
+    wrote["trib_pc"] = _write(
+        rel="siconfi/indicators",
+        indicator_id="trib_pc",
+        name="Receita tributária estadual por habitante",
+        short_name="Tributária / hab",
+        unit="BRL/hab",
+        definition=(
+            f"Receita tributária realizada do RREO {trib_latest} (Anexo 01, até o 6º bimestre) "
+            "dividida pela população residente estimada IBGE 2025. O Tesouro não publica R$/hab. "
+            "É o recorte comparável de «imposto por estado» — valor absoluto é dominado pelas UFs grandes."
+        ),
+        limitations=[
+            "Denominador é a estimativa de população 2025 em todos os exercícios da série.",
+            "Impostos, taxas e contribuição de melhoria do ente estadual — não é RFB nem carga nacional.",
+            "Nominal; não deflacionado. Não usar como renda.",
+        ],
+        source={
+            "organization": "Brasil Real",
+            "dataset": "Receita tributária RREO ÷ população IBGE 2025",
+            "url": "https://apidatalake.tesouro.gov.br/docs/siconfi/",
+        },
+        records=trib_pc_series[trib_latest],
+        period=trib_latest,
+        group="fiscal",
+        group_label="Fiscal",
+        series=trib_pc_series,
+    )
+
+    pib_path = fixtures_dir() / "ibge" / "pib_uf_latest.json"
+    if pib_path.exists():
+        pib_payload = json.loads(pib_path.read_text(encoding="utf-8"))
+        pib_year = str(pib_payload.get("reference_period") or "")
+        pib_map: dict[str, float] = {}
+        for row in pib_payload.get("records") or []:
+            code = str(row.get("ibge_code") or "")
+            val = row.get("pib_brl")
+            if code in UF_CODES and isinstance(val, (int, float)):
+                pib_map[code] = float(val)
+        brazil_pib = float(pib_payload.get("brazil_total_brl") or 0)
+        if set(pib_map) == set(UF_CODES) and brazil_pib > 0:
+            share_map = {code: round(100.0 * pib_map[code] / brazil_pib, 4) for code in UF_CODES}
+            share_sum = sum(share_map.values())
+            if not 99.5 <= share_sum <= 100.5:
+                raise RuntimeError(f"derived: pib_share sum {share_sum} not ~100")
+            wrote["pib_share"] = _write(
+                rel="ibge/indicators",
+                indicator_id="pib_share",
+                name="Participação da UF no PIB nacional",
+                short_name="Peso no PIB Brasil",
+                unit="% do PIB",
+                definition=(
+                    f"PIB a preços correntes da UF (IBGE contas regionais {pib_year}, agregado 5938 / "
+                    "var 37) dividido pelo PIB do Brasil na mesma publicação. Razão local; "
+                    "a tabela não publica essa participação como variável própria para o mapa."
+                ),
+                limitations=[
+                    "Participação nominal no PIB nacional — não é crescimento nem PIB per capita.",
+                    "UFs grandes dominam; compare também PIB per capita.",
+                ],
+                source={
+                    "organization": "Brasil Real",
+                    "dataset": f"PIB UF {pib_year} ÷ PIB Brasil {pib_year} (IBGE 5938/37)",
+                    "url": "https://sidra.ibge.gov.br/tabela/5938",
+                },
+                records=_records(share_map, estados),
+                period=pib_year,
+                group="economia",
+                group_label="Economia",
+            )
+            if pib_year in trib_years:
+                load_map = {
+                    code: round(100.0 * trib_years[pib_year][code] / pib_map[code], 2)
+                    for code in UF_CODES
+                }
+                if any(v <= 0 for v in load_map.values()):
+                    raise RuntimeError("derived: non-positive trib/PIB")
+                wrote["trib_pib_share"] = _write(
+                    rel="siconfi/indicators",
+                    indicator_id="trib_pib_share",
+                    name="Receita tributária estadual em % do PIB",
+                    short_name="Tributária / PIB",
+                    unit="% do PIB",
+                    definition=(
+                        f"Receita tributária realizada do RREO {pib_year} (Anexo 01) dividida pelo "
+                        f"PIB a preços correntes da UF no mesmo ano (IBGE 5938/37). "
+                        "Não é a carga tributária da RFB no território."
+                    ),
+                    limitations=[
+                        "Só o ano em que RREO e contas regionais coincidem — PIB regional chega defasado.",
+                        "Numerador é do ente estadual (impostos+taxas); denominador inclui toda a economia da UF.",
+                        "Não somar com tributos federais: a RFB não entra neste recorte.",
+                    ],
+                    source={
+                        "organization": "Brasil Real",
+                        "dataset": f"RREO tributária {pib_year} ÷ PIB IBGE {pib_year}",
+                        "url": "https://apidatalake.tesouro.gov.br/docs/siconfi/",
+                    },
+                    records=_records(load_map, estados),
+                    period=pib_year,
+                    group="fiscal",
+                    group_label="Fiscal",
+                )
+        else:
+            wrote["pib_share"] = {"skipped": "pib_uf_latest missing 27 UFs or brazil_total"}
+    else:
+        wrote["pib_share"] = {"skipped": "missing pib_uf_latest.json"}
+
     export_path = fixtures_dir() / "comex" / "indicators" / "export_fob_latest.json"
     if export_path.exists():
         exp = json.loads(export_path.read_text(encoding="utf-8"))

@@ -178,6 +178,8 @@ COMMON_LIMITATIONS = [
     "Cada camada entra em min–máx 0–100 entre as 27 UFs; «maior é pior» entra invertido (100 − x).",
     "Anos mistos: cada bloco usa o latest da fonte. Não comparar com um único ano censitário.",
     "A cesta DIEESE não entra: é preço da capital, não da UF.",
+    "Contagens absolutas (homicídios de mulheres, empregos totais, PIB total, impostos em R$) não entram: enviesam UFs grandes.",
+    "Tributária/PIB e RFB não entram: não são carga do empreendedor nem qualidade do serviço.",
 ]
 
 
@@ -185,21 +187,29 @@ def materialize_lenses() -> dict[str, Any]:
     estados = _estados()
 
     income, s_income = _component("household_income_pc")
+    labor, s_labor = _component("labor_income")
+    poverty, s_poverty = _component("poverty_rate")
     unemp, s_unemp = _component("unemployment_rate")
     informal, s_informal = _component("informality_rate")
+    occupy, s_occupy = _component("occupancy_rate")
+    part, s_part = _component("participation_rate")
     homicide, s_homicide = _component("homicide_rate")
     traffic, s_traffic = _component("traffic_death_rate")
+    physical, s_physical = _component("pns_physical_violence")
+    physical_w, s_physical_w = _component("pns_physical_women")
+    psych, s_psych = _component("pns_psych_violence")
     sanitation, s_san = _component("sanitation_adequate")
     water, s_water = _component("water_network_share")
     waste, s_waste = _component("waste_collected_share")
     literacy, s_lit = _component("literacy_rate")
     internet, s_net = _component("internet_home_share")
+    rcl_pc, s_rcl_pc = _component("rcl_pc")
 
     live_blocks = [
-        s_income,
-        _mean([s_unemp, s_informal]),
-        _mean([s_homicide, s_traffic]),
-        _mean([s_san, s_water, s_waste, s_lit, s_net]),
+        _mean([s_income, s_labor, s_poverty]),
+        _mean([s_unemp, s_informal, s_occupy]),
+        _mean([s_homicide, s_traffic, s_physical, s_psych]),
+        _mean([s_san, s_water, s_waste, s_lit, s_net, s_rcl_pc]),
     ]
     live = _records(_mean(live_blocks), estados)
 
@@ -208,37 +218,45 @@ def materialize_lenses() -> dict[str, Any]:
     pibpc, s_pib = _component("pib_per_capita")
     wage, s_wage = _component("cempre_avg_wage")
     firms_p = _load_latest("cempre_firms")
+    jobs_p = _load_latest("cempre_jobs")
     pop_p = _load_latest("population")
     firms = _values(firms_p)
+    jobs = _values(jobs_p)
     pop = _values(pop_p)
-    density = {code: 1000.0 * firms[code] / pop[code] for code in UF_CODES}
-    if any(v <= 0 for v in density.values()):
-        raise RuntimeError("lentes: non-positive firm density")
-    s_density = _minmax(density, invert=False)
+    firm_density = {code: 1000.0 * firms[code] / pop[code] for code in UF_CODES}
+    job_density = {code: 1000.0 * jobs[code] / pop[code] for code in UF_CODES}
+    if any(v <= 0 for v in firm_density.values()) or any(v <= 0 for v in job_density.values()):
+        raise RuntimeError("lentes: non-positive firm/job density")
+    s_firm_density = _minmax(firm_density, invert=False)
+    s_job_density = _minmax(job_density, invert=False)
 
     venture_blocks = [
         _mean([s_birth, s_surv]),
-        _mean([s_pib, s_wage, s_informal]),
-        s_density,
+        _mean([s_pib, s_wage, s_informal, s_occupy, s_part]),
+        _mean([s_firm_density, s_job_density]),
     ]
     venture = _records(_mean(venture_blocks), estados)
 
     live_def = (
         "Nota 0–100 entre as 27 UFs para a pergunta «morar». Quatro blocos com peso igual: "
-        f"(1) renda {_cite(income)}; "
-        f"(2) trabalho — {_cite(unemp)} e {_cite(informal)}, invertidos; "
-        f"(3) segurança — {_cite(homicide)} e {_cite(traffic)}, invertidos; "
-        f"(4) serviços — {_cite(sanitation)}, {_cite(water)}, {_cite(waste)}, "
-        f"{_cite(literacy)} e {_cite(internet)}. "
+        f"(1) renda — {_cite(income)}, {_cite(labor)} e {_cite(poverty)} invertida; "
+        f"(2) trabalho — {_cite(unemp)} e {_cite(informal)} invertidos, {_cite(occupy)}; "
+        f"(3) segurança — {_cite(homicide)}, {_cite(traffic)}, {_cite(physical)} e "
+        f"{_cite(psych)}, invertidos; "
+        f"(4) serviços e caixa estadual — {_cite(sanitation)}, {_cite(water)}, {_cite(waste)}, "
+        f"{_cite(literacy)}, {_cite(internet)} e {_cite(rcl_pc)}. "
         "Dentro do bloco, média dos min–máx. Não é qualidade de vida medida; é essa receita."
     )
     venture_def = (
         "Nota 0–100 entre as 27 UFs para a pergunta «empreender». Três blocos com peso igual: "
         f"(1) dinâmica — {_cite(birth)} e {_cite(survival)}; "
-        f"(2) mercado formal — {_cite(pibpc)}, {_cite(wage)} e {_cite(informal)} invertida; "
-        f"(3) densidade de empresas formais (CEMPRE {firms_p.get('reference_period')} "
-        f"÷ população {pop_p.get('reference_period')}, por mil hab.). "
-        "Exclusive MEI no CEMPRE. Não é ambiente de negócios do Banco Mundial."
+        f"(2) mercado — {_cite(pibpc)}, {_cite(wage)}, {_cite(informal)} invertida, "
+        f"{_cite(occupy)} e {_cite(part)}; "
+        f"(3) densidade formal — empresas e pessoal ocupado CEMPRE "
+        f"({firms_p.get('reference_period')}/{jobs_p.get('reference_period')}) "
+        f"÷ população {pop_p.get('reference_period')}, por mil hab. "
+        "Exclusive MEI. Contagens absolutas e tributária/PIB não entram. "
+        "Não é ambiente de negócios do Banco Mundial."
     )
 
     wrote = {
@@ -270,21 +288,22 @@ def materialize_lenses() -> dict[str, Any]:
     aging_idx, s_aging = _component("aging_index", invert=False)
     depend, s_dep = _component("dependency_ratio", invert=False)
     family_blocks = [
-        s_income,
-        s_unemp,
-        _mean([s_homicide, s_traffic]),
-        _mean([s_san, s_water, s_waste, s_lit, s_net]),
+        _mean([s_income, s_poverty]),
+        _mean([s_unemp, s_occupy]),
+        _mean([s_homicide, s_traffic, s_physical_w]),
+        _mean([s_san, s_water, s_waste, s_lit, s_net, s_rcl_pc]),
     ]
     family = _records(_mean(family_blocks), estados)
     aging = _records(_mean([s_60, s_aging, s_dep]), estados)
 
     family_def = (
         "Nota 0–100 entre as 27 UFs para «criar criança». Quatro blocos iguais: "
-        f"(1) renda {_cite(income)}; (2) desocupação {_cite(unemp)} invertida; "
-        f"(3) segurança — {_cite(homicide)} e {_cite(traffic)}, invertidos; "
-        f"(4) serviços — {_cite(sanitation)}, {_cite(water)}, {_cite(waste)}, "
-        f"{_cite(literacy)} e {_cite(internet)}. "
-        "PNS 2019 não entra. Não é IDEB nem pediatria."
+        f"(1) renda — {_cite(income)} e {_cite(poverty)} invertida; "
+        f"(2) trabalho — {_cite(unemp)} invertida e {_cite(occupy)}; "
+        f"(3) segurança — {_cite(homicide)}, {_cite(traffic)} e {_cite(physical_w)}, invertidos; "
+        f"(4) serviços e caixa estadual — {_cite(sanitation)}, {_cite(water)}, {_cite(waste)}, "
+        f"{_cite(literacy)}, {_cite(internet)} e {_cite(rcl_pc)}. "
+        "Homicídios de mulheres (nº) e feminicídio penal não entram. Não é IDEB nem pediatria."
     )
     aging_def = (
         "Nota 0–100 de pressão etária (maior = mais pressão): média min–máx de "
@@ -297,7 +316,10 @@ def materialize_lenses() -> dict[str, Any]:
         short_name="Melhor para criança",
         definition=family_def,
         limitations=COMMON_LIMITATIONS
-        + ["PNS 2019 e IDEB não entram nesta receita."],
+        + [
+            "PNS 2019 entra só como violência física entre mulheres (autorreferida), não como IDEB.",
+            "Homicídios de mulheres em número absoluto não entram (enviesam UFs grandes).",
+        ],
         records=family,
         dataset="Lente criança = 4 blocos iguais sobre camadas oficiais já no mapa",
     )

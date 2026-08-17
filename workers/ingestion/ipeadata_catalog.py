@@ -95,4 +95,36 @@ IPEADATA_SPECS: dict[str, dict] = {
             "(série Ipeadata AVIOL12_TACIDT)."
         ),
     },
+    "female_homicide_count": {
+        "id": "female_homicide_count",
+        "sercodigo": "AVIOL12_HOMICF",
+        "name": "Número de homicídios do sexo feminino",
+        "short_name": "Homicídios de mulheres (nº)",
+        "unit": "homicídios",
+        "status_label": "OBSERVADO",
+        "evidence_grade": "A",
+        "frequency": "annual",
+        "higher_is_worse": True,
+        "kind": "observed_estimate",
+        "group": "seguranca",
+        "group_label": "Segurança",
+        "organization": "DATASUS / IPEA",
+        "dataset_page": "http://www.ipeadata.gov.br/Default.aspx",
+        "serie_page": "http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=AVIOL12_HOMICF",
+        "method_notes": (
+            "Série Ipeadata AVIOL12_HOMICF — número absoluto de óbitos de pessoas do sexo "
+            "feminino classificados como homicídio (SIM/DATASUS, republicados no Ipeadata). "
+            "Nível: Estados."
+        ),
+        "limitations": [
+            "Não é feminicídio da Lei 13.104: o SIM não publica essa categoria penal.",
+            "Contagem absoluta; para comparar UFs use preferencialmente taxas por 100 mil.",
+            "Subnotificação e mudança de CID no SIM podem afetar a série.",
+        ],
+        "definition": (
+            "Número absoluto de óbitos de pessoas do sexo feminino classificados como homicídio "
+            "na UF no ano (série Ipeadata AVIOL12_HOMICF, origem SIM/DATASUS). "
+            "Não confundir com feminicídio policial."
+        ),
+    },
 }
