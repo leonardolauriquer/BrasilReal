@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { InfoTip, type ProvenanceFields } from "@/components/InfoTip";
-import { comparePeriodKeys, formatPeriodLabel, formatSharePercent, formatValue } from "@/lib/format";
+import { comparePeriodKeys, formatPeriodLabel, formatSharePercent, formatValue, medianNumbers } from "@/lib/format";
 import { compareRankValue, isAdditiveUnit, type RegionRankRow } from "@/lib/map/regions";
 import type { Observation } from "@/lib/api";
 
@@ -116,10 +116,21 @@ export function RankPanel({
   const max = valuePool.length ? Math.max(...valuePool) : 0;
   const min = valuePool.length ? Math.min(...valuePool) : 0;
   const span = max - min || 1;
+  const median = medianNumbers(valuePool);
   const barShare = (value: number) => {
     const raw = higherIsWorse ? (max - value) / span : (value - min) / span;
     return Math.max(6, raw * 100);
   };
+  const medianMark = median != null ? barShare(median) : null;
+  const medianUnit = regionMode
+    ? rankedRegions.find((r) => r.unit)?.unit
+    : ranked[0]?.unit;
+  const medianLabel =
+    median != null && medianUnit
+      ? formatValue({ value: median, unit: medianUnit })
+      : median != null
+        ? median.toLocaleString("pt-BR")
+        : null;
 
   const rankTip = useMemo<ProvenanceFields | null>(() => {
     if (!tip) return null;
@@ -193,6 +204,7 @@ export function RankPanel({
             {regionMode ? " · IBGE N/NE/CO/SE/S" : ""}
             {showUfShare || showRegionShare ? " · % do recorte" : ""}
             {regionWeighted ? " · média ponderada pop." : ""}
+            {medianLabel ? ` · mediana ${medianLabel}` : ""}
           </p>
         </div>
         <p className="rank-order">
@@ -246,6 +258,9 @@ export function RankPanel({
                         width: `${row.value != null ? barShare(row.value) : 8}%`,
                       }}
                     />
+                    {medianMark != null ? (
+                      <i className="rank-median" style={{ left: `${medianMark}%` }} />
+                    ) : null}
                   </span>
                 </button>
               );
@@ -283,6 +298,9 @@ export function RankPanel({
                   </span>
                   <span className="rank-bar" aria-hidden="true">
                     <span style={{ width: `${barShare(row.value)}%` }} />
+                    {medianMark != null ? (
+                      <i className="rank-median" style={{ left: `${medianMark}%` }} />
+                    ) : null}
                   </span>
                 </button>
                 {onToggleCompare ? (
@@ -303,7 +321,9 @@ export function RankPanel({
       </div>
 
       <div className="rank-legend">
-        <div className={`legend-bar ${legendWorse ? "worse" : "observed"}`} />
+        <div
+          className={`legend-bar ${legendWorse ? "worse" : "observed"}`}
+        />
         <div className="legend-scale">
           <span>{legendLow}</span>
           <span>{legendHigh}</span>
@@ -316,6 +336,9 @@ export function RankPanel({
               : showRegionShare
                 ? `${legendNote} · % = participação no total das macrorregiões (somas aditivas)`
                 : legendNote}
+          {medianLabel
+            ? ` · traço = mediana das ${regionMode ? "regiões" : "UFs"} listadas (${medianLabel}) — não é publicação da fonte`
+            : ""}
         </p>
       </div>
     </aside>

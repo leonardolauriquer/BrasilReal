@@ -103,14 +103,30 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
     if (process.env.NODE_ENV !== "production") return;
 
     const hadController = Boolean(navigator.serviceWorker.controller);
+    let skipEcho = sessionStorage.getItem("br-pwa-reloaded") === "1";
+    if (skipEcho) sessionStorage.removeItem("br-pwa-reloaded");
+    const echoTimer = window.setTimeout(() => {
+      skipEcho = false;
+    }, 4000);
     let registration: ServiceWorkerRegistration | null = null;
+    let reloading = false;
 
-    const onMessage = (event: MessageEvent) => {
-      if (event.data?.type !== "BR_UPDATED" || !hadController) return;
-      setMode("update");
+    const reloadOnce = () => {
+      if (!hadController || skipEcho || reloading) return;
+      reloading = true;
+      sessionStorage.setItem("br-pwa-reloaded", "1");
+      window.location.reload();
     };
 
+    const onMessage = (event: MessageEvent) => {
+      if (event.data?.type !== "BR_UPDATED") return;
+      reloadOnce();
+    };
+
+    const onControllerChange = () => reloadOnce();
+
     navigator.serviceWorker.addEventListener("message", onMessage);
+    navigator.serviceWorker.addEventListener("controllerchange", onControllerChange);
     navigator.serviceWorker
       .register("/sw.js", { updateViaCache: "none" })
       .then((reg) => {
@@ -129,9 +145,11 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
 
     return () => {
       navigator.serviceWorker.removeEventListener("message", onMessage);
+      navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
       window.removeEventListener("focus", poke);
       document.removeEventListener("visibilitychange", onVis);
       window.clearInterval(interval);
+      window.clearTimeout(echoTimer);
     };
   }, []);
 

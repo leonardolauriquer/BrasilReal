@@ -29,6 +29,8 @@ if (staticExport) {
       { source: "/v1/:path*", destination: `${apiTarget}/v1/:path*` },
       { source: "/health", destination: `${apiTarget}/health` },
       { source: "/ready", destination: `${apiTarget}/ready` },
+      { source: "/s", destination: `${apiTarget}/s` },
+      { source: "/share", destination: `${apiTarget}/share` },
     ];
   };
 }

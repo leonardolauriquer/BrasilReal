@@ -56,6 +56,7 @@ type Props = {
   municipalities?: MunFeatureCollection | null;
   showMunicipalities?: boolean;
   higherIsWorse?: boolean;
+  colorMode?: "default" | "cb";
   valueUnit?: string;
   /** População por código IBGE (UF) para média ponderada / rótulos regionais. */
   popByIbge?: Map<string, number>;
@@ -121,6 +122,7 @@ export function BrazilMap({
   municipalities = null,
   showMunicipalities = false,
   higherIsWorse = false,
+  colorMode = "default",
   valueUnit,
   popByIbge,
   cardOpen = false,
@@ -366,6 +368,7 @@ export function BrazilMap({
         higherIsWorse,
         valueUnit,
         "uf",
+        colorMode,
       );
       source.setData(painted);
       labels?.setData(toLabelPoints(painted));
@@ -379,7 +382,7 @@ export function BrazilMap({
     return () => {
       map.off("br:source-ready", paint);
     };
-  }, [valueMap, higherIsWorse, valueUnit, popByIbge]);
+  }, [valueMap, higherIsWorse, valueUnit, popByIbge, colorMode]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -420,6 +423,7 @@ export function BrazilMap({
         false,
         "habitantes",
         "mun",
+        colorMode,
       );
       munSource.setData(painted);
       munLabels?.setData(toLabelPoints(painted));
@@ -429,7 +433,7 @@ export function BrazilMap({
       munLabels?.setData({ type: "FeatureCollection", features: [] });
       setMunicipalityMode(map, false);
     }
-  }, [municipalities, showMunicipalities]);
+  }, [municipalities, showMunicipalities, colorMode]);
 
   useEffect(() => {
     const map = mapRef.current;

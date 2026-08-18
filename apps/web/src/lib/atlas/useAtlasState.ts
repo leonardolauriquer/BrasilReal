@@ -34,8 +34,9 @@ import {
   fetchProfile,
   fetchScenarios,
   runScenario,
+  wakeApi,
 } from "@/lib/api";
-import { parseViewUrl, writeViewUrl } from "@/lib/atlas/viewUrl";
+import { parseViewUrl, writeViewUrl, type ColorMode } from "@/lib/atlas/viewUrl";
 import { gateObservations } from "@/lib/dataGate";
 import { comparePeriodKeys, deltaUnitFor } from "@/lib/format";
 
@@ -121,16 +122,20 @@ export function useAtlasState() {
   const [simDisclaimer, setSimDisclaimer] = useState("");
   const [simTitle, setSimTitle] = useState("");
   const [series, setSeries] = useState<Observation[]>([]);
+  const [colorMode, setColorMode] = useState<ColorMode>("default");
+  const [bootNonce, setBootNonce] = useState(0);
   const pendingYearRef = useRef<string>("");
   const pendingUfRef = useRef<string>("");
   const pendingVsRef = useRef<string[]>([]);
 
+  const [bootApi, setBootApi] = useState(false);
   const [bootCatalog, setBootCatalog] = useState(false);
   const [bootPeriods, setBootPeriods] = useState(false);
   const [bootObs, setBootObs] = useState(false);
   const [bootMap, setBootMap] = useState(false);
   const [bootExiting, setBootExiting] = useState(false);
   const [bootVisible, setBootVisible] = useState(true);
+  const [bootFailed, setBootFailed] = useState(false);
   const bootStartedRef = useRef(
     typeof performance !== "undefined" ? performance.now() : Date.now(),
   );
@@ -161,26 +166,44 @@ export function useAtlasState() {
     if (view.recorte) setRecorte(view.recorte);
     if (view.modo === "delta") setRankMode("delta");
     if (view.sim) setSimulado(true);
+    if (view.cor === "cb") setColorMode("cb");
     setUrlReady(true);
   }, []);
 
   useEffect(() => {
+    if (!urlReady) return;
     let cancelled = false;
-    fetchIndicators()
-      .then((data) => {
+    const ctrl = new AbortController();
+    setBootApi(false);
+    setBootCatalog(false);
+    setBootFailed(false);
+    wakeApi(ctrl.signal)
+      .then(() => {
         if (cancelled) return;
+        setBootApi(true);
+        return fetchIndicators();
+      })
+      .then((data) => {
+        if (cancelled || !data) return;
         setIndicators(data.items.filter((i) => i.kind !== "experimental"));
         setBootCatalog(true);
       })
       .catch((err: Error) => {
-        if (cancelled) return;
-        setError(err.message);
+        if (cancelled || err.name === "AbortError") return;
+        setBootApi(true);
         setBootCatalog(true);
+        setBootFailed(true);
+        setError(
+          err.message.includes("API") || err.message.includes("cold") || err.message.includes("acordar")
+            ? `${err.message} O primeiro acesso após inatividade pode demorar.`
+            : err.message,
+        );
       });
     return () => {
       cancelled = true;
+      ctrl.abort();
     };
-  }, []);
+  }, [urlReady, bootNonce]);
 
   useEffect(() => {
     let cancelled = false;
@@ -233,7 +256,7 @@ export function useAtlasState() {
       .finally(() => {
         if (seq === periodsSeq.current) endLoading();
       });
-  }, [layer, urlReady]);
+  }, [layer, urlReady, bootNonce]);
 
   useEffect(() => {
     if (!layer || !year || !periods.length) return;
@@ -279,7 +302,7 @@ export function useAtlasState() {
           initialLayerRef.current = false;
         }
       });
-  }, [layer, year, periods]);
+  }, [layer, year, periods, bootNonce]);
 
   useEffect(() => {
     if (!urlReady || !indicators.length) return;
@@ -401,25 +424,39 @@ export function useAtlasState() {
 
   const bootStages = useMemo(
     () => [
+      { id: "api", label: "Acordando a API", done: bootApi },
       { id: "catalog", label: "Catálogo de camadas", done: bootCatalog },
       { id: "periods", label: "Período oficial mais recente", done: bootPeriods },
       { id: "obs", label: "Observações por UF", done: bootObs },
       { id: "map", label: "Malha e rótulos do mapa", done: bootMap },
     ],
-    [bootCatalog, bootPeriods, bootObs, bootMap],
+    [bootApi, bootCatalog, bootPeriods, bootObs, bootMap],
   );
 
-  const bootReady = bootCatalog && bootPeriods && bootObs && bootMap;
+  const bootReady = bootApi && bootCatalog && bootPeriods && bootObs && bootMap;
 
   useEffect(() => {
-    if (!bootReady || bootExiting || !bootVisible) return;
+    if (!bootReady || bootExiting || !bootVisible || bootFailed) return;
     const now = typeof performance !== "undefined" ? performance.now() : Date.now();
     const wait = Math.max(0, BOOT_MIN_MS - (now - bootStartedRef.current));
     const t = window.setTimeout(() => setBootExiting(true), wait);
     return () => window.clearTimeout(t);
-  }, [bootReady, bootExiting, bootVisible]);
+  }, [bootReady, bootExiting, bootVisible, bootFailed]);
 
   const onMapReady = useCallback(() => setBootMap(true), []);
+
+  const retryBoot = useCallback(() => {
+    setError(null);
+    setBootFailed(false);
+    setBootExiting(false);
+    setBootVisible(true);
+    setBootApi(false);
+    setBootCatalog(false);
+    setBootPeriods(false);
+    setBootObs(false);
+    bootStartedRef.current = typeof performance !== "undefined" ? performance.now() : Date.now();
+    setBootNonce((n) => n + 1);
+  }, []);
 
   const activeIndicator = useMemo(
     () => indicators.find((i) => i.id === layer) || null,
@@ -729,8 +766,10 @@ export function useAtlasState() {
       modo: rankMode,
       vs,
       sim: simulado,
+      cor: colorMode,
     });
   }, [
+    colorMode,
     compareCodes,
     layer,
     obs,
@@ -871,17 +910,21 @@ export function useAtlasState() {
     muniPopTip,
     selectedObsTip,
     controlHint,
+    colorMode,
     bootStages,
     bootReady,
     bootExiting,
     bootVisible,
+    bootFailed,
     atlasLive: !bootVisible,
     // actions
     setYear,
     setRecorte,
     setRankMode,
+    setColorMode,
     setZoom,
     setBootVisible,
+    retryBoot,
     changeLayer,
     onMapReady,
     onSelect,

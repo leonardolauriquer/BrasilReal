@@ -52,6 +52,14 @@ export function comparePeriodKeys(a: string, b: string): number {
 }
 
 /** Share of a total as pt-BR percent (e.g. 4,3%). */
+/** Median of the displayed recorte — derived from the same official values, not a new source. */
+export function medianNumbers(values: number[]): number | null {
+  const nums = values.filter((v) => Number.isFinite(v)).sort((a, b) => a - b);
+  if (!nums.length) return null;
+  const mid = Math.floor(nums.length / 2);
+  return nums.length % 2 === 1 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+}
+
 export function formatSharePercent(value: number, total: number, digits = 1) {
   if (!Number.isFinite(value) || !Number.isFinite(total) || total <= 0) return null;
   const pct = (value / total) * 100;

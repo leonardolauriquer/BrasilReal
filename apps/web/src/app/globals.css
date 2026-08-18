@@ -292,6 +292,23 @@ button,
   font-weight: 600;
 }
 
+.boot-retry {
+  margin-top: 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 1.15rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0e1713;
+  background: #e8f3ee;
+  cursor: pointer;
+}
+
+.boot-retry:hover {
+  background: #f4faf7;
+}
+
 /* —— 404 —— */
 .nf {
   position: relative;
@@ -684,10 +701,11 @@ button,
 .rank-bar {
   grid-column: 2 / -1;
   grid-row: 2;
+  position: relative;
   height: 3px;
   border-radius: 999px;
   background: rgba(231, 239, 235, 0.1);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .rank-bar > span {
@@ -695,6 +713,18 @@ button,
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, rgba(61, 207, 154, 0.35), #3dcf9a);
+}
+
+.rank-median {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
 }
 
 .rank-row.is-active .rank-bar > span {
@@ -1131,6 +1161,22 @@ button,
 
 .legend-bar.worse {
   background: linear-gradient(90deg, rgba(231, 239, 235, 0.35), #e07a4d);
+}
+
+.atlas--cb .legend-bar.observed {
+  background: linear-gradient(90deg, #f7f0d0, #0072b2);
+}
+
+.atlas--cb .legend-bar.worse {
+  background: linear-gradient(90deg, #56b4e9, #d55e00);
+}
+
+.atlas--cb .rank-bar > span {
+  background: linear-gradient(90deg, rgba(0, 114, 178, 0.35), #0072b2);
+}
+
+.atlas--cb .rank-row.is-active .rank-bar > span {
+  background: linear-gradient(90deg, rgba(213, 94, 0, 0.45), #d55e00);
 }
 
 .legend-scale {

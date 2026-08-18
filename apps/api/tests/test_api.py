@@ -13,6 +13,43 @@ def test_health(client):
     assert client.get("/ready").json()["fixtures_loaded"] is True
 
 
+def test_share_redirects_browser(client):
+    response = client.get(
+        "/s?camada=homicide_rate&ano=2024&recorte=S",
+        headers={"User-Agent": "Mozilla/5.0"},
+        follow_redirects=False,
+    )
+    assert response.status_code == 302
+    location = response.headers["location"]
+    assert location.startswith("https://brasilreal-atlas.web.app/")
+    assert "camada=homicide_rate" in location
+    assert "recorte=S" in location
+    assert "/s?" not in location and not location.rstrip("/").endswith("/s")
+
+
+def test_share_og_html_for_whatsapp(client):
+    response = client.get(
+        "/s?camada=homicide_rate&ano=2024&recorte=S&uf=SC",
+        headers={"User-Agent": "WhatsApp/10.0.0"},
+    )
+    assert response.status_code == 200
+    assert "text/html" in response.headers["content-type"]
+    body = response.text
+    assert "og:title" in body
+    assert "Sul" in body
+    assert "SC" in body
+    assert "Brasil Real" in body
+    assert "/og.png" in body
+    assert "feminicídio" not in body.lower()
+
+
+def test_share_html_format_query(client):
+    response = client.get("/v1/share?format=html&camada=population")
+    assert response.status_code == 200
+    assert "População" in response.text
+    assert "og:image" in response.text
+
+
 def test_geographies_27_ufs(client):
     data = client.get("/v1/geographies?level=state").json()
     assert data["count"] == 27

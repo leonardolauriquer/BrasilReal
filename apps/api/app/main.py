@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.store import store
-from app.routers import geographies, health, indicators, legal, observations, scenarios
+from app.routers import geographies, health, indicators, legal, observations, scenarios, share
 
 
 @asynccontextmanager
@@ -37,6 +37,7 @@ app.add_middleware(
 )
 
 app.include_router(health.router)
+app.include_router(share.router)
 app.include_router(geographies.router, prefix="/v1")
 app.include_router(indicators.router, prefix="/v1")
 app.include_router(observations.router, prefix="/v1")

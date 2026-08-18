@@ -40,6 +40,17 @@ export default function HomePage() {
     : a.activeIndicator?.short_name || a.activeIndicator?.name || "Camada";
 
   useEffect(() => {
+    const bits = [layerLabel];
+    if (a.recorteCaption && a.recorteCaption !== "Brasil (27 UFs)") bits.push(a.recorteCaption);
+    if (a.year) bits.push(formatPeriodLabel(a.year));
+    if (a.selectedObs?.uf) bits.push(a.selectedObs.uf);
+    document.title = `${bits.join(" · ")} | Brasil Real`;
+    return () => {
+      document.title = "Brasil Real";
+    };
+  }, [a.recorteCaption, a.selectedObs?.uf, a.year, layerLabel]);
+
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (isTypingTarget(e.target) && e.key !== "Escape") return;
       if (e.key === "Escape") {
@@ -103,6 +114,7 @@ export default function HomePage() {
   const atlasClass = [
     "atlas",
     a.atlasLive ? "atlas--live" : "atlas--booting",
+    a.colorMode === "cb" ? "atlas--cb" : "",
     filtersOpen ? "atlas--filters" : "",
     a.simulado ? "atlas--simulado" : "",
   ]
@@ -114,9 +126,10 @@ export default function HomePage() {
       {a.bootVisible && (
         <BootScreen
           stages={a.bootStages}
-          error={a.error && !a.bootReady ? a.error : null}
+          error={a.error && (!a.bootReady || a.bootFailed) ? a.error : null}
           exiting={a.bootExiting}
           onExitComplete={() => a.setBootVisible(false)}
+          onRetry={a.retryBoot}
         />
       )}
 
@@ -135,6 +148,7 @@ export default function HomePage() {
           municipalities={a.municipalities?.geojson || null}
           showMunicipalities={a.showMunicipalities}
           higherIsWorse={a.higherIsWorse}
+          colorMode={a.colorMode}
           valueUnit={a.simulado ? "BRL" : a.activeIndicator?.unit}
           popByIbge={a.popByIbge}
           cardOpen={a.cardOpen}
@@ -241,6 +255,8 @@ export default function HomePage() {
             onCopyLink={() => void shareView()}
             simulado={a.simulado}
             onToggleSimulado={() => a.toggleSimulado(!a.simulado)}
+            colorMode={a.colorMode}
+            onChangeColorMode={a.setColorMode}
           />
 
           <CompareTray rows={a.compareObs} onSelect={a.onSelect} onRemove={a.toggleCompare} />

@@ -41,6 +41,8 @@ type Props = {
   onCopyLink?: () => void;
   simulado?: boolean;
   onToggleSimulado?: () => void;
+  colorMode?: "default" | "cb";
+  onChangeColorMode?: (mode: "default" | "cb") => void;
 };
 
 export function MapControlsBar({
@@ -72,6 +74,8 @@ export function MapControlsBar({
   onCopyLink,
   simulado = false,
   onToggleSimulado,
+  colorMode = "default",
+  onChangeColorMode,
 }: Props) {
   return (
     <>
@@ -162,6 +166,27 @@ export function MapControlsBar({
           </button>
         </div>
       </div>
+      {onChangeColorMode ? (
+        <div className="control-block">
+          <span>Cores</span>
+          <div className="rank-mode" role="group" aria-label="Escala de cores do mapa">
+            <button
+              type="button"
+              className={colorMode === "default" ? "is-on" : ""}
+              onClick={() => onChangeColorMode("default")}
+            >
+              Padrão
+            </button>
+            <button
+              type="button"
+              className={colorMode === "cb" ? "is-on" : ""}
+              onClick={() => onChangeColorMode("cb")}
+            >
+              Daltônico
+            </button>
+          </div>
+        </div>
+      ) : null}
       <div className="control-block">
         <span>
           Ano / período {yearTip ? <InfoTip data={yearTip} label="Sobre o período" /> : null}

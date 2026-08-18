@@ -15,8 +15,23 @@ function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
 }
 
-export function colorScale(t: number, higherIsWorse = false) {
+export type ColorMode = "default" | "cb";
+
+export function colorScale(t: number, higherIsWorse = false, colorMode: ColorMode = "default") {
   const x = Math.max(0, Math.min(1, Math.pow(t, 0.85)));
+  if (colorMode === "cb") {
+    // Okabe–Ito: yellow→blue (better) / sky→vermillion (worse). No red–green pair.
+    if (higherIsWorse) {
+      const r = Math.round(lerp(86, 213, x));
+      const g = Math.round(lerp(180, 94, x));
+      const b = Math.round(lerp(233, 0, x));
+      return `rgb(${r},${g},${b})`;
+    }
+    const r = Math.round(lerp(247, 0, x));
+    const g = Math.round(lerp(240, 114, x));
+    const b = Math.round(lerp(208, 178, x));
+    return `rgb(${r},${g},${b})`;
+  }
   if (higherIsWorse) {
     const r = Math.round(lerp(210, 176, x));
     const g = Math.round(lerp(230, 78, x));
@@ -106,6 +121,7 @@ export function paintCollection(
   higherIsWorse: boolean,
   unit?: string,
   mode: "uf" | "mun" = "uf",
+  colorMode: ColorMode = "default",
 ) {
   const nums = [...valueMap.values()];
   const min = nums.length ? Math.min(...nums) : 0;
@@ -174,7 +190,7 @@ export function paintCollection(
         properties: {
           ...f.properties,
           ibge_code: code,
-          fill: hasValue ? colorScale(t, higherIsWorse) : "#c5d4cf",
+          fill: hasValue ? colorScale(t, higherIsWorse, colorMode) : "#c5d4cf",
           value: hasValue ? value : null,
           place_sigla: placeSigla,
           place_name: placeName,

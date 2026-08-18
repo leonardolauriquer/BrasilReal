@@ -36,11 +36,20 @@ export const metadata: Metadata = {
     siteName: "Brasil Real",
     title: "Brasil Real",
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Brasil Real — atlas exploratório com dados oficiais",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Brasil Real",
     description: SITE_DESCRIPTION,
+    images: ["/og.png"],
   },
   appleWebApp: {
     capable: true,

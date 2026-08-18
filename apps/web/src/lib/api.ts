@@ -35,6 +35,48 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function fetchReady(init?: RequestInit) {
+  return api<{
+    fixtures_loaded?: boolean;
+    integrity?: string;
+    uf_count?: number;
+  }>("/ready", init);
+}
+
+/** Cloud Run cold start: ping /ready with backoff before loading the catalog. */
+export async function wakeApi(signal?: AbortSignal): Promise<void> {
+  const attempts = 5;
+  let last: Error | null = null;
+  for (let i = 0; i < attempts; i++) {
+    if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
+    const ctrl = new AbortController();
+    const onAbort = () => ctrl.abort();
+    signal?.addEventListener("abort", onAbort);
+    const timer = globalThis.setTimeout(() => ctrl.abort(), 20_000);
+    try {
+      const data = await fetchReady({ signal: ctrl.signal });
+      if (data.fixtures_loaded && data.integrity === "ok") return;
+      last = new Error("API ainda carregando fixtures.");
+    } catch (err) {
+      last =
+        err instanceof Error && err.name === "AbortError"
+          ? new Error("A API demorou para acordar (cold start).")
+          : err instanceof Error
+            ? err
+            : new Error("API indisponível.");
+    } finally {
+      globalThis.clearTimeout(timer);
+      signal?.removeEventListener("abort", onAbort);
+    }
+    if (i < attempts - 1) await sleep(1000 * (i + 1));
+  }
+  throw last || new Error("Não foi possível conectar à API. Toque em Tentar de novo.");
+}
+
 export function getApiUrl() {
   return API_URL || "(same-origin via Next rewrite)";
 }

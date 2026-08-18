@@ -8,6 +8,29 @@
     ],
     "cleanUrls": true,
     "trailingSlash": true,
+    "rewrites": [
+      {
+        "source": "/s",
+        "run": {
+          "serviceId": "brasil-real-api",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "/s/",
+        "run": {
+          "serviceId": "brasil-real-api",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "/s/**",
+        "run": {
+          "serviceId": "brasil-real-api",
+          "region": "southamerica-east1"
+        }
+      }
+    ],
     "headers": [
       {
         "source": "**/*.@(js|css|woff2)",

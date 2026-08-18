@@ -15,9 +15,16 @@ type Props = {
   error?: string | null;
   exiting?: boolean;
   onExitComplete?: () => void;
+  onRetry?: () => void;
 };
 
-export function BootScreen({ stages, error, exiting = false, onExitComplete }: Props) {
+export function BootScreen({
+  stages,
+  error,
+  exiting = false,
+  onExitComplete,
+  onRetry,
+}: Props) {
   const doneCount = stages.filter((s) => s.done).length;
   const progress = stages.length ? doneCount / stages.length : 0;
   const active = stages.find((s) => !s.done)?.label || "Quase pronto";
@@ -82,6 +89,11 @@ export function BootScreen({ stages, error, exiting = false, onExitComplete }: P
         </ul>
 
         <p className={`boot-status ${error ? "is-error" : ""}`}>{error || status}</p>
+        {error && onRetry ? (
+          <button type="button" className="boot-retry" onClick={onRetry}>
+            Tentar de novo
+          </button>
+        ) : null}
       </div>
     </div>
   );

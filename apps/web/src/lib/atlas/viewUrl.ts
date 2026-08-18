@@ -1,6 +1,8 @@
+import { SITE_URL } from "@/lib/brand";
 import { RECORTE_OPTIONS, type RecorteId } from "@/lib/map/regions";
 
 export type RankMode = "nivel" | "delta";
+export type ColorMode = "default" | "cb";
 
 export type AtlasView = {
   camada: string;
@@ -10,6 +12,7 @@ export type AtlasView = {
   modo: RankMode;
   vs: string[];
   sim: boolean;
+  cor: ColorMode;
 };
 
 const RECORTE_SET = new Set(RECORTE_OPTIONS.map((o) => o.value));
@@ -45,11 +48,11 @@ export function parseViewUrl(search?: string): AtlasView {
     modo: modoRaw === "delta" ? "delta" : "nivel",
     vs: parseVs(q.get("vs")),
     sim: q.get("sim") === "1",
+    cor: q.get("cor") === "cb" ? "cb" : "default",
   };
 }
 
-export function writeViewUrl(view: AtlasView) {
-  if (typeof window === "undefined") return;
+export function viewSearchParams(view: AtlasView): URLSearchParams {
   const q = new URLSearchParams();
   if (view.camada && view.camada !== "population") q.set("camada", view.camada);
   if (view.ano) q.set("ano", view.ano);
@@ -58,15 +61,35 @@ export function writeViewUrl(view: AtlasView) {
   if (view.modo === "delta") q.set("modo", "delta");
   if (view.vs.length) q.set("vs", view.vs.join(","));
   if (view.sim) q.set("sim", "1");
-  const qs = q.toString();
+  if (view.cor === "cb") q.set("cor", "cb");
+  return q;
+}
+
+export function atlasHref(view: AtlasView, origin = SITE_URL): string {
+  const qs = viewSearchParams(view).toString();
+  return `${origin}/${qs ? `?${qs}` : ""}`;
+}
+
+/** Hosting rewrite `/s` → API HTML (crawlers) or 302 to the atlas (humans). */
+export function shareHref(view: AtlasView, origin?: string): string {
+  const base =
+    origin ||
+    (typeof window !== "undefined" ? window.location.origin : SITE_URL);
+  const qs = viewSearchParams(view).toString();
+  return `${base}/s${qs ? `?${qs}` : ""}`;
+}
+
+export function writeViewUrl(view: AtlasView) {
+  if (typeof window === "undefined") return;
+  const qs = viewSearchParams(view).toString();
   const next = `${window.location.pathname}${qs ? `?${qs}` : ""}${window.location.hash}`;
   const cur = `${window.location.pathname}${window.location.search}${window.location.hash}`;
   if (next !== cur) window.history.replaceState(window.history.state, "", next);
 }
 
-export async function copyViewUrl(): Promise<boolean> {
+export async function copyViewUrl(view?: AtlasView): Promise<boolean> {
   if (typeof window === "undefined") return false;
-  const href = window.location.href;
+  const href = view ? shareHref(view) : shareHref(parseViewUrl());
   try {
     await navigator.clipboard.writeText(href);
     return true;
