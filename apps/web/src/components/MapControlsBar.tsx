@@ -5,6 +5,7 @@ import { InfoTip, type ProvenanceFields } from "@/components/InfoTip";
 import { comparePeriodKeys, formatPeriodLabel } from "@/lib/format";
 import { RANKING_PRESET_TIP, RECORTE_TIP, VARIATION_TIP } from "@/lib/legend";
 import { RECORTE_OPTIONS, type RecorteId } from "@/lib/map/regions";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 type Group = {
   key: string;
@@ -77,6 +78,7 @@ export function MapControlsBar({
   colorMode = "default",
   onChangeColorMode,
 }: Props) {
+  const { t } = useI18n();
   return (
     <>
       {onToggleSheet ? (
@@ -86,34 +88,34 @@ export function MapControlsBar({
           onClick={onToggleSheet}
           aria-expanded={sheet}
         >
-          {peekLabel || "Filtros"}
+          {peekLabel || t("ui.filters")}
         </button>
       ) : null}
       <div className={`map-controls ${sheet ? "is-sheet" : ""}`}>
       {onToggleSheet ? (
         <div className="control-hint control-hint--sheet">
           <button type="button" className="fit-brazil" onClick={onToggleSheet}>
-            Fechar
+            {t("ui.close")}
           </button>
         </div>
       ) : null}
       {rankingGroups.length ? (
         <div className="control-block control-block--leitura">
           <span>
-            Leitura <InfoTip data={RANKING_PRESET_TIP} label="O que é esta leitura" />
+            {t("ui.reading")} <InfoTip data={RANKING_PRESET_TIP} label={t("ui.readingTip")} />
           </span>
           <GroupedSelect
-            aria-label="Leitura — camada oficial ou lente declarada"
+            aria-label={t("ui.readingAria")}
             value={layer}
             onChange={onChangeLayer}
-            placeholder="Lente ou métrica"
+            placeholder={t("ui.readingPlaceholder")}
             groups={rankingGroups}
           />
         </div>
       ) : null}
       {yearOptions.length > 1 ? (
         <div className="control-block control-block--timeline">
-          <span>Série oficial</span>
+          <span>{t("ui.officialSeries")}</span>
           <PeriodScrubber
             periods={yearOptions}
             value={year}
@@ -124,10 +126,10 @@ export function MapControlsBar({
       ) : null}
       <div className="control-block">
         <span>
-          Camada {layerTip ? <InfoTip data={layerTip} label="Sobre a camada" /> : null}
+          {t("ui.layer")} {layerTip ? <InfoTip data={layerTip} label={t("ui.layerTip")} /> : null}
         </span>
         <GroupedSelect
-          aria-label="Camada do mapa"
+          aria-label={t("ui.layerAria")}
           value={layer}
           onChange={onChangeLayer}
           groups={indicatorGroups}
@@ -135,26 +137,30 @@ export function MapControlsBar({
       </div>
       <div className="control-block">
         <span>
-          Recorte <InfoTip data={RECORTE_TIP} label="O que é o recorte" />
+          {t("ui.recorte")} <InfoTip data={RECORTE_TIP} label={t("ui.recorteTip")} />
         </span>
         <GroupedSelect
-          aria-label="Recorte do ranking"
+          aria-label={t("ui.recorteAria")}
           value={recorte}
           onChange={(v) => onChangeRecorte(v as RecorteId)}
-          options={RECORTE_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}
+          options={RECORTE_OPTIONS.map((o) => {
+            const key = `recorte.${o.value}`;
+            const translated = t(key);
+            return { value: o.value, label: translated === key ? o.label : translated };
+          })}
         />
       </div>
       <div className="control-block">
         <span>
-          Ranking <InfoTip data={VARIATION_TIP} label="Nível ou variação" />
+          {t("ui.ranking")} <InfoTip data={VARIATION_TIP} label={t("ui.rankTip")} />
         </span>
-        <div className="rank-mode" role="group" aria-label="Nível ou variação">
+        <div className="rank-mode" role="group" aria-label={t("ui.rankTip")}>
           <button
             type="button"
             className={rankMode === "nivel" ? "is-on" : ""}
             onClick={() => onChangeRankMode("nivel")}
           >
-            Nível
+            {t("ui.level")}
           </button>
           <button
             type="button"
@@ -162,40 +168,40 @@ export function MapControlsBar({
             disabled={!canDelta}
             onClick={() => canDelta && onChangeRankMode("delta")}
           >
-            Variação
+            {t("ui.variation")}
           </button>
         </div>
       </div>
       {onChangeColorMode ? (
         <div className="control-block">
-          <span>Cores</span>
-          <div className="rank-mode" role="group" aria-label="Escala de cores do mapa">
+          <span>{t("ui.colors")}</span>
+          <div className="rank-mode" role="group" aria-label={t("ui.colorsAria")}>
             <button
               type="button"
               className={colorMode === "default" ? "is-on" : ""}
               onClick={() => onChangeColorMode("default")}
             >
-              Padrão
+              {t("ui.colorDefault")}
             </button>
             <button
               type="button"
               className={colorMode === "cb" ? "is-on" : ""}
               onClick={() => onChangeColorMode("cb")}
             >
-              Daltônico
+              {t("ui.colorCb")}
             </button>
           </div>
         </div>
       ) : null}
       <div className="control-block">
         <span>
-          Ano / período {yearTip ? <InfoTip data={yearTip} label="Sobre o período" /> : null}
+          {t("ui.year")} {yearTip ? <InfoTip data={yearTip} label={t("ui.yearTip")} /> : null}
         </span>
         <GroupedSelect
-          aria-label="Ano ou período"
+          aria-label={t("ui.yearAria")}
           value={year}
           disabled={!yearOptions.length}
-          placeholder={yearOptions.length ? "Período" : "…"}
+          placeholder={yearOptions.length ? t("ui.period") : "…"}
           onChange={onChangeYear}
           options={yearOptions.map((p) => ({
             value: p,
@@ -205,19 +211,19 @@ export function MapControlsBar({
       </div>
       <div className="control-hint">
         <button type="button" className="fit-brazil" onClick={onFitBrazil}>
-          Brasil inteiro
+          {t("ui.fitBrazil")}
         </button>
         <button type="button" className="dossier-open" onClick={onOpenDossier}>
-          Dossiê
+          {t("ui.dossier")}
         </button>
         {onOpenSearch ? (
           <button type="button" className="dossier-open" onClick={onOpenSearch}>
-            Busca
+            {t("ui.search")}
           </button>
         ) : null}
         {onCopyLink ? (
           <button type="button" className="dossier-open" onClick={onCopyLink}>
-            Copiar vista
+            {t("ui.copyView")}
           </button>
         ) : null}
         {onExportPng ? (
@@ -231,17 +237,17 @@ export function MapControlsBar({
             className={`dossier-open ${simulado ? "is-sim" : ""}`}
             onClick={onToggleSimulado}
           >
-            Simulado
+            {t("ui.simulado")}
           </button>
         ) : null}
         {showInstallApp && onInstallApp ? (
           <button type="button" className="pwa-open" onClick={onInstallApp}>
-            Instalar app
+            {t("ui.installApp")}
           </button>
         ) : null}
         <span>
           {controlHint}
-          {loading ? " · atualizando camada…" : ""}
+          {loading ? t("ui.updatingLayer") : ""}
         </span>
       </div>
     </div>
@@ -260,6 +266,7 @@ function PeriodScrubber({
   onChange: (year: string) => void;
   disabled?: boolean;
 }) {
+  const { t } = useI18n();
   const chrono = [...new Set(periods)].sort(comparePeriodKeys);
   const idx = Math.max(0, chrono.indexOf(value));
   const atStart = idx <= 0;
@@ -269,7 +276,7 @@ function PeriodScrubber({
       <button
         type="button"
         className="period-scrub-step"
-        aria-label="Período anterior"
+        aria-label={t("ui.prevPeriod")}
         disabled={disabled || atStart}
         onClick={() => onChange(chrono[idx - 1])}
       >
@@ -283,13 +290,13 @@ function PeriodScrubber({
         step={1}
         value={idx}
         disabled={disabled}
-        aria-label="Percorrer períodos da série oficial"
+        aria-label={t("ui.scrubAria")}
         onChange={(e) => onChange(chrono[Number(e.target.value)])}
       />
       <button
         type="button"
         className="period-scrub-step"
-        aria-label="Período seguinte"
+        aria-label={t("ui.nextPeriod")}
         disabled={disabled || atEnd}
         onClick={() => onChange(chrono[idx + 1])}
       >
@@ -297,7 +304,7 @@ function PeriodScrubber({
       </button>
       <span className="period-scrub-meta">
         {formatPeriodLabel(chrono[0])} – {formatPeriodLabel(chrono[chrono.length - 1])} ·{" "}
-        {chrono.length} períodos
+        {t("ui.periodsCount", { n: chrono.length })}
       </span>
     </div>
   );

@@ -18,6 +18,8 @@ import { getApiUrl } from "@/lib/api";
 import { LENS_SHORTCUTS } from "@/lib/legend";
 import { downloadMapPng } from "@/lib/map/capture";
 import { formatPeriodLabel } from "@/lib/format";
+import { useI18n } from "@/lib/i18n/I18nProvider";
+import { LangSwitch } from "@/components/LangSwitch";
 
 const BrazilMap = dynamic(
   () => import("@/components/BrazilMap").then((m) => m.BrazilMap),
@@ -29,6 +31,7 @@ const BrazilMap = dynamic(
 
 export default function HomePage() {
   const a = useAtlasState();
+  const { t } = useI18n();
   const [dossierOpen, setDossierOpen] = useState(false);
   const [pwaOffer, setPwaOffer] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -36,12 +39,12 @@ export default function HomePage() {
   const [copied, setCopied] = useState(false);
 
   const layerLabel = a.simulado
-    ? a.simTitle || "Fundo hipotético"
-    : a.activeIndicator?.short_name || a.activeIndicator?.name || "Camada";
+    ? a.simTitle || t("ui.hypothesisFund")
+    : a.activeIndicator?.short_name || a.activeIndicator?.name || t("ui.layer");
 
   useEffect(() => {
     const bits = [layerLabel];
-    if (a.recorteCaption && a.recorteCaption !== "Brasil (27 UFs)") bits.push(a.recorteCaption);
+    if (a.recorteCaption && a.recorteCaption !== t("recorte.BR")) bits.push(a.recorteCaption);
     if (a.year) bits.push(formatPeriodLabel(a.year));
     if (a.selectedObs?.uf) bits.push(a.selectedObs.uf);
     document.title = `${bits.join(" · ")} | Brasil Real`;
@@ -102,7 +105,7 @@ export default function HomePage() {
   const exportPng = () => {
     downloadMapPng({
       layerLabel,
-      period: a.simulado ? "hipótese" : formatPeriodLabel(a.year || "—"),
+      period: a.simulado ? t("png.hypothesis") : formatPeriodLabel(a.year || "—"),
       status: a.simulado ? "SIMULADO" : a.rankMode === "delta" ? "DERIVADO" : a.activeIndicator?.status_label || "—",
       organization: a.simulado
         ? "Brasil Real (motor hipotético)"
@@ -169,11 +172,10 @@ export default function HomePage() {
             <div className="brand-lockup">
               <BrandMark className="brand-mark" />
               <h1>Brasil Real</h1>
+              <LangSwitch compact />
             </div>
             <p>
-              {a.regionMode
-                ? "Zoom afastado: macrorregiões IBGE. Clique uma região para ficha + aproximar."
-                : "Mapa + ranking com fonte. Clique UF, região intermediária ou capital no zoom médio."}
+              {a.regionMode ? t("brand.tagline.zoom") : t("brand.tagline.map")}
             </p>
           </header>
 
@@ -184,7 +186,7 @@ export default function HomePage() {
             selectedCode={a.selected}
             selectedRegionId={a.selectedRegionId}
             layerLabel={layerLabel}
-            period={a.simulado ? "hipótese" : a.year}
+            period={a.simulado ? t("rank.hypothesis") : a.year}
             periods={a.simulado ? [] : a.yearOptions}
             statusLabel={a.simulado ? "SIMULADO" : a.rankMode === "delta" ? "DERIVADO" : a.activeIndicator?.status_label}
             higherIsWorse={a.higherIsWorse}
@@ -228,10 +230,22 @@ export default function HomePage() {
                 label: ind.short_name || ind.name,
               })),
             }))}
-            rankingGroups={a.rankingGroups}
+            rankingGroups={a.rankingGroups.map((g) => ({
+              ...g,
+              label: (() => {
+                const key = `group.${g.key}`;
+                const translated = t(key);
+                return translated === key ? g.label : translated;
+              })(),
+              items: g.items.map((item) => {
+                const key = `layer.${item.value}`;
+                const translated = t(key);
+                return { ...item, label: translated === key ? item.label : translated };
+              }),
+            }))}
             layerTip={a.layerTip}
             yearTip={a.yearTip}
-            controlHint={copied ? "Link da vista copiado." : a.controlHint}
+            controlHint={copied ? t("ui.copied") : a.controlHint}
             loading={a.loading}
             onChangeLayer={(id) => {
               a.changeLayer(id);
@@ -248,7 +262,7 @@ export default function HomePage() {
             onChangeRankMode={a.setRankMode}
             canDelta={a.canDelta}
             sheet={filtersOpen}
-            peekLabel={`${layerLabel} · ${a.simulado ? "SIMULADO" : formatPeriodLabel(a.year || "…")} · Filtros`}
+            peekLabel={`${layerLabel} · ${a.simulado ? "SIMULADO" : formatPeriodLabel(a.year || "…")} · ${t("ui.filters")}`}
             onToggleSheet={() => setFiltersOpen((v) => !v)}
             onOpenSearch={() => setSearchOpen(true)}
             onExportPng={exportPng}

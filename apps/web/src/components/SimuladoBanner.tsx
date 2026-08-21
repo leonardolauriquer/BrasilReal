@@ -1,5 +1,7 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n/I18nProvider";
+
 type Props = {
   title: string;
   disclaimer: string;
@@ -7,15 +9,16 @@ type Props = {
 };
 
 export function SimuladoBanner({ title, disclaimer, onExit }: Props) {
+  const { t } = useI18n();
   return (
     <div className="sim-banner" role="status">
       <div>
-        <p className="sim-kicker">SIMULADO — não é fato observado</p>
-        <p className="sim-title">{title || "Fundo federal hipotético"}</p>
+        <p className="sim-kicker">{t("sim.kicker")}</p>
+        <p className="sim-title">{title || t("sim.fund")}</p>
         <p className="sim-text">{disclaimer}</p>
       </div>
       <button type="button" onClick={onExit}>
-        Voltar ao observado
+        {t("sim.exit")}
       </button>
     </div>
   );

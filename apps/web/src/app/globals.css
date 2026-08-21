@@ -473,6 +473,47 @@ button,
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  pointer-events: auto;
+}
+
+.lang-switch {
+  display: inline-flex;
+  margin-left: auto;
+  border: 1px solid rgba(231, 239, 235, 0.22);
+  border-radius: 999px;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.lang-switch button {
+  border: 0;
+  background: transparent;
+  color: rgba(238, 245, 241, 0.72);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.48rem;
+  cursor: pointer;
+}
+
+.lang-switch button.is-on {
+  background: rgba(255, 255, 255, 0.16);
+  color: #f4faf7;
+}
+
+.boot-core .lang-switch {
+  margin: 0 0 0.85rem;
+  border-color: rgba(14, 23, 19, 0.18);
+}
+
+.boot-core .lang-switch button {
+  color: rgba(14, 23, 19, 0.62);
+}
+
+.boot-core .lang-switch button.is-on {
+  background: rgba(14, 23, 19, 0.12);
+  color: #0e1713;
 }
 
 .brand-mark {

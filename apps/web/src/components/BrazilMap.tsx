@@ -13,6 +13,7 @@ import { buildRegionLabelPoints } from "@/lib/map/regions";
 import { capitalsGeoJSON, isStateCapitalName } from "@/lib/map/capitals";
 import { isIntermediateClickBand, ZOOM } from "@/lib/map/zoomLadder";
 import { mapChromePadding } from "@/lib/map/chrome";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import { registerMapCanvas } from "@/lib/map/capture";
 import { formatMapLabel } from "@/lib/format";
 
@@ -128,6 +129,7 @@ export function BrazilMap({
   cardOpen = false,
   compareCodes = [],
 }: Props) {
+  const { t, locale } = useI18n();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const geoCacheRef = useRef<MunFeatureCollection | null>(null);
@@ -382,7 +384,7 @@ export function BrazilMap({
     return () => {
       map.off("br:source-ready", paint);
     };
-  }, [valueMap, higherIsWorse, valueUnit, popByIbge, colorMode]);
+  }, [valueMap, higherIsWorse, valueUnit, popByIbge, colorMode, locale]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -433,7 +435,7 @@ export function BrazilMap({
       munLabels?.setData({ type: "FeatureCollection", features: [] });
       setMunicipalityMode(map, false);
     }
-  }, [municipalities, showMunicipalities, colorMode]);
+  }, [municipalities, showMunicipalities, colorMode, locale]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -499,6 +501,6 @@ export function BrazilMap({
   }, [selectedInterCode]);
 
   return (
-    <div className="map-root" ref={containerRef} role="img" aria-label="Mapa do Brasil" />
+    <div className="map-root" ref={containerRef} role="img" aria-label={t("map.aria")} />
   );
 }

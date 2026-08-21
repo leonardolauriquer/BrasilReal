@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Indicator, Observation } from "@/lib/api";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 type Hit =
   | { kind: "layer"; id: string; label: string; hint: string }
@@ -24,6 +25,7 @@ type Props = {
 };
 
 export function AtlasSearch({ open, indicators, ufs, onClose, onPickLayer, onPickUf }: Props) {
+  const { t } = useI18n();
   const [q, setQ] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,7 +44,7 @@ export function AtlasSearch({ open, indicators, ufs, onClose, onPickLayer, onPic
           kind: "layer" as const,
           id: ind.id,
           label: ind.short_name || ind.name,
-          hint: "camada",
+          hint: t("search.layer"),
         })),
         ...ufs.slice(0, 6).map((row) => ({
           kind: "uf" as const,
@@ -61,7 +63,7 @@ export function AtlasSearch({ open, indicators, ufs, onClose, onPickLayer, onPic
         kind: "layer",
         id: ind.id,
         label: ind.short_name || ind.name,
-        hint: ind.group_label || "camada",
+        hint: ind.group_label || t("search.layer"),
       }));
     const places: Hit[] = ufs
       .filter((row) => [row.uf, row.name, row.geography_ibge_code].some((v) => fold(v).includes(needle)))
@@ -73,22 +75,22 @@ export function AtlasSearch({ open, indicators, ufs, onClose, onPickLayer, onPic
         hint: "UF",
       }));
     return [...layers, ...places];
-  }, [indicators, q, ufs]);
+  }, [indicators, q, t, ufs]);
 
   if (!open) return null;
 
   return (
-    <div className="search-root" role="dialog" aria-label="Buscar camada ou UF">
-      <button type="button" className="search-veil" onClick={onClose} aria-label="Fechar busca" />
+    <div className="search-root" role="dialog" aria-label={t("search.aria")}>
+      <button type="button" className="search-veil" onClick={onClose} aria-label={t("search.close")} />
       <div className="search-panel">
         <input
           ref={inputRef}
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Gini, RCL, Roraima…"
-          aria-label="Buscar"
+          placeholder={t("search.placeholder")}
+          aria-label={t("search.ariaInput")}
         />
-        <p className="search-hint">/ ou Ctrl+K · Esc fecha</p>
+        <p className="search-hint">{t("search.hint")}</p>
         <ul>
           {hits.length ? (
             hits.map((hit) => (
@@ -107,7 +109,7 @@ export function AtlasSearch({ open, indicators, ufs, onClose, onPickLayer, onPic
               </li>
             ))
           ) : (
-            <li className="search-empty">Nada com essa busca</li>
+            <li className="search-empty">{t("search.empty")}</li>
           )}
         </ul>
       </div>

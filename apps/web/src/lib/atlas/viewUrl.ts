@@ -62,6 +62,10 @@ export function viewSearchParams(view: AtlasView): URLSearchParams {
   if (view.vs.length) q.set("vs", view.vs.join(","));
   if (view.sim) q.set("sim", "1");
   if (view.cor === "cb") q.set("cor", "cb");
+  if (typeof window !== "undefined") {
+    const lang = new URLSearchParams(window.location.search).get("lang");
+    if (lang) q.set("lang", lang);
+  }
   return q;
 }
 
@@ -81,7 +85,10 @@ export function shareHref(view: AtlasView, origin?: string): string {
 
 export function writeViewUrl(view: AtlasView) {
   if (typeof window === "undefined") return;
-  const qs = viewSearchParams(view).toString();
+  const q = viewSearchParams(view);
+  const lang = new URLSearchParams(window.location.search).get("lang");
+  if (lang) q.set("lang", lang);
+  const qs = q.toString();
   const next = `${window.location.pathname}${qs ? `?${qs}` : ""}${window.location.hash}`;
   const cur = `${window.location.pathname}${window.location.search}${window.location.hash}`;
   if (next !== cur) window.history.replaceState(window.history.state, "", next);

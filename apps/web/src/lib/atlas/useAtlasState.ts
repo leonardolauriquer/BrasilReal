@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { hasProvenance } from "@/components/InfoTip";
 import { groupIndicators, legendScaleFor, rankingPresetsFor } from "@/lib/legend";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 import {
   buildIntermediateFiche,
   buildMacroFiche,
@@ -89,6 +90,7 @@ export type MuniSelection = {
 };
 
 export function useAtlasState() {
+  const { t } = useI18n();
   const [indicators, setIndicators] = useState<Indicator[]>([]);
   const [layer, setLayer] = useState("population");
   const [year, setYear] = useState("");
@@ -424,13 +426,13 @@ export function useAtlasState() {
 
   const bootStages = useMemo(
     () => [
-      { id: "api", label: "Acordando a API", done: bootApi },
-      { id: "catalog", label: "Catálogo de camadas", done: bootCatalog },
-      { id: "periods", label: "Período oficial mais recente", done: bootPeriods },
-      { id: "obs", label: "Observações por UF", done: bootObs },
-      { id: "map", label: "Malha e rótulos do mapa", done: bootMap },
+      { id: "api", label: t("boot.api"), done: bootApi },
+      { id: "catalog", label: t("boot.catalog"), done: bootCatalog },
+      { id: "periods", label: t("boot.periods"), done: bootPeriods },
+      { id: "obs", label: t("boot.obs"), done: bootObs },
+      { id: "map", label: t("boot.map"), done: bootMap },
     ],
-    [bootApi, bootCatalog, bootPeriods, bootObs, bootMap],
+    [bootApi, bootCatalog, bootPeriods, bootObs, bootMap, t],
   );
 
   const bootReady = bootApi && bootCatalog && bootPeriods && bootObs && bootMap;
@@ -821,28 +823,32 @@ export function useAtlasState() {
     const additive = isAdditiveUnit(activeIndicator?.unit);
     if (layer === "population") {
       if (showMunicipalities) {
-        if (loadingMuni) return "Carregando municípios…";
-        return `Municípios · ${municipalities?.count || 0} · nomes densificam com o zoom`;
+        if (loadingMuni) return t("hint.loadingMuni");
+        return t("hint.muniReady", { n: municipalities?.count || 0 });
       }
       if (zoom >= ZOOM.municipality && !selected) {
-        return `Zoom ${z} · selecione uma UF para municípios`;
+        return t("hint.pickUf", { z });
       }
-      if (regionMode) return `Zoom ${z} · macrorregião → intermediária → UF → município`;
-      return `Zoom ${z} · intermediária/UF/capitais · município ≥${ZOOM.municipality}`;
+      if (regionMode) return t("hint.ladderPop", { z });
+      return t("hint.popDefault", { z, min: ZOOM.municipality });
     }
     if (recorte !== "BR") {
-      return `Zoom ${z} · recorte ${recorteLabel(recorte)} · ${rankMode === "delta" ? "variação" : "nível"}`;
+      return t("hint.recorte", {
+        z,
+        recorte: t(`recorte.${recorte}`),
+        mode: rankMode === "delta" ? t("ui.variation") : t("ui.level"),
+      });
     }
     if (rankMode === "delta") {
-      return `Zoom ${z} · variação vs período oficial anterior`;
+      return t("hint.delta", { z });
     }
     if (regionMode) {
-      return `Zoom ${z} · macrorregiões${additive ? " · soma aditiva" : " · média ponderada pela pop."}`;
+      return additive ? t("hint.regionSum", { z }) : t("hint.regionAvg", { z });
     }
     if (periods.length > 1) {
-      return `Zoom ${z} · linha do tempo da mesma métrica · ${periods.length} períodos oficiais`;
+      return t("hint.timeline", { z, n: periods.length });
     }
-    return `Zoom ${z} · intermediária + UF + capitais · municípios só em População`;
+    return t("hint.default", { z });
   }, [
     activeIndicator?.unit,
     layer,
@@ -854,6 +860,7 @@ export function useAtlasState() {
     regionMode,
     selected,
     showMunicipalities,
+    t,
     zoom,
   ]);
 
@@ -884,7 +891,7 @@ export function useAtlasState() {
     rankMode,
     canDelta: canDelta && !simulado,
     prevPeriod,
-    recorteCaption: recorteLabel(recorte),
+    recorteCaption: t(`recorte.${recorte}`),
     viewObs,
     displayObs,
     compareCodes,

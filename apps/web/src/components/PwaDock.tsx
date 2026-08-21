@@ -11,6 +11,7 @@ import {
   writeDismissedAt,
   type BeforeInstallPromptEvent,
 } from "@/lib/pwa";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 type Mode = "hidden" | "install" | "ios" | "update";
 
@@ -20,6 +21,7 @@ type Props = {
 };
 
 export function PwaDock({ ready, onOfferInstall }: Props) {
+  const { t } = useI18n();
   const deferred = useRef<BeforeInstallPromptEvent | null>(null);
   const autoShown = useRef(false);
   const [mode, setMode] = useState<Mode>("hidden");
@@ -192,19 +194,16 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
       <aside className="pwa-dock pwa-dock--update" role="status">
         <BrandMark className="pwa-dock-mark" />
         <div className="pwa-dock-copy">
-          <p className="pwa-dock-kicker">Versão nova no ar</p>
-          <p className="pwa-dock-title">O atlas atualizou</p>
-          <p className="pwa-dock-line">
-            Camadas, correções e o texto do produto. Recarregar puxa o pacote publicado agora —
-            os números oficiais continuam vindo da API, sem cache velho.
-          </p>
+          <p className="pwa-dock-kicker">{t("pwa.updateKicker")}</p>
+          <p className="pwa-dock-title">{t("pwa.updateTitle")}</p>
+          <p className="pwa-dock-line">{t("pwa.updateLine")}</p>
         </div>
         <div className="pwa-dock-actions">
           <button type="button" className="pwa-dock-primary" onClick={() => window.location.reload()}>
-            Atualizar
+            {t("pwa.update")}
           </button>
           <button type="button" className="pwa-dock-ghost" onClick={() => setMode("hidden")}>
-            Depois
+            {t("pwa.later")}
           </button>
         </div>
       </aside>
@@ -217,37 +216,24 @@ export function PwaDock({ ready, onOfferInstall }: Props) {
     <aside className="pwa-dock" role="dialog" aria-labelledby="pwa-install-title">
       <BrandMark className="pwa-dock-mark" />
       <div className="pwa-dock-copy">
-        <p className="pwa-dock-kicker">{iosCopy ? "Na tela inicial" : "App na tela inicial"}</p>
+        <p className="pwa-dock-kicker">{iosCopy ? t("pwa.iosKicker") : t("pwa.installKicker")}</p>
         <h2 id="pwa-install-title" className="pwa-dock-title">
-          {iosCopy ? "Levar o Brasil Real com você" : "Quer o mapa como aplicativo?"}
+          {iosCopy ? t("pwa.iosTitle") : t("pwa.installTitle")}
         </h2>
-        <p className="pwa-dock-line">
-          {iosCopy ? (
-            <>
-              No Safari, toque em <strong>Compartilhar</strong> e depois em{" "}
-              <strong>Adicionar à Tela de Início</strong>. Sem App Store. Sempre a versão
-              publicada — dados só com fonte.
-            </>
-          ) : (
-            <>
-              Abre em tela cheia, sem loja e sem conta. Cada publicação substitui o pacote
-              antigo — o que você vê é a versão no ar, com números oficiais ao vivo.
-            </>
-          )}
-        </p>
+        <p className="pwa-dock-line">{iosCopy ? t("pwa.iosLine") : t("pwa.installLine")}</p>
       </div>
       <div className="pwa-dock-actions">
         {iosCopy ? (
           <button type="button" className="pwa-dock-primary" onClick={dismissInstall}>
-            Entendi
+            {t("pwa.gotIt")}
           </button>
         ) : (
           <button type="button" className="pwa-dock-primary" onClick={() => void installNow()}>
-            Instalar
+            {t("pwa.install")}
           </button>
         )}
         <button type="button" className="pwa-dock-ghost" onClick={dismissInstall}>
-          Agora não
+          {t("pwa.notNow")}
         </button>
       </div>
     </aside>

@@ -5,6 +5,7 @@ import { InfoTip, type ProvenanceFields } from "@/components/InfoTip";
 import { comparePeriodKeys, formatPeriodLabel, formatSharePercent, formatValue, medianNumbers } from "@/lib/format";
 import { compareRankValue, isAdditiveUnit, type RegionRankRow } from "@/lib/map/regions";
 import type { Observation } from "@/lib/api";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 type Props = {
   rows: Observation[];
@@ -58,6 +59,7 @@ export function RankPanel({
   compareCodes = [],
   onToggleCompare,
 }: Props) {
+  const { t } = useI18n();
   const listRef = useRef<HTMLDivElement>(null);
 
   const ranked = useMemo(() => {
@@ -178,51 +180,51 @@ export function RankPanel({
   }, [selectedCode, selectedRegionId, ranked, regionMode, regionRows]);
 
   return (
-    <aside className="rank-rail" aria-label={regionMode ? "Ranking por região" : "Ranking por UF"}>
+    <aside className="rank-rail" aria-label={regionMode ? t("rank.ariaRegions") : t("rank.ariaUfs")}>
       <div className="rank-head">
         <div>
           <p className="rank-kicker">
             {regionMode
-              ? "Ranking · macrorregiões"
-              : recorteLabel && recorteLabel !== "Brasil (27 UFs)"
-                ? `Ranking · ${ranked.length} UFs · ${recorteLabel}`
-                : "Ranking · UFs"}
+              ? t("rank.regions")
+              : recorteLabel && recorteLabel !== t("recorte.BR")
+                ? t("rank.ufsRecorte", { n: ranked.length, recorte: recorteLabel })
+                : t("rank.ufs")}
           </p>
           <h2 className="rank-title">
             {layerLabel}
             {rankTip ? (
-              <InfoTip data={rankTip} label="O que é este ranking e de onde veio" />
+              <InfoTip data={rankTip} label={t("rank.tip")} />
             ) : null}
           </h2>
           <p className="rank-meta">
             {rankMode === "delta" && comparePeriod
               ? `${formatPeriodLabel(period || "—")} vs ${formatPeriodLabel(comparePeriod)}`
               : formatPeriodLabel(period || "—")}
-            {rankMode === "delta" ? " · variação" : ""}
+            {rankMode === "delta" ? ` · ${t("rank.variation")}` : ""}
             {statusLabel ? ` · ${statusLabel}` : ""}
             {seriesNote ? ` · ${seriesNote}` : ""}
-            {regionMode ? " · IBGE N/NE/CO/SE/S" : ""}
-            {showUfShare || showRegionShare ? " · % do recorte" : ""}
-            {regionWeighted ? " · média ponderada pop." : ""}
-            {medianLabel ? ` · mediana ${medianLabel}` : ""}
+            {regionMode ? ` · ${t("rank.ibgeMacro")}` : ""}
+            {showUfShare || showRegionShare ? ` · ${t("rank.shareRecorte")}` : ""}
+            {regionWeighted ? ` · ${t("rank.weightedPop")}` : ""}
+            {medianLabel ? ` · ${t("rank.median", { value: medianLabel })}` : ""}
           </p>
         </div>
         <p className="rank-order">
           {regionMode
-            ? "aproxime o zoom para UFs"
+            ? t("rank.zoomForUf")
             : higherIsWorse
-              ? "melhor no topo · menor valor"
-              : "melhor no topo · maior valor"}
-          {onToggleCompare ? " · pin compara até 3" : ""}
+              ? t("rank.betterLow")
+              : t("rank.betterHigh")}
+          {onToggleCompare ? t("rank.pinHint") : ""}
         </p>
       </div>
 
       <div className="rank-list" ref={listRef} role="list">
         {regionMode ? (
           loading && !regionRows.length ? (
-            <p className="rank-empty">Atualizando camada…</p>
+            <p className="rank-empty">{t("rank.updating")}</p>
           ) : !regionRows.length ? (
-            <p className="rank-empty">SEM DADO para este filtro</p>
+            <p className="rank-empty">{t("rank.empty")}</p>
           ) : (
             rankedRegions.map((row, idx) => {
               const active = row.id === selectedRegionId;
@@ -267,9 +269,9 @@ export function RankPanel({
             })
           )
         ) : loading && !ranked.length ? (
-          <p className="rank-empty">Atualizando camada…</p>
+          <p className="rank-empty">{t("rank.updating")}</p>
         ) : !ranked.length ? (
-          <p className="rank-empty">SEM DADO para este filtro</p>
+          <p className="rank-empty">{t("rank.empty")}</p>
         ) : (
           ranked.map((row, idx) => {
             const active = row.geography_ibge_code === selectedCode;
@@ -308,7 +310,7 @@ export function RankPanel({
                     type="button"
                     className={`rank-pin ${compared ? "is-on" : ""}`}
                     aria-pressed={compared}
-                    aria-label={compared ? `Tirar ${row.uf} da comparação` : `Comparar ${row.uf}`}
+                    aria-label={compared ? t("rank.pinOn", { uf: row.uf }) : t("rank.pinOff", { uf: row.uf })}
                     onClick={() => onToggleCompare(row.geography_ibge_code)}
                   >
                     {compared ? "●" : "○"}
@@ -330,14 +332,17 @@ export function RankPanel({
         </div>
         <p className="rank-legend-note">
           {regionWeighted
-            ? `${legendNote} · valor = média ponderada pela população (DERIVADO)`
+            ? t("rank.legendWeighted", { note: legendNote })
             : showUfShare
-              ? `${legendNote} · % = participação no total das UFs listadas`
+              ? t("rank.legendUfShare", { note: legendNote })
               : showRegionShare
-                ? `${legendNote} · % = participação no total das macrorregiões (somas aditivas)`
+                ? t("rank.legendRegionShare", { note: legendNote })
                 : legendNote}
           {medianLabel
-            ? ` · traço = mediana das ${regionMode ? "regiões" : "UFs"} listadas (${medianLabel}) — não é publicação da fonte`
+            ? t("rank.legendMedian", {
+                who: regionMode ? t("rank.whoRegions") : t("rank.whoUfs"),
+                value: medianLabel,
+              })
             : ""}
         </p>
       </div>

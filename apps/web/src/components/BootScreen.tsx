@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo } from "react";
 import { BrandMark } from "@/components/BrandMark";
+import { LangSwitch } from "@/components/LangSwitch";
 import { BRAZIL_SILHOUETTE_PATH } from "@/lib/brand";
+import { useI18n } from "@/lib/i18n/I18nProvider";
 
 export type BootStage = {
   id: string;
@@ -27,13 +29,14 @@ export function BootScreen({
 }: Props) {
   const doneCount = stages.filter((s) => s.done).length;
   const progress = stages.length ? doneCount / stages.length : 0;
-  const active = stages.find((s) => !s.done)?.label || "Quase pronto";
+  const { t } = useI18n();
+  const active = stages.find((s) => !s.done)?.label || t("boot.almost");
 
   const status = useMemo(() => {
-    if (error) return "Não foi possível abrir o atlas";
-    if (exiting) return "Abrindo o mapa";
+    if (error) return t("boot.fail");
+    if (exiting) return t("boot.opening");
     return active;
-  }, [active, error, exiting]);
+  }, [active, error, exiting, t]);
 
   useEffect(() => {
     if (!exiting || !onExitComplete) return;
@@ -58,11 +61,10 @@ export function BootScreen({
 
       <div className="boot-core">
         <BrandMark className="boot-mark" />
-        <p className="boot-kicker">Atlas exploratório</p>
+        <LangSwitch compact />
+        <p className="boot-kicker">{t("boot.kicker")}</p>
         <h1 className="boot-brand">Brasil Real</h1>
-        <p className="boot-line">
-          Dados oficiais com fonte, período e definição — nada inventado.
-        </p>
+        <p className="boot-line">{t("boot.line")}</p>
 
         <div className="boot-meter" aria-hidden="true">
           <div className="boot-meter-track">
@@ -91,7 +93,7 @@ export function BootScreen({
         <p className={`boot-status ${error ? "is-error" : ""}`}>{error || status}</p>
         {error && onRetry ? (
           <button type="button" className="boot-retry" onClick={onRetry}>
-            Tentar de novo
+            {t("boot.retry")}
           </button>
         ) : null}
       </div>
