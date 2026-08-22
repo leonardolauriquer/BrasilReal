@@ -479,16 +479,17 @@ button,
 .lang-switch {
   display: inline-flex;
   margin-left: auto;
-  border: 1px solid rgba(231, 239, 235, 0.22);
+  border: 1px solid #0e1713;
   border-radius: 999px;
   overflow: hidden;
   pointer-events: auto;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .lang-switch button {
   border: 0;
   background: transparent;
-  color: rgba(238, 245, 241, 0.72);
+  color: #0e1713;
   font: inherit;
   font-size: 0.68rem;
   font-weight: 700;
@@ -498,8 +499,8 @@ button,
 }
 
 .lang-switch button.is-on {
-  background: rgba(255, 255, 255, 0.16);
-  color: #f4faf7;
+  background: #0e1713;
+  color: #eef5f1;
 }
 
 .boot-core .lang-switch {
