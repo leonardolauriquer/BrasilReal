@@ -172,8 +172,8 @@ export default function HomePage() {
             <div className="brand-lockup">
               <BrandMark className="brand-mark" />
               <h1>Brasil Real</h1>
-              <LangSwitch compact />
             </div>
+            <LangSwitch />
             <p>
               {a.regionMode ? t("brand.tagline.zoom") : t("brand.tagline.map")}
             </p>

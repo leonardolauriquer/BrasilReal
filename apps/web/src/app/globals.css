@@ -477,13 +477,16 @@ button,
 }
 
 .lang-switch {
-  display: inline-flex;
-  margin-left: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  max-width: 11.5rem;
+  margin-top: 0.45rem;
   border: 1px solid #0e1713;
   border-radius: 999px;
   overflow: hidden;
   pointer-events: auto;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .lang-switch button {
@@ -493,9 +496,10 @@ button,
   font: inherit;
   font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  padding: 0.28rem 0.42rem;
+  letter-spacing: 0.04em;
+  padding: 0.32rem 0.2rem;
   cursor: pointer;
+  min-width: 0;
 }
 
 .lang-switch button.is-on {
@@ -505,7 +509,8 @@ button,
 
 .boot-core .lang-switch {
   margin: 0 0 0.85rem;
-  border-color: rgba(14, 23, 19, 0.18);
+  max-width: 12.5rem;
+  border-color: #0e1713;
 }
 
 .boot-core .lang-switch button {
@@ -513,8 +518,8 @@ button,
 }
 
 .boot-core .lang-switch button.is-on {
-  background: rgba(14, 23, 19, 0.12);
-  color: #0e1713;
+  background: #0e1713;
+  color: #eef5f1;
 }
 
 .brand-mark {
