@@ -491,10 +491,10 @@ button,
   background: transparent;
   color: #0e1713;
   font: inherit;
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 0.28rem 0.48rem;
+  letter-spacing: 0.03em;
+  padding: 0.28rem 0.42rem;
   cursor: pointer;
 }
 

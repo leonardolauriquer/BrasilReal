@@ -6,9 +6,9 @@ export const LOCALE_META: Record<
   Locale,
   { bcp47: string; short: string; native: string }
 > = {
-  pt: { bcp47: "pt-BR", short: "PT", native: "Português" },
-  en: { bcp47: "en", short: "EN", native: "English" },
-  es: { bcp47: "es", short: "ES", native: "Español" },
+  pt: { bcp47: "pt-BR", short: "PTBR", native: "Português" },
+  en: { bcp47: "en", short: "ENG", native: "English" },
+  es: { bcp47: "es", short: "ESP", native: "Español" },
 };
 
 const STORAGE_KEY = "br-lang";
